@@ -1,0 +1,137 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "TMF632 Party Management API",
+    "version": "4.0.0",
+    "title": "TMF632 Party Management"
+  },
+  "basePath": "/tmf-api/partyManagement/v4",
+  "paths": {
+    "/party": {
+      "get": {
+        "tags": ["party"],
+        "operationId": "listParty",
+        "summary": "List parties",
+        "description": "This operation retrieves party entities.",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Party"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["party"],
+        "operationId": "createParty",
+        "summary": "Create party",
+        "description": "This operation creates a party entity.",
+        "parameters": [
+          {
+            "name": "party",
+            "in": "body",
+            "description": "The Party to be created",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Party"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "schema": {
+              "$ref": "#/definitions/Party"
+            }
+          }
+        }
+      }
+    },
+    "/party/{id}": {
+      "get": {
+        "tags": ["party"],
+        "operationId": "retrieveParty",
+        "summary": "Retrieve party",
+        "description": "This operation retrieves a party entity.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Identifier of the Party",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/Party"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Party": {
+      "type": "object",
+      "description": "Party represents an organization or an individual.",
+      "required": ["id", "name"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the party"
+        },
+        "href": {
+          "type": "string",
+          "description": "Reference of the party"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the party"
+        },
+        "status": {
+          "type": "string",
+          "description": "Status of the party",
+          "enum": ["initialized", "validated", "closed"]
+        },
+        "validFor": {
+          "$ref": "#/definitions/TimePeriod"
+        },
+        "@baseType": {
+          "type": "string",
+          "description": "When sub-classing, this defines the super-class"
+        },
+        "@schemaLocation": {
+          "type": "string",
+          "description": "A URI to a JSON-Schema file that defines additional attributes and relationships"
+        },
+        "@type": {
+          "type": "string",
+          "description": "When sub-classing, this defines the sub-class entity name"
+        }
+      }
+    },
+    "TimePeriod": {
+      "type": "object",
+      "description": "A time period represents a period of time, between two dates.",
+      "properties": {
+        "startDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Start date of the time period"
+        },
+        "endDateTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "End date of the time period"
+        }
+      }
+    }
+  }
+} 
