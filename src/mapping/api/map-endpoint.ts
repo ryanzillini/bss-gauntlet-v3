@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { DocumentationMappingService } from '../services/DocumentationMappingService';
 import { saveEndpointMapping, BssEndpointMapping } from '../../utils/supabase-client';
-import { EndpointMappingRequest, ApiMapping, OutputField } from '../types';
+import { EndpointMappingRequest, ApiMapping, OutputField, TMFEndpoint } from '../types';
 
 // Type guard function to check if error is an Error object
 function isError(error: unknown): error is Error {
@@ -94,6 +94,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error('OPENAI_API_KEY is not configured');
     }
 
+    // Parse the specification string to an object
+    let parsedSpecification;
+    try {
+      parsedSpecification = JSON.parse(specification);
+    } catch (e) {
+      // If parsing fails, create a default structure
+      parsedSpecification = {
+        fields: []
+      };
+      console.warn('[map-endpoint] Failed to parse specification string, using default empty structure');
+    }
+
     // Get mapping suggestions from the documentation service
     console.log('[map-endpoint] Initializing DocumentationMappingService');
     const documentationService = new DocumentationMappingService(process.env.OPENAI_API_KEY);
@@ -102,7 +114,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const apiMappings: ApiMapping[] = await documentationService.analyzeDocumentation({
       path,
       method,
-      specification
+      specification: parsedSpecification
     }, docId);
 
     console.log('[map-endpoint] Got API mappings:', {
@@ -117,7 +129,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log('[map-endpoint] Starting to save mappings');
     const savedMappings = await Promise.all(apiMappings.map(async (mapping: ApiMapping) => {
       const mappingData: Omit<BssEndpointMapping, 'id' | 'created_at' | 'updated_at'> = {
-        endpoint_id: String(endpointId),
+        endpoint_id: Number(endpointId),
         doc_id: docId,
         source_endpoint: {
           path: mapping.steps[0].endpoint.path,
@@ -133,7 +145,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           target: field.target,
           transform: field.transform
         })),
-        confidence_score: mapping.confidenceScore,
+        confidence_score: Number(mapping.confidenceScore),
         reasoning: mapping.reasoning,
         status: 'draft' as const
       };
