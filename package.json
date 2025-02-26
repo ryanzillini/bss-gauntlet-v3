@@ -11,6 +11,10 @@
   "dependencies": {
     "@aws-sdk/client-bedrock-runtime": "^3.0.0",
     "@aws-sdk/client-cognito-identity-provider": "^3.0.0",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.0",
+    "@mui/material": "^5.15.0",
     "@supabase/supabase-js": "^2.39.0",
     "axios": "^1.6.7",
     "cheerio": "^1.0.0",
