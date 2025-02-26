@@ -1,4 +1,4 @@
-import { TMFField } from '../TMField';
+import { TMFField } from '../TMFField';
 
 export interface TMFEndpointListProps {
   title?: string;
