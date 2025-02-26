@@ -1,0 +1,1733 @@
+{
+  "api": "TMF654_PrepayBalance",
+  "version": "v4.1.0",
+  "endpoints": [
+    {
+      "name": "listBucket",
+      "type": "GET",
+      "path": "/bucket",
+      "description": "Retrieves a list of Bucket entities. You can filter the results by specifying the properties you want to include in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of Bucket entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of Bucket entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the requested Bucket entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createBucket",
+      "type": "POST",
+      "path": "/bucket",
+      "description": "Creates a new Bucket entity and returns the created entity.",
+      "parameters": [
+        {
+          "name": "bucket",
+          "required": true,
+          "description": "The Bucket entity to be created. The entity should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Bucket_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the created Bucket entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveBucket",
+      "type": "GET",
+      "path": "/bucket/{id}",
+      "description": "Retrieves a specific Bucket entity by its ID. You can specify the properties you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the Bucket entity to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the requested Bucket entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteBucket",
+      "type": "DELETE",
+      "path": "/bucket/{id}",
+      "description": "Deletes a specific Bucket entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the Bucket entity to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listTopupBalance",
+      "type": "GET",
+      "path": "/topupBalance",
+      "description": "Retrieves a list of TopupBalance entities. You can filter the results by specifying the properties you want to include in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of TopupBalance entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of TopupBalance entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the requested TopupBalance entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTopupBalance",
+      "type": "POST",
+      "path": "/topupBalance",
+      "description": "This endpoint creates a new TopupBalance entity. It requires a TopupBalance object in the request body.",
+      "parameters": [
+        {
+          "name": "topupBalance",
+          "type": "object",
+          "required": true,
+          "description": "The TopupBalance object to be created. This should be included in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created TopupBalance object."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "patchTopupBalance",
+      "type": "PATCH",
+      "path": "/topupBalance/{id}",
+      "description": "This endpoint partially updates an existing TopupBalance entity. It requires the ID of the TopupBalance and the updated TopupBalance object in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the TopupBalance to be updated. This should be included in the path."
+        },
+        {
+          "name": "topupBalance",
+          "type": "object",
+          "required": true,
+          "description": "The updated TopupBalance object. This should be included in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated TopupBalance object."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "retrieveTopupBalance",
+      "type": "GET",
+      "path": "/topupBalance/{id}",
+      "description": "This endpoint retrieves a specific TopupBalance entity by its ID. You can also specify a comma-separated list of properties to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the TopupBalance to be retrieved. This should be included in the path."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. This should be included in the query string."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested TopupBalance object."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "deleteTopupBalance",
+      "type": "DELETE",
+      "path": "/topupBalance/{id}",
+      "description": "This endpoint deletes a specific TopupBalance entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the TopupBalance to be deleted. This should be included in the path."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message if the TopupBalance was successfully deleted."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listAdjustBalance",
+      "type": "GET",
+      "path": "/adjustBalance",
+      "description": "This endpoint retrieves a list of AdjustBalance entities. You can specify a comma-separated list of properties to be included in the response, as well as the offset and limit for pagination.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. This should be included in the query string."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The index of the first AdjustBalance to be included in the response. This should be included in the query string."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of AdjustBalance entities to be included in the response. This should be included in the query string."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of AdjustBalance entities."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "createAdjustBalance",
+      "type": "POST",
+      "path": "/adjustBalance",
+      "description": "This endpoint creates a new AdjustBalance entity. It requires the AdjustBalance object to be passed in the request body.",
+      "parameters": [
+        {
+          "name": "adjustBalance",
+          "type": "object",
+          "required": true,
+          "description": "The AdjustBalance object to be created. This object should follow the schema defined in AdjustBalance_Create."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created AdjustBalance object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchAdjustBalance",
+      "type": "PATCH",
+      "path": "/adjustBalance/{id}",
+      "description": "This endpoint partially updates an existing AdjustBalance entity. It requires the ID of the AdjustBalance and the updated AdjustBalance object.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the AdjustBalance entity to be updated."
+        },
+        {
+          "name": "adjustBalance",
+          "type": "object",
+          "required": true,
+          "description": "The updated AdjustBalance object. This object should follow the schema defined in AdjustBalance_Update."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated AdjustBalance object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveAdjustBalance",
+      "type": "GET",
+      "path": "/adjustBalance/{id}",
+      "description": "This endpoint retrieves an existing AdjustBalance entity by its ID. You can specify the attributes you want to retrieve using the 'fields' parameter.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the AdjustBalance entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. If not provided, all first-level attributes will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested AdjustBalance object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteAdjustBalance",
+      "type": "DELETE",
+      "path": "/adjustBalance/{id}",
+      "description": "This endpoint deletes an existing AdjustBalance entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the AdjustBalance entity to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message upon successful deletion."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listTransferBalance",
+      "type": "GET",
+      "path": "/transferBalance",
+      "description": "This endpoint retrieves a list of TransferBalance entities. You can specify the attributes you want to retrieve, as well as pagination parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. If not provided, all properties will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of TransferBalance entities to be returned. Defaults to 0 if not provided."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of TransferBalance entities to be returned. If not provided, all entities will be returned."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of TransferBalance entities upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTransferBalance",
+      "type": "POST",
+      "path": "/transferBalance",
+      "description": "This endpoint creates a new TransferBalance entity. It requires a TransferBalance object in the request body.",
+      "parameters": [
+        {
+          "name": "transferBalance",
+          "type": "object",
+          "required": true,
+          "description": "The TransferBalance object to be created. This object should follow the schema defined in '#/definitions/TransferBalance_Create'."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created TransferBalance object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchTransferBalance",
+      "type": "PATCH",
+      "path": "/transferBalance/{id}",
+      "description": "This endpoint partially updates an existing TransferBalance entity. It requires the ID of the TransferBalance and the updated TransferBalance object in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the TransferBalance to be updated."
+        },
+        {
+          "name": "transferBalance",
+          "type": "object",
+          "required": true,
+          "description": "The updated TransferBalance object. This object should follow the schema defined in '#/definitions/TransferBalance_Update'."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated TransferBalance object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTransferBalance",
+      "type": "GET",
+      "path": "/transferBalance/{id}",
+      "description": "This endpoint retrieves a specific TransferBalance entity by its ID. You can specify the attributes you want to retrieve using the 'fields' query parameter.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the TransferBalance to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. If not provided, all first-level attributes will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested TransferBalance object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteTransferBalance",
+      "type": "DELETE",
+      "path": "/transferBalance/{id}",
+      "description": "This endpoint deletes a specific TransferBalance entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the TransferBalance to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a confirmation message upon successful deletion."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listReserveBalance",
+      "type": "GET",
+      "path": "/reserveBalance",
+      "description": "This endpoint retrieves a list of ReserveBalance entities. You can specify the attributes you want to retrieve, as well as pagination parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. If not provided, all attributes will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of ReserveBalance entities to be returned. If not provided, the list will start from the first entity."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ReserveBalance entities to be returned. If not provided, all entities will be returned."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of ReserveBalance entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createReserveBalance",
+      "type": "POST",
+      "path": "/reserveBalance",
+      "description": "Creates a new ReserveBalance entity. This operation is used when you want to add a new reserve balance to the system.",
+      "parameters": [
+        {
+          "name": "reserveBalance",
+          "type": "object",
+          "required": true,
+          "description": "The ReserveBalance object that needs to be added to the system. This object should follow the ReserveBalance_Create schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created ReserveBalance object."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "405: Method Not allowed - The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "patchReserveBalance",
+      "type": "PATCH",
+      "path": "/reserveBalance/{id}",
+      "description": "Updates an existing ReserveBalance entity partially. This operation is used when you want to update certain fields of a reserve balance without affecting others.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ReserveBalance that needs to be updated."
+        },
+        {
+          "name": "reserveBalance",
+          "type": "object",
+          "required": true,
+          "description": "The ReserveBalance object that contains the updated values. This object should follow the ReserveBalance_Update schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated ReserveBalance object."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "retrieveReserveBalance",
+      "type": "GET",
+      "path": "/reserveBalance/{id}",
+      "description": "Retrieves a specific ReserveBalance entity by its unique identifier. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ReserveBalance that needs to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. If not specified, all first level attributes will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested ReserveBalance object."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "deleteReserveBalance",
+      "type": "DELETE",
+      "path": "/reserveBalance/{id}",
+      "description": "Deletes a specific ReserveBalance entity by its unique identifier. This operation is used when you want to remove a reserve balance from the system.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ReserveBalance that needs to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message if the deletion was successful."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listAccumulatedBalance",
+      "type": "GET",
+      "path": "/accumulatedBalance",
+      "description": "Lists or finds AccumulatedBalance entities. This operation is used when you want to retrieve a list of accumulated balances, with the option to specify which properties to include in the response and to limit the number of results.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. If not specified, all properties will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index of the resources to be included in the response. If not specified, the list will start from the first resource."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to be included in the response. If not specified, all resources will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of AccumulatedBalance objects."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the Request-Line is not allowed for the resource identified by the Request-URI.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "retrieveAccumulatedBalance",
+      "type": "GET",
+      "path": "/accumulatedBalance/{id}",
+      "description": "Fetches the AccumulatedBalance entity associated with the provided ID. You can select specific attributes to be included in the response by using the 'fields' parameter.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the AccumulatedBalance entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want included in the response. Attributes should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the AccumulatedBalance entity if found. If not, an error message is returned."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listBalanceAction",
+      "type": "GET",
+      "path": "/balanceAction",
+      "description": "Fetches a list of BalanceAction entities. You can control the number of entities and the starting point in the list with the 'offset' and 'limit' parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want included in the response. Attributes should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting point in the list of BalanceAction entities. Use this to paginate results."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of BalanceAction entities to return in the response. Use this to limit results."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of BalanceAction entities. If no entities are found, an empty list is returned."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "retrieveBalanceAction",
+      "type": "GET",
+      "path": "/balanceAction/{id}",
+      "description": "Fetches the BalanceAction entity associated with the provided ID. You can select specific attributes to be included in the response by using the 'fields' parameter.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the BalanceAction entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want included in the response. Attributes should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the BalanceAction entity if found. If not, an error message is returned."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Registers a new listener at the specified endpoint. The service will use this endpoint to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data containing the callback endpoint where the service should deliver the information.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a confirmation that the listener has been registered successfully."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Removes the specified listener, stopping the service from delivering information to its endpoint.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener you want to remove."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a confirmation that the listener has been removed successfully."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToBucketCreateEvent",
+      "type": "POST",
+      "path": "/listener/bucketCreateEvent",
+      "description": "This endpoint allows a client to listen for a BucketCreateEvent notification. When a bucket is created, this event is triggered and the client will receive the event data.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the created bucket. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToBucketDeleteEvent",
+      "type": "POST",
+      "path": "/listener/bucketDeleteEvent",
+      "description": "This endpoint allows a client to listen for a BucketDeleteEvent notification. When a bucket is deleted, this event is triggered and the client will receive the event data.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the deleted bucket. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToBucketAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/bucketAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for a BucketAttributeValueChangeEvent notification. When an attribute value of a bucket changes, this event is triggered and the client will receive the event data.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the changed attribute value of the bucket. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToTopupBalanceCreateEvent",
+      "type": "POST",
+      "path": "/listener/topupBalanceCreateEvent",
+      "description": "This endpoint allows a client to listen for a TopupBalanceCreateEvent notification. When a balance top-up is created, this event is triggered and the client will receive the event data.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the created balance top-up. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToTopupBalanceCancelEvent",
+      "type": "POST",
+      "path": "/listener/topupBalanceCancelEvent",
+      "description": "This endpoint allows a client to listen for a TopupBalanceCancelEvent notification. When a balance top-up is cancelled, this event is triggered and the client will receive the event data.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the cancelled balance top-up. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToTopupBalanceFailureEvent",
+      "type": "POST",
+      "path": "/listener/topupBalanceFailureEvent",
+      "description": "This endpoint allows a client to listen for a TopupBalanceFailureEvent notification. It is designed to receive and process notifications when a top-up balance operation fails.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains detailed information about the top-up balance failure event. The data should conform to the TopupBalanceFailureEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTopupBalanceAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/topupBalanceAttributeValueChangeEvent",
+      "description": "This endpoint enables a client to listen for a TopupBalanceAttributeValueChangeEvent notification. It is designed to receive and process notifications when an attribute value of the top-up balance changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains detailed information about the top-up balance attribute value change event. The data should conform to the TopupBalanceAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTopupBalanceStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/topupBalanceStatusChangeEvent",
+      "description": "This endpoint allows a client to listen for a TopupBalanceStatusChangeEvent notification. It is designed to receive and process notifications when the status of the top-up balance changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains detailed information about the top-up balance status change event. The data should conform to the TopupBalanceStatusChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTopupBalanceDeleteEvent",
+      "type": "POST",
+      "path": "/listener/topupBalanceDeleteEvent",
+      "description": "This endpoint allows a client to listen for a TopupBalanceDeleteEvent notification. It is designed to receive and process notifications when a top-up balance is deleted.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains detailed information about the top-up balance delete event. The data should conform to the TopupBalanceDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAdjustBalanceCreateEvent",
+      "type": "POST",
+      "path": "/listener/adjustBalanceCreateEvent",
+      "description": "This endpoint allows a client to listen for an AdjustBalanceCreateEvent notification. It is designed to receive and process notifications when a balance adjustment is created.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains detailed information about the balance adjustment creation event. The data should conform to the AdjustBalanceCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAdjustBalanceCancelEvent",
+      "type": "POST",
+      "path": "/listener/adjustBalanceCancelEvent",
+      "description": "This endpoint allows a client to listen for the AdjustBalanceCancelEvent notification. It is typically used to receive updates when a balance adjustment is cancelled.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains details about the balance adjustment that was cancelled. This data should conform to the AdjustBalanceCancelEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAdjustBalanceFailureEvent",
+      "type": "POST",
+      "path": "/listener/adjustBalanceFailureEvent",
+      "description": "This endpoint allows a client to listen for the AdjustBalanceFailureEvent notification. It is typically used to receive updates when a balance adjustment fails.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains details about the balance adjustment that failed. This data should conform to the AdjustBalanceFailureEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAdjustBalanceAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/adjustBalanceAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the AdjustBalanceAttributeValueChangeEvent notification. It is typically used to receive updates when an attribute value of a balance adjustment changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains details about the balance adjustment whose attribute value changed. This data should conform to the AdjustBalanceAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAdjustBalanceStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/adjustBalanceStatusChangeEvent",
+      "description": "This endpoint allows a client to listen for the AdjustBalanceStatusChangeEvent notification. It is typically used to receive updates when the status of a balance adjustment changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains details about the balance adjustment whose status changed. This data should conform to the AdjustBalanceStatusChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAdjustBalanceDeleteEvent",
+      "type": "POST",
+      "path": "/listener/adjustBalanceDeleteEvent",
+      "description": "This endpoint allows a client to listen for the AdjustBalanceDeleteEvent notification. It is typically used to receive updates when a balance adjustment is deleted.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which contains details about the balance adjustment that was deleted. This data should conform to the AdjustBalanceDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToTransferBalanceCreateEvent",
+      "type": "POST",
+      "path": "/listener/transferBalanceCreateEvent",
+      "description": "This endpoint is designed to set up a client-side listener for receiving notifications when a TransferBalanceCreateEvent occurs. It's a way for your application to stay updated about balance transfers.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data associated with the TransferBalanceCreateEvent. It should follow the schema defined in the TransferBalanceCreateEvent definition."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful setup, the API will return a response object indicating that the listener has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request could not be completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToTransferBalanceCancelEvent",
+      "type": "POST",
+      "path": "/listener/transferBalanceCancelEvent",
+      "description": "This endpoint sets up a client-side listener for receiving notifications when a TransferBalanceCancelEvent occurs. It allows your application to track when balance transfers are cancelled.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data associated with the TransferBalanceCancelEvent. It should follow the schema defined in the TransferBalanceCancelEvent definition."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful setup, the API will return a response object indicating that the listener has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request could not be completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToTransferBalanceFailureEvent",
+      "type": "POST",
+      "path": "/listener/transferBalanceFailureEvent",
+      "description": "This endpoint sets up a client-side listener for receiving notifications when a TransferBalanceFailureEvent occurs. It helps your application to monitor when balance transfers fail.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data associated with the TransferBalanceFailureEvent. It should follow the schema defined in the TransferBalanceFailureEvent definition."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful setup, the API will return a response object indicating that the listener has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request could not be completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToTransferBalanceAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/transferBalanceAttributeValueChangeEvent",
+      "description": "This endpoint sets up a client-side listener for receiving notifications when a TransferBalanceAttributeValueChangeEvent occurs. It allows your application to track changes in attribute values of balance transfers.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data associated with the TransferBalanceAttributeValueChangeEvent. It should follow the schema defined in the TransferBalanceAttributeValueChangeEvent definition."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful setup, the API will return a response object indicating that the listener has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request could not be completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToTransferBalanceStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/transferBalanceStatusChangeEvent",
+      "description": "This endpoint sets up a client-side listener for receiving notifications when a TransferBalanceStatusChangeEvent occurs. It enables your application to stay updated about status changes in balance transfers.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data associated with the TransferBalanceStatusChangeEvent. It should follow the schema defined in the TransferBalanceStatusChangeEvent definition."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful setup, the API will return a response object indicating that the listener has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request could not be completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToTransferBalanceDeleteEvent",
+      "type": "POST",
+      "path": "/listener/transferBalanceDeleteEvent",
+      "description": "Example of a client listener for receiving the notification TransferBalanceDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TransferBalanceDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveBalanceCreateEvent",
+      "type": "POST",
+      "path": "/listener/reserveBalanceCreateEvent",
+      "description": "Example of a client listener for receiving the notification ReserveBalanceCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveBalanceCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveBalanceCancelEvent",
+      "type": "POST",
+      "path": "/listener/reserveBalanceCancelEvent",
+      "description": "Example of a client listener for receiving the notification ReserveBalanceCancelEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveBalanceCancelEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveBalanceFailureEvent",
+      "type": "POST",
+      "path": "/listener/reserveBalanceFailureEvent",
+      "description": "Example of a client listener for receiving the notification ReserveBalanceFailureEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveBalanceFailureEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveBalanceAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/reserveBalanceAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ReserveBalanceAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveBalanceAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveBalanceStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/reserveBalanceStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification ReserveBalanceStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveBalanceStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveBalanceDeleteEvent",
+      "type": "POST",
+      "path": "/listener/reserveBalanceDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ReserveBalanceDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveBalanceDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

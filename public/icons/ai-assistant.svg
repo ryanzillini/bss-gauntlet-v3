@@ -1,0 +1,13 @@
+<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="8" y="8" width="32" height="32" rx="8" fill="url(#ai-gradient)" />
+  
+      <path d="M24 16V32M19 19L29 29M19 29L29 19" stroke="white" stroke-width="2" stroke-linecap="round" />
+      <circle cx="24" cy="24" r="8" stroke="white" stroke-width="2" />
+    
+  <defs>
+    <linearGradient id="ai-gradient" x1="8" y1="8" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#FF5C72" />
+      <stop offset="1" stop-color="#9747FF" />
+    </linearGradient>
+  </defs>
+</svg>

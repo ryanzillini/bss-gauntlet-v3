@@ -1,0 +1,130 @@
+{
+  "api": "TMF691_Federated_ID",
+  "version": "unknown",
+  "endpoints": [
+    {
+      "name": "listUserinfo",
+      "type": "GET",
+      "path": "/userinfo",
+      "description": "This endpoint retrieves a list of Userinfo entities. It allows for specific fields to be selected and for the response to be limited or offset.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Define the starting point from which the list of Userinfo entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Limit the number of Userinfo entities returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested Userinfo entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveUserinfo",
+      "type": "GET",
+      "path": "/userinfo/{id}",
+      "description": "This endpoint retrieves a specific Userinfo entity by its ID. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Userinfo entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested Userinfo entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint registers a communication endpoint for the service instance to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data should contain the callback endpoint where the service instance will deliver the information.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been registered and will receive updates."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint unregisters a previously registered communication endpoint, stopping the service instance from delivering information to it.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener you want to unregister."
+        }
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

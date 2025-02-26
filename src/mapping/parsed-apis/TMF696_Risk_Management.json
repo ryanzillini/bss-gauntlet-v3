@@ -1,0 +1,1270 @@
+{
+  "api": "TMF696_Risk_Management",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listProductOfferingRiskAssessment",
+      "type": "GET",
+      "path": "/productOfferingRiskAssessment",
+      "description": "This operation list or find ProductOfferingRiskAssessment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "productOfferingRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProductOfferingRiskAssessment",
+      "type": "POST",
+      "path": "/productOfferingRiskAssessment",
+      "description": "This operation creates a ProductOfferingRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "productOfferingRiskAssessment",
+          "required": true,
+          "description": "The ProductOfferingRiskAssessment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOfferingRiskAssessment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "productOfferingRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveProductOfferingRiskAssessment",
+      "type": "GET",
+      "path": "/productOfferingRiskAssessment/{id}",
+      "description": "This operation retrieves a ProductOfferingRiskAssessment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProductOfferingRiskAssessment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "productOfferingRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteProductOfferingRiskAssessment",
+      "type": "DELETE",
+      "path": "/productOfferingRiskAssessment/{id}",
+      "description": "This operation deletes a ProductOfferingRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProductOfferingRiskAssessment",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "productOfferingRiskAssessment"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listPartyRoleRiskAssessment",
+      "type": "GET",
+      "path": "/partyRoleRiskAssessment",
+      "description": "This operation list or find PartyRoleRiskAssessment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "partyRoleRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPartyRoleRiskAssessment",
+      "type": "POST",
+      "path": "/partyRoleRiskAssessment",
+      "description": "This operation creates a PartyRoleRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "partyRoleRiskAssessment",
+          "required": true,
+          "description": "The PartyRoleRiskAssessment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleRiskAssessment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "partyRoleRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePartyRoleRiskAssessment",
+      "type": "GET",
+      "path": "/partyRoleRiskAssessment/{id}",
+      "description": "This operation retrieves a PartyRoleRiskAssessment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the PartyRoleRiskAssessment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "partyRoleRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deletePartyRoleRiskAssessment",
+      "type": "DELETE",
+      "path": "/partyRoleRiskAssessment/{id}",
+      "description": "This operation deletes a PartyRoleRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the PartyRoleRiskAssessment",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "partyRoleRiskAssessment"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listPartyRoleProductOfferingRiskAssessment",
+      "type": "GET",
+      "path": "/partyRoleProductOfferingRiskAssessment",
+      "description": "This operation list or find PartyRoleProductOfferingRiskAssessment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "partyRoleProductOfferingRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPartyRoleProductOfferingRiskAssessment",
+      "type": "POST",
+      "path": "/partyRoleProductOfferingRiskAssessment",
+      "description": "This operation creates a PartyRoleProductOfferingRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "partyRoleProductOfferingRiskAssessment",
+          "required": true,
+          "description": "The PartyRoleProductOfferingRiskAssessment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleProductOfferingRiskAssessment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "partyRoleProductOfferingRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePartyRoleProductOfferingRiskAssessment",
+      "type": "GET",
+      "path": "/partyRoleProductOfferingRiskAssessment/{id}",
+      "description": "This operation retrieves a PartyRoleProductOfferingRiskAssessment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the PartyRoleProductOfferingRiskAssessment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "partyRoleProductOfferingRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deletePartyRoleProductOfferingRiskAssessment",
+      "type": "DELETE",
+      "path": "/partyRoleProductOfferingRiskAssessment/{id}",
+      "description": "This operation deletes a PartyRoleProductOfferingRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the PartyRoleProductOfferingRiskAssessment",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "partyRoleProductOfferingRiskAssessment"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listShoppingCartRiskAssessment",
+      "type": "GET",
+      "path": "/shoppingCartRiskAssessment",
+      "description": "This operation list or find ShoppingCartRiskAssessment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "shoppingCartRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createShoppingCartRiskAssessment",
+      "type": "POST",
+      "path": "/shoppingCartRiskAssessment",
+      "description": "This operation creates a ShoppingCartRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "shoppingCartRiskAssessment",
+          "required": true,
+          "description": "The ShoppingCartRiskAssessment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ShoppingCartRiskAssessment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "shoppingCartRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveShoppingCartRiskAssessment",
+      "type": "GET",
+      "path": "/shoppingCartRiskAssessment/{id}",
+      "description": "This operation retrieves a ShoppingCartRiskAssessment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ShoppingCartRiskAssessment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "shoppingCartRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteShoppingCartRiskAssessment",
+      "type": "DELETE",
+      "path": "/shoppingCartRiskAssessment/{id}",
+      "description": "This operation deletes a ShoppingCartRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ShoppingCartRiskAssessment",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "shoppingCartRiskAssessment"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listProductOrderRiskAssessment",
+      "type": "GET",
+      "path": "/productOrderRiskAssessment",
+      "description": "This operation list or find ProductOrderRiskAssessment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "productOrderRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProductOrderRiskAssessment",
+      "type": "POST",
+      "path": "/productOrderRiskAssessment",
+      "description": "This operation creates a ProductOrderRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "productOrderRiskAssessment",
+          "required": true,
+          "description": "The ProductOrderRiskAssessment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOrderRiskAssessment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "productOrderRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveProductOrderRiskAssessment",
+      "type": "GET",
+      "path": "/productOrderRiskAssessment/{id}",
+      "description": "This operation retrieves a ProductOrderRiskAssessment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProductOrderRiskAssessment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "productOrderRiskAssessment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteProductOrderRiskAssessment",
+      "type": "DELETE",
+      "path": "/productOrderRiskAssessment/{id}",
+      "description": "This operation deletes a ProductOrderRiskAssessment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProductOrderRiskAssessment",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "productOrderRiskAssessment"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "Data containing the callback endpoint to deliver the information",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Subscribed"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The id of the registered listener",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductOfferingRiskAssessmentCreateEvent",
+      "type": "POST",
+      "path": "/listener/productOfferingRiskAssessmentCreateEvent",
+      "description": "Example of a client listener for receiving the notification ProductOfferingRiskAssessmentCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOfferingRiskAssessmentCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductOfferingRiskAssessmentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/productOfferingRiskAssessmentDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ProductOfferingRiskAssessmentDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOfferingRiskAssessmentDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductOfferingRiskAssessmentStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/productOfferingRiskAssessmentStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProductOfferingRiskAssessmentStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOfferingRiskAssessmentStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleRiskAssessmentCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleRiskAssessmentCreateEvent",
+      "description": "Example of a client listener for receiving the notification PartyRoleRiskAssessmentCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleRiskAssessmentCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleRiskAssessmentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleRiskAssessmentDeleteEvent",
+      "description": "Example of a client listener for receiving the notification PartyRoleRiskAssessmentDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleRiskAssessmentDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleRiskAssessmentStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleRiskAssessmentStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyRoleRiskAssessmentStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleRiskAssessmentStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleProductOfferingRiskAssessmentCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleProductOfferingRiskAssessmentCreateEvent",
+      "description": "Example of a client listener for receiving the notification PartyRoleProductOfferingRiskAssessmentCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleProductOfferingRiskAssessmentCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleProductOfferingRiskAssessmentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleProductOfferingRiskAssessmentDeleteEvent",
+      "description": "Example of a client listener for receiving the notification PartyRoleProductOfferingRiskAssessmentDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleProductOfferingRiskAssessmentDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleProductOfferingRiskAssessmentStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleProductOfferingRiskAssessmentStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyRoleProductOfferingRiskAssessmentStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleProductOfferingRiskAssessmentStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToShoppingCartRiskAssessmentCreateEvent",
+      "type": "POST",
+      "path": "/listener/shoppingCartRiskAssessmentCreateEvent",
+      "description": "Example of a client listener for receiving the notification ShoppingCartRiskAssessmentCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ShoppingCartRiskAssessmentCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToShoppingCartRiskAssessmentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/shoppingCartRiskAssessmentDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ShoppingCartRiskAssessmentDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ShoppingCartRiskAssessmentDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToShoppingCartRiskAssessmentStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/shoppingCartRiskAssessmentStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification ShoppingCartRiskAssessmentStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ShoppingCartRiskAssessmentStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductOrderRiskAssessmentCreateEvent",
+      "type": "POST",
+      "path": "/listener/productOrderRiskAssessmentCreateEvent",
+      "description": "Example of a client listener for receiving the notification ProductOrderRiskAssessmentCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOrderRiskAssessmentCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductOrderRiskAssessmentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/productOrderRiskAssessmentDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ProductOrderRiskAssessmentDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOrderRiskAssessmentDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductOrderRiskAssessmentStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/productOrderRiskAssessmentStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProductOrderRiskAssessmentStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOrderRiskAssessmentStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

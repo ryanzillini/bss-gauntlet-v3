@@ -1,0 +1,294 @@
+{
+  "api": "TMF675_Geographic_Location",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listGeographicLocation",
+      "type": "GET",
+      "path": "/geographicLocation",
+      "description": "This endpoint retrieves a list of GeographicLocation entities. It allows for optional filtering, sorting, and pagination.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response. Use comma-separated values for multiple fields."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned. Useful for implementing pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response. Useful for limiting response size."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of GeographicLocation entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createGeographicLocation",
+      "type": "POST",
+      "path": "/geographicLocation",
+      "description": "This endpoint creates a new GeographicLocation entity.",
+      "parameters": [
+        {
+          "name": "geographicLocation",
+          "required": true,
+          "description": "The GeographicLocation object that needs to be added to the database.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the GeographicLocation entity that was created."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveGeographicLocation",
+      "type": "GET",
+      "path": "/geographicLocation/{id}",
+      "description": "This endpoint retrieves a specific GeographicLocation entity based on its unique ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the GeographicLocation entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response. Use comma-separated values for multiple fields."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the requested GeographicLocation entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchGeographicLocation",
+      "type": "PATCH",
+      "path": "/geographicLocation/{id}",
+      "description": "This endpoint updates an existing GeographicLocation entity partially based on its unique ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the GeographicLocation entity you want to update."
+        },
+        {
+          "name": "geographicLocation",
+          "required": true,
+          "description": "The GeographicLocation object that contains the updated values.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the GeographicLocation entity that was updated."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteGeographicLocation",
+      "type": "DELETE",
+      "path": "/geographicLocation/{id}",
+      "description": "This endpoint deletes a specific GeographicLocation entity based on its unique ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the GeographicLocation entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm the deletion of the GeographicLocation entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data that will be used to deliver the information. The data should adhere to the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully subscribed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to reset the communication endpoint address that the service instance uses to deliver updates. This effectively stops the delivery of updates to the specified listener.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToGeographicLocationCreateEvent",
+      "type": "POST",
+      "path": "/listener/geographicLocationCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a GeographicLocationCreateEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the GeographicLocationCreateEvent. The data should adhere to the GeographicLocationCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToGeographicLocationAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/geographicLocationAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a GeographicLocationAttributeValueChangeEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the GeographicLocationAttributeValueChangeEvent. The data should adhere to the GeographicLocationAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToGeographicLocationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/geographicLocationDeleteEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a GeographicLocationDeleteEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the GeographicLocationDeleteEvent. The data should adhere to the GeographicLocationDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

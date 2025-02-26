@@ -1,0 +1,333 @@
+{
+  "api": "TMF669_Party_Role",
+  "version": "unknown",
+  "endpoints": [
+    {
+      "name": "listPartyRole",
+      "type": "GET",
+      "path": "/partyRole",
+      "description": "Fetches a list of PartyRole entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of PartyRole entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of PartyRole entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested PartyRole entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPartyRole",
+      "type": "POST",
+      "path": "/partyRole",
+      "description": "Creates a new PartyRole entity and returns the created entity.",
+      "parameters": [
+        {
+          "name": "partyRole",
+          "required": true,
+          "description": "The PartyRole entity to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRole_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the created PartyRole entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePartyRole",
+      "type": "GET",
+      "path": "/partyRole/{id}",
+      "description": "Fetches a specific PartyRole entity by its identifier. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyRole entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested PartyRole entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchPartyRole",
+      "type": "PATCH",
+      "path": "/partyRole/{id}",
+      "description": "Updates a specific PartyRole entity partially by its identifier and returns the updated entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyRole entity to be updated."
+        },
+        {
+          "name": "partyRole",
+          "required": true,
+          "description": "The updated PartyRole entity. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRole_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the updated PartyRole entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deletePartyRole",
+      "type": "DELETE",
+      "path": "/partyRole/{id}",
+      "description": "Deletes a specific PartyRole entity by its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyRole entity to be deleted."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health status, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint information where the service instance will deliver the updates. The data should follow the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully registered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to remove the communication endpoint address that the service instance has been using to deliver updates.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that needs to be removed."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully unregistered."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives the PartyRoleCreateEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the PartyRoleCreateEvent. The data should follow the PartyRoleCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the PartyRoleCreateEvent notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the PartyRoleAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the PartyRoleAttributeValueChangeEvent. The data should follow the PartyRoleAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the PartyRoleAttributeValueChangeEvent notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleStateChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the PartyRoleStateChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the PartyRoleStateChangeEvent. The data should follow the PartyRoleStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the PartyRoleStateChangeEvent notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyRoleDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyRoleDeleteEvent",
+      "description": "Example of a client listener for receiving the notification PartyRoleDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyRoleDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

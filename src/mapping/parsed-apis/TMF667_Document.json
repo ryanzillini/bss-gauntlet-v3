@@ -1,0 +1,281 @@
+{
+  "api": "TMF667_Document",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listDocument",
+      "type": "GET",
+      "path": "/document",
+      "description": "This operation list or find Document entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "document"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createDocument",
+      "type": "POST",
+      "path": "/document",
+      "description": "This operation creates a Document entity.",
+      "parameters": [
+        {
+          "name": "document",
+          "required": true,
+          "description": "The Document to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Document_Create"
+          }
+        }
+      ],
+      "tags": [
+        "document"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveDocument",
+      "type": "GET",
+      "path": "/document/{id}",
+      "description": "This operation retrieves a Document entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Document",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "document"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "updateDocument",
+      "type": "PUT",
+      "path": "/document/{id}",
+      "description": "This operation updates a Document entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Document",
+          "in": "path"
+        },
+        {
+          "name": "document",
+          "required": true,
+          "description": "The Document to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Document_Update"
+          }
+        }
+      ],
+      "tags": [
+        "document"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchDocument",
+      "type": "PATCH",
+      "path": "/document/{id}",
+      "description": "This operation updates partially a Document entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Document",
+          "in": "path"
+        },
+        {
+          "name": "document",
+          "required": true,
+          "description": "The Document to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Document_Update"
+          }
+        }
+      ],
+      "tags": [
+        "document"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteDocument",
+      "type": "DELETE",
+      "path": "/document/{id}",
+      "description": "This endpoint allows you to delete a specific document entity by providing its unique identifier (ID).",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier (ID) of the document you wish to delete. This ID should be included in the path of the request."
+        }
+      ],
+      "response": {
+        "type": "string",
+        "description": "A confirmation message indicating the successful deletion of the document."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint sets the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The data object containing the callback endpoint to which the service will deliver information. This object should be included in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation object indicating successful subscription to the service updates."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint allows you to remove a previously set communication endpoint address that the service instance was using to deliver updates.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier (ID) of the registered listener you wish to unregister. This ID should be included in the path of the request."
+        }
+      ],
+      "response": {
+        "type": "string",
+        "description": "A confirmation message indicating the successful unregistration of the listener."
+      },
+      "errors": [
+        "400: Bad request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method not allowed - The method specified in the request is not allowed.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    }
+  ]
+}

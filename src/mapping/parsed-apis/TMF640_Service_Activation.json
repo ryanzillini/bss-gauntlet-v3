@@ -1,0 +1,525 @@
+{
+  "api": "TMF640_Service_Activation",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listService",
+      "type": "GET",
+      "path": "/service",
+      "description": "Fetches a list of Service entities. You can filter the results by specifying the fields, offset, and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of services should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of services to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested services."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createService",
+      "type": "POST",
+      "path": "/service",
+      "description": "Creates a new Service entity. The service details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "service",
+          "required": true,
+          "description": "The details of the service to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Service_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created service."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveService",
+      "type": "GET",
+      "path": "/service/{id}",
+      "description": "Fetches a specific Service entity by its ID. You can specify the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the service you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested service."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchService",
+      "type": "PATCH",
+      "path": "/service/{id}",
+      "description": "Updates a specific Service entity partially by its ID. The updated service details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the service you want to update."
+        },
+        {
+          "name": "service",
+          "required": true,
+          "description": "The updated details of the service, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Service_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated service."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteService",
+      "type": "DELETE",
+      "path": "/service/{id}",
+      "description": "Deletes a specific Service entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the service you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the service."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listMonitor",
+      "type": "GET",
+      "path": "/monitor",
+      "description": "Fetches a list of Monitor entities. You can filter the results by specifying the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of Monitor entities should be fetched."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of Monitor entities to fetch."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of Monitor entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveMonitor",
+      "type": "GET",
+      "path": "/monitor/{id}",
+      "description": "Fetches a specific Monitor entity by its ID. You can specify the attributes you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Monitor entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested Monitor entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Registers a communication endpoint for the service instance to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data containing the callback endpoint where the service instance will deliver the information.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been registered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Unregisters a communication endpoint, stopping the service instance from delivering information to it.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener to be unregistered."
+        }
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceCreateEvent",
+      "description": "Registers a client listener to receive notifications when a ServiceCreateEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data to be received when a ServiceCreateEvent occurs.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceCreateEvent"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been notified of the ServiceCreateEvent."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of ServiceAttributeValueChangeEvents. It is typically used to track changes in service attribute values.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be in the format defined by the ServiceAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceStateChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of ServiceStateChangeEvents. It is typically used to monitor changes in the state of a service.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be in the format defined by the ServiceStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceDeleteEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of ServiceDeleteEvents. It is typically used to track when a service is deleted.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be in the format defined by the ServiceDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToMonitorCreateEvent",
+      "type": "POST",
+      "path": "/listener/monitorCreateEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of MonitorCreateEvents. It is typically used to track when a new monitor is created.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be in the format defined by the MonitorCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToMonitorAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/monitorAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of MonitorAttributeValueChangeEvents. It is typically used to track changes in monitor attribute values.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be in the format defined by the MonitorAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToMonitorStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/monitorStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification MonitorStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/MonitorStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToMonitorDeleteEvent",
+      "type": "POST",
+      "path": "/listener/monitorDeleteEvent",
+      "description": "Example of a client listener for receiving the notification MonitorDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/MonitorDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

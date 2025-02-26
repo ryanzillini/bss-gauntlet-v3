@@ -1,0 +1,557 @@
+{
+  "api": "TMF652_Resource_Order",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listResourceOrder",
+      "type": "GET",
+      "path": "/resourceOrder",
+      "description": "Retrieves a list of ResourceOrder entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of ResourceOrder entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ResourceOrder entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ResourceOrder entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createResourceOrder",
+      "type": "POST",
+      "path": "/resourceOrder",
+      "description": "Creates a new ResourceOrder entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "resourceOrder",
+          "required": true,
+          "description": "The details of the ResourceOrder entity to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceOrder_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created ResourceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveResourceOrder",
+      "type": "GET",
+      "path": "/resourceOrder/{id}",
+      "description": "Retrieves a specific ResourceOrder entity by its ID. You can specify additional properties to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ResourceOrder entity to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ResourceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchResourceOrder",
+      "type": "PATCH",
+      "path": "/resourceOrder/{id}",
+      "description": "Updates a specific ResourceOrder entity partially. You need to provide the ID of the entity and the details to be updated in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ResourceOrder entity to update."
+        },
+        {
+          "name": "resourceOrder",
+          "required": true,
+          "description": "The details to be updated in the ResourceOrder entity. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceOrder_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ResourceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteResourceOrder",
+      "type": "DELETE",
+      "path": "/resourceOrder/{id}",
+      "description": "Deletes a specific ResourceOrder entity. You need to provide the ID of the entity to be deleted.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ResourceOrder entity to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listCancelResourceOrder",
+      "type": "GET",
+      "path": "/cancelResourceOrder",
+      "description": "Retrieves a list of CancelResourceOrder entities. You can filter the results by specifying the desired fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested CancelResourceOrder entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createCancelResourceOrder",
+      "type": "POST",
+      "path": "/cancelResourceOrder",
+      "description": "Creates a new CancelResourceOrder entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "cancelResourceOrder",
+          "required": true,
+          "description": "The details of the CancelResourceOrder to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelResourceOrder_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created CancelResourceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveCancelResourceOrder",
+      "type": "GET",
+      "path": "/cancelResourceOrder/{id}",
+      "description": "Retrieves a specific CancelResourceOrder entity by its ID. You can specify the desired fields in the query parameters.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the CancelResourceOrder entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested CancelResourceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Registers a new listener for service health and metrics updates. You need to provide the callback endpoint in the request body.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The details of the callback endpoint where the service should send updates, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the registration of the listener."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Unregisters a previously registered listener. You need to provide the ID of the listener in the path.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the unregistration of the listener."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToResourceOrderCreateEvent",
+      "type": "POST",
+      "path": "/listener/resourceOrderCreateEvent",
+      "description": "This endpoint allows a client to listen for the ResourceOrderCreateEvent notification. When a new resource order is created, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which includes details about the created resource order. This data should conform to the ResourceOrderCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceOrderAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/resourceOrderAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the ResourceOrderAttributeValueChangeEvent notification. When an attribute value of a resource order changes, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which includes details about the changed attribute value of the resource order. This data should conform to the ResourceOrderAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceOrderStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/resourceOrderStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the ResourceOrderStateChangeEvent notification. When the state of a resource order changes, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which includes details about the changed state of the resource order. This data should conform to the ResourceOrderStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceOrderDeleteEvent",
+      "type": "POST",
+      "path": "/listener/resourceOrderDeleteEvent",
+      "description": "This endpoint allows a client to listen for the ResourceOrderDeleteEvent notification. When a resource order is deleted, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which includes details about the deleted resource order. This data should conform to the ResourceOrderDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceOrderInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/resourceOrderInformationRequiredEvent",
+      "description": "This endpoint allows a client to listen for the ResourceOrderInformationRequiredEvent notification. When additional information is required for a resource order, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which includes details about the information required for the resource order. This data should conform to the ResourceOrderInformationRequiredEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification has been received by the client."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToCancelResourceOrderCreateEvent",
+      "type": "POST",
+      "path": "/listener/cancelResourceOrderCreateEvent",
+      "description": "Example of a client listener for receiving the notification CancelResourceOrderCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelResourceOrderCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCancelResourceOrderStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/cancelResourceOrderStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification CancelResourceOrderStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelResourceOrderStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCancelResourceOrderInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/cancelResourceOrderInformationRequiredEvent",
+      "description": "Example of a client listener for receiving the notification CancelResourceOrderInformationRequiredEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelResourceOrderInformationRequiredEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

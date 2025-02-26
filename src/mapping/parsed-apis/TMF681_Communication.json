@@ -1,0 +1,273 @@
+{
+  "api": "TMF681_Communication",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listCommunicationMessage",
+      "type": "GET",
+      "path": "/communicationMessage",
+      "description": "Fetches a list of CommunicationMessage entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use comma-separated values for multiple properties."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Set the starting point for the collection of resources in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Limit the number of resources returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of CommunicationMessage entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createCommunicationMessage",
+      "type": "POST",
+      "path": "/communicationMessage",
+      "description": "Creates a new CommunicationMessage entity.",
+      "parameters": [
+        {
+          "name": "communicationMessage",
+          "required": true,
+          "description": "The CommunicationMessage entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CommunicationMessage_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created CommunicationMessage entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveCommunicationMessage",
+      "type": "GET",
+      "path": "/communicationMessage/{id}",
+      "description": "Fetches a specific CommunicationMessage entity by its ID. You can specify the properties you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the CommunicationMessage entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use comma-separated values for multiple properties."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested CommunicationMessage entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchCommunicationMessage",
+      "type": "PATCH",
+      "path": "/communicationMessage/{id}",
+      "description": "Updates a specific CommunicationMessage entity partially by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the CommunicationMessage entity you want to update."
+        },
+        {
+          "name": "communicationMessage",
+          "required": true,
+          "description": "The updated CommunicationMessage entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CommunicationMessage_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated CommunicationMessage entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteCommunicationMessage",
+      "type": "DELETE",
+      "path": "/communicationMessage/{id}",
+      "description": "Deletes a specific CommunicationMessage entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the CommunicationMessage entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint allows you to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter should contain the callback endpoint data where the service instance will deliver the information. The data should follow the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "If successful, the response will be an object indicating that the listener has been subscribed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint allows you to remove the communication endpoint address that the service instance has been using to deliver updates.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "If successful, the response will be an object indicating that the listener has been unsubscribed."
+      },
+      "errors": [
+        "400: Bad request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method not allowed - Requested method is not supported for the specified resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToCommunicationMessageAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/communicationMessageAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the CommunicationMessageAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter should contain the event data. The data should follow the CommunicationMessageAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "If successful, the response will be an object indicating that the listener has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToCommunicationMessageStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/communicationMessageStateChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the CommunicationMessageStateChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter should contain the event data. The data should follow the CommunicationMessageStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "If successful, the response will be an object indicating that the listener has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    }
+  ]
+}

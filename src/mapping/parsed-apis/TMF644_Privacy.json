@@ -1,0 +1,893 @@
+{
+  "api": "TMF644_Privacy",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listPartyPrivacyProfile",
+      "type": "GET",
+      "path": "/partyPrivacyProfile",
+      "description": "Fetches a list of PartyPrivacyProfile entities. You can filter the results by specifying the desired fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested PartyPrivacyProfile entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPartyPrivacyProfile",
+      "type": "POST",
+      "path": "/partyPrivacyProfile",
+      "description": "Creates a new PartyPrivacyProfile entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "partyPrivacyProfile",
+          "required": true,
+          "description": "The details of the PartyPrivacyProfile to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfile_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created PartyPrivacyProfile."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePartyPrivacyProfile",
+      "type": "GET",
+      "path": "/partyPrivacyProfile/{id}",
+      "description": "Fetches a specific PartyPrivacyProfile entity based on its identifier. You can specify the desired fields in the query parameters.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyPrivacyProfile to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested PartyPrivacyProfile."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchPartyPrivacyProfile",
+      "type": "PATCH",
+      "path": "/partyPrivacyProfile/{id}",
+      "description": "Partially updates a specific PartyPrivacyProfile entity based on its identifier. The updated details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyPrivacyProfile to be updated."
+        },
+        {
+          "name": "partyPrivacyProfile",
+          "required": true,
+          "description": "The updated details of the PartyPrivacyProfile, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfile_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated PartyPrivacyProfile."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deletePartyPrivacyProfile",
+      "type": "DELETE",
+      "path": "/partyPrivacyProfile/{id}",
+      "description": "Deletes a specific PartyPrivacyProfile entity based on its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyPrivacyProfile to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the PartyPrivacyProfile."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listPartyPrivacyProfileSpecification",
+      "type": "GET",
+      "path": "/partyPrivacyProfileSpecification",
+      "description": "This endpoint retrieves a list of PartyPrivacyProfileSpecification entities. It can also be used to find specific entities by applying filters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to set the starting point within the list of entities for the data that is returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to limit the number of entities returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested PartyPrivacyProfileSpecification entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPartyPrivacyProfileSpecification",
+      "type": "POST",
+      "path": "/partyPrivacyProfileSpecification",
+      "description": "This endpoint creates a new PartyPrivacyProfileSpecification entity.",
+      "parameters": [
+        {
+          "name": "partyPrivacyProfileSpecification",
+          "required": true,
+          "description": "The PartyPrivacyProfileSpecification object that needs to be added to the database.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfileSpecification_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created PartyPrivacyProfileSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePartyPrivacyProfileSpecification",
+      "type": "GET",
+      "path": "/partyPrivacyProfileSpecification/{id}",
+      "description": "This endpoint retrieves a specific PartyPrivacyProfileSpecification entity based on its unique ID. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the PartyPrivacyProfileSpecification entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. These should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested PartyPrivacyProfileSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchPartyPrivacyProfileSpecification",
+      "type": "PATCH",
+      "path": "/partyPrivacyProfileSpecification/{id}",
+      "description": "This endpoint updates a specific PartyPrivacyProfileSpecification entity based on its unique ID. Only the specified attributes will be updated.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the PartyPrivacyProfileSpecification entity you want to update."
+        },
+        {
+          "name": "partyPrivacyProfileSpecification",
+          "required": true,
+          "description": "The updated PartyPrivacyProfileSpecification object.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfileSpecification_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the updated PartyPrivacyProfileSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deletePartyPrivacyProfileSpecification",
+      "type": "DELETE",
+      "path": "/partyPrivacyProfileSpecification/{id}",
+      "description": "This endpoint deletes a specific PartyPrivacyProfileSpecification entity based on its unique ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the PartyPrivacyProfileSpecification entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listPartyPrivacyAgreement",
+      "type": "GET",
+      "path": "/partyPrivacyAgreement",
+      "description": "Retrieves a list of PartyPrivacyAgreement entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index of the list of entities you want to retrieve."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of entities you want to retrieve."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested PartyPrivacyAgreement entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPartyPrivacyAgreement",
+      "type": "POST",
+      "path": "/partyPrivacyAgreement",
+      "description": "Creates a new PartyPrivacyAgreement entity.",
+      "parameters": [
+        {
+          "name": "partyPrivacyAgreement",
+          "required": true,
+          "description": "The PartyPrivacyAgreement entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyAgreement_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created PartyPrivacyAgreement entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePartyPrivacyAgreement",
+      "type": "GET",
+      "path": "/partyPrivacyAgreement/{id}",
+      "description": "Retrieves a specific PartyPrivacyAgreement entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the PartyPrivacyAgreement entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested PartyPrivacyAgreement entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchPartyPrivacyAgreement",
+      "type": "PATCH",
+      "path": "/partyPrivacyAgreement/{id}",
+      "description": "Updates a specific PartyPrivacyAgreement entity partially by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the PartyPrivacyAgreement entity you want to update."
+        },
+        {
+          "name": "partyPrivacyAgreement",
+          "required": true,
+          "description": "The updated PartyPrivacyAgreement entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyAgreement_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the updated PartyPrivacyAgreement entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deletePartyPrivacyAgreement",
+      "type": "DELETE",
+      "path": "/partyPrivacyAgreement/{id}",
+      "description": "Deletes a specific PartyPrivacyAgreement entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the PartyPrivacyAgreement entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data that will be used to deliver the updates. The data should follow the 'EventSubscriptionInput' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully subscribed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the given resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to reset the communication endpoint address that the service instance uses to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that needs to be unregistered."
+        }
+      ],
+      "errors": [
+        "400: Bad request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method not allowed - Requested method is not supported for the given resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives the 'PartyPrivacyProfileCreateEvent' notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the 'PartyPrivacyProfileCreateEvent'. The data should follow the 'PartyPrivacyProfileCreateEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the given resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the 'PartyPrivacyProfileAttributeValueChangeEvent' notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the 'PartyPrivacyProfileAttributeValueChangeEvent'. The data should follow the 'PartyPrivacyProfileAttributeValueChangeEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the given resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileDeleteEvent",
+      "description": "This endpoint is an example of a client listener that receives the 'PartyPrivacyProfileDeleteEvent' notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the 'PartyPrivacyProfileDeleteEvent'. The data should follow the 'PartyPrivacyProfileDeleteEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the given resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyPrivacyProfileStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfileStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileSpecificationCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileSpecificationCreateEvent",
+      "description": "Example of a client listener for receiving the notification PartyPrivacyProfileSpecificationCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfileSpecificationCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileSpecificationAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileSpecificationAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyPrivacyProfileSpecificationAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfileSpecificationAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileSpecificationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileSpecificationDeleteEvent",
+      "description": "Example of a client listener for receiving the notification PartyPrivacyProfileSpecificationDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfileSpecificationDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyProfileSpecificationStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyProfileSpecificationStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyPrivacyProfileSpecificationStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyPrivacyProfileSpecificationStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyAgreementCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyAgreementCreateEvent",
+      "description": "This endpoint allows a client to listen for the PartyPrivacyAgreementCreateEvent notification. When the event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be included in the body of the request. This data should conform to the PartyPrivacyAgreementCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object with a 'Notified' status."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyAgreementAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyAgreementAttributeValueChangeEvent",
+      "description": "This endpoint enables a client to listen for the PartyPrivacyAgreementAttributeValueChangeEvent notification. When the event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be included in the body of the request. This data should conform to the PartyPrivacyAgreementAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object with a 'Notified' status."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyAgreementDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyAgreementDeleteEvent",
+      "description": "This endpoint allows a client to listen for the PartyPrivacyAgreementDeleteEvent notification. When the event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be included in the body of the request. This data should conform to the PartyPrivacyAgreementDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object with a 'Notified' status."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToPartyPrivacyAgreementStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyPrivacyAgreementStatusChangeEvent",
+      "description": "This endpoint allows a client to listen for the PartyPrivacyAgreementStatusChangeEvent notification. When the event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data, which should be included in the body of the request. This data should conform to the PartyPrivacyAgreementStatusChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object with a 'Notified' status."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    }
+  ]
+}

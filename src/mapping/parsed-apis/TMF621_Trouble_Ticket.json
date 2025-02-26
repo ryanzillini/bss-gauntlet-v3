@@ -1,0 +1,403 @@
+{
+  "api": "TMF621_Trouble_Ticket",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listTroubleTicket",
+      "type": "GET",
+      "path": "/troubleTicket",
+      "description": "This endpoint retrieves a list of TroubleTicket entities. You can filter the results by specifying certain fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Define the starting point from where the list of resources will be provided in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Define the maximum number of resources to be provided in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested TroubleTicket entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTroubleTicket",
+      "type": "POST",
+      "path": "/troubleTicket",
+      "description": "This endpoint creates a new TroubleTicket entity. The TroubleTicket data should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "troubleTicket",
+          "required": true,
+          "description": "The TroubleTicket data to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TroubleTicket_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created TroubleTicket entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTroubleTicket",
+      "type": "GET",
+      "path": "/troubleTicket/{id}",
+      "description": "This endpoint retrieves a specific TroubleTicket entity by its ID. You can specify certain fields to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the TroubleTicket entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested TroubleTicket entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchTroubleTicket",
+      "type": "PATCH",
+      "path": "/troubleTicket/{id}",
+      "description": "This endpoint partially updates a specific TroubleTicket entity by its ID. The updated data should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the TroubleTicket entity you want to update."
+        },
+        {
+          "name": "troubleTicket",
+          "required": true,
+          "description": "The updated TroubleTicket data. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TroubleTicket_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the updated TroubleTicket entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteTroubleTicket",
+      "type": "DELETE",
+      "path": "/troubleTicket/{id}",
+      "description": "This endpoint deletes a specific TroubleTicket entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the TroubleTicket entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the TroubleTicket entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint allows you to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter should contain the callback endpoint to which the service instance will deliver the information. The data should adhere to the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been successfully registered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint allows you to remove the communication endpoint address that the service instance has been using to deliver updates.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been successfully unregistered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTroubleTicketCreateEvent",
+      "type": "POST",
+      "path": "/listener/troubleTicketCreateEvent",
+      "description": "This endpoint is an example of a client listener for receiving the TroubleTicketCreateEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter should contain the event data. The data should adhere to the TroubleTicketCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTroubleTicketAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/troubleTicketAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener for receiving the TroubleTicketAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter should contain the event data. The data should adhere to the TroubleTicketAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTroubleTicketStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/troubleTicketStatusChangeEvent",
+      "description": "This endpoint is an example of a client listener for receiving the TroubleTicketStatusChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter should contain the event data. The data should adhere to the TroubleTicketStatusChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTroubleTicketDeleteEvent",
+      "type": "POST",
+      "path": "/listener/troubleTicketDeleteEvent",
+      "description": "Example of a client listener for receiving the notification TroubleTicketDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TroubleTicketDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTroubleTicketResolvedEvent",
+      "type": "POST",
+      "path": "/listener/troubleTicketResolvedEvent",
+      "description": "Example of a client listener for receiving the notification TroubleTicketResolvedEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TroubleTicketResolvedEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTroubleTicketInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/troubleTicketInformationRequiredEvent",
+      "description": "Example of a client listener for receiving the notification TroubleTicketInformationRequiredEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TroubleTicketInformationRequiredEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

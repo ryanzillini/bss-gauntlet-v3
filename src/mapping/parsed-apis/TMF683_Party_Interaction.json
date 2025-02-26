@@ -1,0 +1,333 @@
+{
+  "api": "TMF683_Party_Interaction",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listPartyInteraction",
+      "type": "GET",
+      "path": "/partyInteraction",
+      "description": "Retrieves a list of PartyInteraction entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas. If not provided, all properties will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of entities to be returned. If not provided, the list starts from the first entity."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of entities to be returned. If not provided, all entities will be returned."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested PartyInteraction entities."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "createPartyInteraction",
+      "type": "POST",
+      "path": "/partyInteraction",
+      "description": "Creates a new PartyInteraction entity. The entity to be created should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "partyInteraction",
+          "required": true,
+          "description": "The PartyInteraction entity to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyInteraction_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the created PartyInteraction entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "retrievePartyInteraction",
+      "type": "GET",
+      "path": "/partyInteraction/{id}",
+      "description": "Retrieves a specific PartyInteraction entity by its identifier. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyInteraction entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas. If not provided, all properties will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested PartyInteraction entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "patchPartyInteraction",
+      "type": "PATCH",
+      "path": "/partyInteraction/{id}",
+      "description": "Partially updates a specific PartyInteraction entity by its identifier. The properties to be updated should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyInteraction entity to be updated."
+        },
+        {
+          "name": "partyInteraction",
+          "required": true,
+          "description": "The properties to be updated on the PartyInteraction entity. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyInteraction_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the updated PartyInteraction entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "deletePartyInteraction",
+      "type": "DELETE",
+      "path": "/partyInteraction/{id}",
+      "description": "Deletes a specific PartyInteraction entity by its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the PartyInteraction entity to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm the deletion of the PartyInteraction entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data that will be used to deliver the information. The data should follow the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the subscription."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to reset the communication endpoint address that the service instance uses to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyInteractionCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyInteractionCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives the PartyInteractionCreateEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should follow the PartyInteractionCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the notification."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyInteractionAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyInteractionAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the PartyInteractionAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should follow the PartyInteractionAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the notification."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyInteractionDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyInteractionDeleteEvent",
+      "description": "This endpoint is an example of a client listener that receives the PartyInteractionDeleteEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should follow the PartyInteractionDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the notification."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyInteractionStatusChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyInteractionStatusChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyInteractionStatusChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyInteractionStatusChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

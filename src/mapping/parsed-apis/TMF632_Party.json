@@ -1,0 +1,613 @@
+{
+  "api": "TMF632_Party",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listIndividual",
+      "type": "GET",
+      "path": "/individual",
+      "description": "Retrieves a list of Individual entities. You can filter the results by specifying the fields, offset, and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested Individual entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createIndividual",
+      "type": "POST",
+      "path": "/individual",
+      "description": "Creates a new Individual entity. The new entity must be provided in the request body.",
+      "parameters": [
+        {
+          "name": "individual",
+          "required": true,
+          "description": "The Individual entity to be created. This must be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Individual_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created Individual entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveIndividual",
+      "type": "GET",
+      "path": "/individual/{id}",
+      "description": "Retrieves a specific Individual entity by its ID. You can specify the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Individual entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested Individual entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchIndividual",
+      "type": "PATCH",
+      "path": "/individual/{id}",
+      "description": "Updates a specific Individual entity by its ID. The updated entity must be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Individual entity you want to update."
+        },
+        {
+          "name": "individual",
+          "required": true,
+          "description": "The updated Individual entity. This must be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Individual_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the updated Individual entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteIndividual",
+      "type": "DELETE",
+      "path": "/individual/{id}",
+      "description": "Deletes a specific Individual entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Individual entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listOrganization",
+      "type": "GET",
+      "path": "/organization",
+      "description": "This operation list or find Organization entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "organization"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createOrganization",
+      "type": "POST",
+      "path": "/organization",
+      "description": "This operation creates a Organization entity.",
+      "parameters": [
+        {
+          "name": "organization",
+          "required": true,
+          "description": "The Organization to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Organization_Create"
+          }
+        }
+      ],
+      "tags": [
+        "organization"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveOrganization",
+      "type": "GET",
+      "path": "/organization/{id}",
+      "description": "This operation retrieves a Organization entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Organization",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "organization"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchOrganization",
+      "type": "PATCH",
+      "path": "/organization/{id}",
+      "description": "This operation updates partially a Organization entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Organization",
+          "in": "path"
+        },
+        {
+          "name": "organization",
+          "required": true,
+          "description": "The Organization to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Organization_Update"
+          }
+        }
+      ],
+      "tags": [
+        "organization"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteOrganization",
+      "type": "DELETE",
+      "path": "/organization/{id}",
+      "description": "This operation deletes a Organization entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Organization",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "organization"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data where the service instance will deliver the information. The data should follow the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully subscribed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to remove the communication endpoint address that the service instance has been using to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToIndividualCreateEvent",
+      "type": "POST",
+      "path": "/listener/individualCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives the IndividualCreateEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the IndividualCreateEvent. The data should follow the IndividualCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the IndividualCreateEvent has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToIndividualAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/individualAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the IndividualAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the IndividualAttributeValueChangeEvent. The data should follow the IndividualAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the IndividualAttributeValueChangeEvent has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToIndividualStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/individualStateChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the IndividualStateChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the IndividualStateChangeEvent. The data should follow the IndividualStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the IndividualStateChangeEvent has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToIndividualDeleteEvent",
+      "type": "POST",
+      "path": "/listener/individualDeleteEvent",
+      "description": "This endpoint is designed to act as a client-side listener for receiving notifications of IndividualDeleteEvent. It triggers whenever an individual is deleted in the system.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the deletion of an individual. The data should adhere to the IndividualDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToOrganizationCreateEvent",
+      "type": "POST",
+      "path": "/listener/organizationCreateEvent",
+      "description": "This endpoint acts as a client-side listener for receiving notifications of OrganizationCreateEvent. It triggers whenever a new organization is created in the system.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the creation of an organization. The data should adhere to the OrganizationCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToOrganizationAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/organizationAttributeValueChangeEvent",
+      "description": "This endpoint is designed to act as a client-side listener for receiving notifications of OrganizationAttributeValueChangeEvent. It triggers whenever an attribute value of an organization changes in the system.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the change in an organization's attribute value. The data should adhere to the OrganizationAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToOrganizationStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/organizationStateChangeEvent",
+      "description": "This endpoint acts as a client-side listener for receiving notifications of OrganizationStateChangeEvent. It triggers whenever the state of an organization changes in the system.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the change in an organization's state. The data should adhere to the OrganizationStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToOrganizationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/organizationDeleteEvent",
+      "description": "This endpoint is designed to act as a client-side listener for receiving notifications of OrganizationDeleteEvent. It triggers whenever an organization is deleted in the system.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the deletion of an organization. The data should adhere to the OrganizationDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    }
+  ]
+}

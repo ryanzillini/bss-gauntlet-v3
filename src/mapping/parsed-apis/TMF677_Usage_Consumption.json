@@ -1,0 +1,256 @@
+{
+  "api": "TMF677_Usage_Consumption",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listQueryUsageConsumption",
+      "type": "GET",
+      "path": "/queryUsageConsumption",
+      "description": "This endpoint retrieves a list of QueryUsageConsumption entities. It allows for optional filtering, sorting, and pagination.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested QueryUsageConsumption entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createQueryUsageConsumption",
+      "type": "POST",
+      "path": "/queryUsageConsumption",
+      "description": "This endpoint creates a new QueryUsageConsumption entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "queryUsageConsumption",
+          "required": true,
+          "description": "The details of the QueryUsageConsumption entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/QueryUsageConsumption_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created QueryUsageConsumption entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveQueryUsageConsumption",
+      "type": "GET",
+      "path": "/queryUsageConsumption/{id}",
+      "description": "This endpoint retrieves a specific QueryUsageConsumption entity based on its ID. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the QueryUsageConsumption entity to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested QueryUsageConsumption entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteQueryUsageConsumption",
+      "type": "DELETE",
+      "path": "/queryUsageConsumption/{id}",
+      "description": "This endpoint deletes a specific QueryUsageConsumption entity based on its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the QueryUsageConsumption entity to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the QueryUsageConsumption entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint registers a communication endpoint for the service instance to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data containing the callback endpoint details. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the registration of the listener."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The id of the registered listener",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToQueryUsageConsumptionCreateEvent",
+      "type": "POST",
+      "path": "/listener/queryUsageConsumptionCreateEvent",
+      "description": "Example of a client listener for receiving the notification QueryUsageConsumptionCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/QueryUsageConsumptionCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToQueryUsageConsumptionDeleteEvent",
+      "type": "POST",
+      "path": "/listener/queryUsageConsumptionDeleteEvent",
+      "description": "Example of a client listener for receiving the notification QueryUsageConsumptionDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/QueryUsageConsumptionDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

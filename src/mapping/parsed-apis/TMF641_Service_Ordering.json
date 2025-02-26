@@ -1,0 +1,617 @@
+{
+  "api": "TMF641_Service_Ordering",
+  "version": "v4.1.0",
+  "endpoints": [
+    {
+      "name": "listServiceOrder",
+      "type": "GET",
+      "path": "/serviceOrder",
+      "description": "Fetches a list of ServiceOrder entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of ServiceOrder entities should be fetched."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ServiceOrder entities that should be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceOrder entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceOrder",
+      "type": "POST",
+      "path": "/serviceOrder",
+      "description": "Creates a new ServiceOrder entity and returns the created entity as a response.",
+      "parameters": [
+        {
+          "name": "serviceOrder",
+          "required": true,
+          "description": "The ServiceOrder entity to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceOrder_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the created ServiceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceOrder",
+      "type": "GET",
+      "path": "/serviceOrder/{id}",
+      "description": "Fetches a specific ServiceOrder entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceOrder entity to be fetched."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested ServiceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceOrder",
+      "type": "PATCH",
+      "path": "/serviceOrder/{id}",
+      "description": "Updates a specific ServiceOrder entity partially by its ID and returns the updated entity as a response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceOrder entity to be updated."
+        },
+        {
+          "name": "serviceOrder",
+          "required": true,
+          "description": "The partial ServiceOrder entity to be updated. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceOrder_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the updated ServiceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceOrder",
+      "type": "DELETE",
+      "path": "/serviceOrder/{id}",
+      "description": "Deletes a specific ServiceOrder entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceOrder entity to be deleted."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listCancelServiceOrder",
+      "type": "GET",
+      "path": "/cancelServiceOrder",
+      "description": "Retrieves a list of CancelServiceOrder entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma-separated list."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index of the list of entities you want to retrieve."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of entities you want to retrieve."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the requested CancelServiceOrder entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createCancelServiceOrder",
+      "type": "POST",
+      "path": "/cancelServiceOrder",
+      "description": "Creates a new CancelServiceOrder entity.",
+      "parameters": [
+        {
+          "name": "cancelServiceOrder",
+          "required": true,
+          "description": "The CancelServiceOrder entity to be created. This should be included in the request body.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the created CancelServiceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveCancelServiceOrder",
+      "type": "GET",
+      "path": "/cancelServiceOrder/{id}",
+      "description": "Retrieves a specific CancelServiceOrder entity by its ID. You can specify the properties you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the CancelServiceOrder entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma-separated list."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the requested CancelServiceOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Registers a communication endpoint for the service instance to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data containing the callback endpoint where the service instance will deliver the information. This should be included in the request body.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been registered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Unregisters a communication endpoint, stopping the service instance from delivering information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the listener to be unregistered."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been unregistered."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceOrderCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceOrderCreateEvent",
+      "description": "This endpoint allows a client to listen for the ServiceOrderCreateEvent notification. It triggers when a new service order is created.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the created service order. The data should follow the ServiceOrderCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceOrderAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceOrderAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the ServiceOrderAttributeValueChangeEvent notification. It triggers when an attribute value of a service order changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the changed attribute value. The data should follow the ServiceOrderAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceOrderStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceOrderStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the ServiceOrderStateChangeEvent notification. It triggers when the state of a service order changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the changed state. The data should follow the ServiceOrderStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceOrderDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceOrderDeleteEvent",
+      "description": "This endpoint allows a client to listen for the ServiceOrderDeleteEvent notification. It triggers when a service order is deleted.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the deleted service order. The data should follow the ServiceOrderDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceOrderInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/serviceOrderInformationRequiredEvent",
+      "description": "This endpoint allows a client to listen for the ServiceOrderInformationRequiredEvent notification. It triggers when additional information is required for a service order.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the information required. The data should follow the ServiceOrderInformationRequiredEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the event notification has been received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceOrderMilestoneStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceOrderMilestoneStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ServiceOrderMilestoneStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceOrderMilestoneStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceOrderJeopardyAlertEvent",
+      "type": "POST",
+      "path": "/listener/serviceOrderJeopardyAlertEvent",
+      "description": "Example of a client listener for receiving the notification ServiceOrderJeopardyAlertEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceOrderJeopardyAlertEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCancelServiceOrderCreateEvent",
+      "type": "POST",
+      "path": "/listener/cancelServiceOrderCreateEvent",
+      "description": "Example of a client listener for receiving the notification CancelServiceOrderCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelServiceOrderCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCancelServiceOrderStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/cancelServiceOrderStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification CancelServiceOrderStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelServiceOrderStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCancelServiceOrderInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/cancelServiceOrderInformationRequiredEvent",
+      "description": "Example of a client listener for receiving the notification CancelServiceOrderInformationRequiredEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelServiceOrderInformationRequiredEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

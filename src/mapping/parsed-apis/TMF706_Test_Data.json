@@ -1,0 +1,759 @@
+{
+  "api": "TMF706_Test_Data",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listTestDataInstance",
+      "type": "GET",
+      "path": "/testDataInstance",
+      "description": "This operation list or find TestDataInstance entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "testDataInstance"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTestDataInstance",
+      "type": "POST",
+      "path": "/testDataInstance",
+      "description": "This operation creates a TestDataInstance entity.",
+      "parameters": [
+        {
+          "name": "testDataInstance",
+          "required": true,
+          "description": "The TestDataInstance to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataInstance_Create"
+          }
+        }
+      ],
+      "tags": [
+        "testDataInstance"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTestDataInstance",
+      "type": "GET",
+      "path": "/testDataInstance/{id}",
+      "description": "This operation retrieves a TestDataInstance entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestDataInstance",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "testDataInstance"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchTestDataInstance",
+      "type": "PATCH",
+      "path": "/testDataInstance/{id}",
+      "description": "This operation updates partially a TestDataInstance entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestDataInstance",
+          "in": "path"
+        },
+        {
+          "name": "testDataInstance",
+          "required": true,
+          "description": "The TestDataInstance to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataInstance_Update"
+          }
+        }
+      ],
+      "tags": [
+        "testDataInstance"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteTestDataInstance",
+      "type": "DELETE",
+      "path": "/testDataInstance/{id}",
+      "description": "This operation deletes a TestDataInstance entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestDataInstance",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "testDataInstance"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listTestDataSchema",
+      "type": "GET",
+      "path": "/testDataSchema",
+      "description": "This operation list or find TestDataSchema entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "testDataSchema"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTestDataSchema",
+      "type": "POST",
+      "path": "/testDataSchema",
+      "description": "This operation creates a TestDataSchema entity.",
+      "parameters": [
+        {
+          "name": "testDataSchema",
+          "required": true,
+          "description": "The TestDataSchema to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataSchema_Create"
+          }
+        }
+      ],
+      "tags": [
+        "testDataSchema"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTestDataSchema",
+      "type": "GET",
+      "path": "/testDataSchema/{id}",
+      "description": "This operation retrieves a TestDataSchema entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestDataSchema",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "testDataSchema"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchTestDataSchema",
+      "type": "PATCH",
+      "path": "/testDataSchema/{id}",
+      "description": "This operation updates partially a TestDataSchema entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestDataSchema",
+          "in": "path"
+        },
+        {
+          "name": "testDataSchema",
+          "required": true,
+          "description": "The TestDataSchema to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataSchema_Update"
+          }
+        }
+      ],
+      "tags": [
+        "testDataSchema"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteTestDataSchema",
+      "type": "DELETE",
+      "path": "/testDataSchema/{id}",
+      "description": "This operation deletes a TestDataSchema entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestDataSchema",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "testDataSchema"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "Data containing the callback endpoint to deliver the information",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Subscribed"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The id of the registered listener",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataInstanceCreateEvent",
+      "type": "POST",
+      "path": "/listener/testDataInstanceCreateEvent",
+      "description": "Example of a client listener for receiving the notification TestDataInstanceCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataInstanceCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataInstanceChangeEvent",
+      "type": "POST",
+      "path": "/listener/testDataInstanceChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestDataInstanceChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataInstanceChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataInstanceDeleteEvent",
+      "type": "POST",
+      "path": "/listener/testDataInstanceDeleteEvent",
+      "description": "Example of a client listener for receiving the notification TestDataInstanceDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataInstanceDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataInstanceAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/testDataInstanceAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestDataInstanceAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataInstanceAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataInstanceStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/testDataInstanceStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestDataInstanceStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataInstanceStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataSchemaCreateEvent",
+      "type": "POST",
+      "path": "/listener/testDataSchemaCreateEvent",
+      "description": "Example of a client listener for receiving the notification TestDataSchemaCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataSchemaCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataSchemaChangeEvent",
+      "type": "POST",
+      "path": "/listener/testDataSchemaChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestDataSchemaChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataSchemaChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataSchemaDeleteEvent",
+      "type": "POST",
+      "path": "/listener/testDataSchemaDeleteEvent",
+      "description": "Example of a client listener for receiving the notification TestDataSchemaDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataSchemaDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataSchemaAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/testDataSchemaAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestDataSchemaAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataSchemaAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestDataSchemaStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/testDataSchemaStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestDataSchemaStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestDataSchemaStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

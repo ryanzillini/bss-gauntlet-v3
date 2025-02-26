@@ -1,0 +1,617 @@
+{
+  "api": "TMF646_Appointment",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listAppointment",
+      "type": "GET",
+      "path": "/appointment",
+      "description": "This operation list or find Appointment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "appointment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createAppointment",
+      "type": "POST",
+      "path": "/appointment",
+      "description": "This operation creates a Appointment entity.",
+      "parameters": [
+        {
+          "name": "appointment",
+          "required": true,
+          "description": "The Appointment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Appointment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "appointment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveAppointment",
+      "type": "GET",
+      "path": "/appointment/{id}",
+      "description": "This operation retrieves a Appointment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Appointment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "appointment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchAppointment",
+      "type": "PATCH",
+      "path": "/appointment/{id}",
+      "description": "This operation updates partially a Appointment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Appointment",
+          "in": "path"
+        },
+        {
+          "name": "appointment",
+          "required": true,
+          "description": "The Appointment to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Appointment_Update"
+          }
+        }
+      ],
+      "tags": [
+        "appointment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteAppointment",
+      "type": "DELETE",
+      "path": "/appointment/{id}",
+      "description": "This operation deletes a Appointment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Appointment",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "appointment"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listSearchTimeSlot",
+      "type": "GET",
+      "path": "/searchTimeSlot",
+      "description": "Retrieves a list of SearchTimeSlot entities. You can customize the response by specifying certain fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response. Use comma to separate multiple fields."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Define the starting point from where the list of entities should be returned. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Define the maximum number of entities to be returned in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested SearchTimeSlot entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createSearchTimeSlot",
+      "type": "POST",
+      "path": "/searchTimeSlot",
+      "description": "Creates a new SearchTimeSlot entity. The new entity must be provided in the request body.",
+      "parameters": [
+        {
+          "name": "searchTimeSlot",
+          "required": true,
+          "description": "The SearchTimeSlot entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/SearchTimeSlot_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created SearchTimeSlot entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveSearchTimeSlot",
+      "type": "GET",
+      "path": "/searchTimeSlot/{id}",
+      "description": "Retrieves a specific SearchTimeSlot entity by its ID. You can customize the response by specifying certain fields in the query parameters.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the SearchTimeSlot entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response. Use comma to separate multiple fields."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested SearchTimeSlot entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchSearchTimeSlot",
+      "type": "PATCH",
+      "path": "/searchTimeSlot/{id}",
+      "description": "Partially updates a specific SearchTimeSlot entity by its ID. The updates should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the SearchTimeSlot entity you want to update."
+        },
+        {
+          "name": "searchTimeSlot",
+          "required": true,
+          "description": "The updates for the SearchTimeSlot entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/SearchTimeSlot_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the updated SearchTimeSlot entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteSearchTimeSlot",
+      "type": "DELETE",
+      "path": "/searchTimeSlot/{id}",
+      "description": "Deletes a specific SearchTimeSlot entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the SearchTimeSlot entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data that will be used to deliver the information. The data should adhere to the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been successfully registered and will receive updates."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to remove the communication endpoint address that the service instance has been using to deliver updates.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been successfully unregistered and will no longer receive updates."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAppointmentCreateEvent",
+      "type": "POST",
+      "path": "/listener/appointmentCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives the AppointmentCreateEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should adhere to the AppointmentCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the AppointmentCreateEvent notification has been received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAppointmentAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/appointmentAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the AppointmentAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should adhere to the AppointmentAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the AppointmentAttributeValueChangeEvent notification has been received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAppointmentStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/appointmentStateChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the AppointmentStateChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should adhere to the AppointmentStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the AppointmentStateChangeEvent notification has been received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAppointmentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/appointmentDeleteEvent",
+      "description": "This endpoint allows a client to listen for the 'AppointmentDeleteEvent' notification. It is triggered when an appointment is deleted.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the deleted appointment. The data should follow the 'AppointmentDeleteEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation object indicating that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToSearchTimeSlotCreateEvent",
+      "type": "POST",
+      "path": "/listener/searchTimeSlotCreateEvent",
+      "description": "This endpoint allows a client to listen for the 'SearchTimeSlotCreateEvent' notification. It is triggered when a new time slot is created in the search system.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the created time slot. The data should follow the 'SearchTimeSlotCreateEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation object indicating that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToSearchTimeSlotAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/searchTimeSlotAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the 'SearchTimeSlotAttributeValueChangeEvent' notification. It is triggered when an attribute value of a time slot in the search system changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the changed attribute value. The data should follow the 'SearchTimeSlotAttributeValueChangeEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation object indicating that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToSearchTimeSlotStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/searchTimeSlotStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the 'SearchTimeSlotStateChangeEvent' notification. It is triggered when the state of a time slot in the search system changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the changed state. The data should follow the 'SearchTimeSlotStateChangeEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation object indicating that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToSearchTimeSlotDeleteEvent",
+      "type": "POST",
+      "path": "/listener/searchTimeSlotDeleteEvent",
+      "description": "This endpoint allows a client to listen for the 'SearchTimeSlotDeleteEvent' notification. It is triggered when a time slot is deleted from the search system.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the deleted time slot. The data should follow the 'SearchTimeSlotDeleteEvent' schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation object indicating that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    }
+  ]
+}

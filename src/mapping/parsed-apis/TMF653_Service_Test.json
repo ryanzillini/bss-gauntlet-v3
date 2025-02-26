@@ -1,0 +1,559 @@
+{
+  "api": "TMF653_Service_Test",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listServiceTest",
+      "type": "GET",
+      "path": "/serviceTest",
+      "description": "Fetches a list of ServiceTest entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of ServiceTest entities should be fetched."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ServiceTest entities to be fetched."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of ServiceTest entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceTest",
+      "type": "POST",
+      "path": "/serviceTest",
+      "description": "Creates a new ServiceTest entity.",
+      "parameters": [
+        {
+          "name": "serviceTest",
+          "required": true,
+          "description": "The ServiceTest entity to be created. The entity should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceTest_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the created ServiceTest entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceTest",
+      "type": "GET",
+      "path": "/serviceTest/{id}",
+      "description": "Fetches a specific ServiceTest entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceTest entity to be fetched."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested ServiceTest entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceTest",
+      "type": "PATCH",
+      "path": "/serviceTest/{id}",
+      "description": "Updates a specific ServiceTest entity partially by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceTest entity to be updated."
+        },
+        {
+          "name": "serviceTest",
+          "required": true,
+          "description": "The updated ServiceTest entity. The entity should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceTest_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the updated ServiceTest entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceTest",
+      "type": "DELETE",
+      "path": "/serviceTest/{id}",
+      "description": "Deletes a specific ServiceTest entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceTest entity to be deleted."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listServiceTestSpecification",
+      "type": "GET",
+      "path": "/serviceTestSpecification",
+      "description": "Fetches a list of ServiceTestSpecification entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. Use a comma-separated list."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Indicate the starting point in the list of resources for the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Specify the maximum number of resources to include in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceTestSpecification entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceTestSpecification",
+      "type": "POST",
+      "path": "/serviceTestSpecification",
+      "description": "Creates a new ServiceTestSpecification entity and returns it.",
+      "parameters": [
+        {
+          "name": "serviceTestSpecification",
+          "required": true,
+          "description": "The ServiceTestSpecification entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceTestSpecification_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the created ServiceTestSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceTestSpecification",
+      "type": "GET",
+      "path": "/serviceTestSpecification/{id}",
+      "description": "Fetches a specific ServiceTestSpecification entity by its ID. You can specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceTestSpecification entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. Use a comma-separated list."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested ServiceTestSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceTestSpecification",
+      "type": "PATCH",
+      "path": "/serviceTestSpecification/{id}",
+      "description": "Updates a specific ServiceTestSpecification entity partially by its ID and returns the updated entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceTestSpecification entity you want to update."
+        },
+        {
+          "name": "serviceTestSpecification",
+          "required": true,
+          "description": "The updated ServiceTestSpecification entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceTestSpecification_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the updated ServiceTestSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceTestSpecification",
+      "type": "DELETE",
+      "path": "/serviceTestSpecification/{id}",
+      "description": "Deletes a specific ServiceTestSpecification entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceTestSpecification entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data where the service instance will deliver the information. The data should follow the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully subscribed."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to remove the communication endpoint address that the service instance has been using to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully unsubscribed."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceTestCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceTestCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives the ServiceTestCreateEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should follow the ServiceTestCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceTestAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceTestAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the ServiceTestAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should follow the ServiceTestAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceTestDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceTestDeleteEvent",
+      "description": "This endpoint is an example of a client listener that receives the ServiceTestDeleteEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should follow the ServiceTestDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceTestSpecificationCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceTestSpecificationCreateEvent",
+      "description": "Example of a client listener for receiving the notification ServiceTestSpecificationCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceTestSpecificationCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceTestSpecificationAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceTestSpecificationAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ServiceTestSpecificationAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceTestSpecificationAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceTestSpecificationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceTestSpecificationDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ServiceTestSpecificationDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceTestSpecificationDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1315 @@
+{
+  "api": "TMF701_Process_Flow",
+  "version": "v4.1.0",
+  "endpoints": [
+    {
+      "name": "listProcessFlowSpecification",
+      "type": "GET",
+      "path": "/processFlowSpecification",
+      "description": "This operation list or find ProcessFlowSpecification entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "processFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProcessFlowSpecification",
+      "type": "POST",
+      "path": "/processFlowSpecification",
+      "description": "This operation creates a ProcessFlowSpecification entity.",
+      "parameters": [
+        {
+          "name": "processFlowSpecification",
+          "required": true,
+          "description": "The ProcessFlowSpecification to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowSpecification_Create"
+          }
+        }
+      ],
+      "tags": [
+        "processFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveProcessFlowSpecification",
+      "type": "GET",
+      "path": "/processFlowSpecification/{id}",
+      "description": "This operation retrieves a ProcessFlowSpecification entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProcessFlowSpecification",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "processFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteProcessFlowSpecification",
+      "type": "DELETE",
+      "path": "/processFlowSpecification/{id}",
+      "description": "This operation deletes a ProcessFlowSpecification entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProcessFlowSpecification",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "processFlowSpecification"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchProcessFlowSpecification",
+      "type": "PATCH",
+      "path": "/processFlowSpecification/{id}",
+      "description": "This operation updates partially a ProcessFlowSpecification entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProcessFlowSpecification",
+          "in": "path"
+        },
+        {
+          "name": "processFlowSpecification",
+          "required": true,
+          "description": "The ProcessFlowSpecification to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowSpecification_Update"
+          }
+        }
+      ],
+      "tags": [
+        "processFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listTaskFlowSpecification",
+      "type": "GET",
+      "path": "/taskFlowSpecification",
+      "description": "This operation list or find TaskFlowSpecification entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "taskFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTaskFlowSpecification",
+      "type": "POST",
+      "path": "/taskFlowSpecification",
+      "description": "This operation creates a TaskFlowSpecification entity.",
+      "parameters": [
+        {
+          "name": "taskFlowSpecification",
+          "required": true,
+          "description": "The TaskFlowSpecification to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowSpecification_Create"
+          }
+        }
+      ],
+      "tags": [
+        "taskFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTaskFlowSpecification",
+      "type": "GET",
+      "path": "/taskFlowSpecification/{id}",
+      "description": "This operation retrieves a TaskFlowSpecification entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TaskFlowSpecification",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "taskFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteTaskFlowSpecification",
+      "type": "DELETE",
+      "path": "/taskFlowSpecification/{id}",
+      "description": "This operation deletes a TaskFlowSpecification entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TaskFlowSpecification",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "taskFlowSpecification"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchTaskFlowSpecification",
+      "type": "PATCH",
+      "path": "/taskFlowSpecification/{id}",
+      "description": "This operation updates partially a TaskFlowSpecification entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TaskFlowSpecification",
+          "in": "path"
+        },
+        {
+          "name": "taskFlowSpecification",
+          "required": true,
+          "description": "The TaskFlowSpecification to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowSpecification_Update"
+          }
+        }
+      ],
+      "tags": [
+        "taskFlowSpecification"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listProcessFlow",
+      "type": "GET",
+      "path": "/processFlow",
+      "description": "This operation list or find ProcessFlow entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "processFlow"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProcessFlow",
+      "type": "POST",
+      "path": "/processFlow",
+      "description": "This operation creates a ProcessFlow entity.",
+      "parameters": [
+        {
+          "name": "processFlow",
+          "required": true,
+          "description": "The ProcessFlow to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlow_Create"
+          }
+        }
+      ],
+      "tags": [
+        "processFlow"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveProcessFlow",
+      "type": "GET",
+      "path": "/processFlow/{id}",
+      "description": "This operation retrieves a ProcessFlow entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProcessFlow",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "processFlow"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteProcessFlow",
+      "type": "DELETE",
+      "path": "/processFlow/{id}",
+      "description": "This operation deletes a ProcessFlow entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProcessFlow",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "processFlow"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listTaskFlow",
+      "type": "GET",
+      "path": "/processFlow/{processFlowId}/taskFlow",
+      "description": "This operation list or find TaskFlow entities",
+      "parameters": [
+        {
+          "name": "processFlowId",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the parent ProcessFlow entity",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "taskFlow"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTaskFlow",
+      "type": "POST",
+      "path": "/processFlow/{processFlowId}/taskFlow",
+      "description": "This operation creates a TaskFlow entity.",
+      "parameters": [
+        {
+          "name": "processFlowId",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the parent ProcessFlow entity",
+          "in": "path"
+        },
+        {
+          "name": "taskFlow",
+          "required": true,
+          "description": "The TaskFlow to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlow_Create"
+          }
+        }
+      ],
+      "tags": [
+        "taskFlow"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTaskFlow",
+      "type": "GET",
+      "path": "/processFlow/{processFlowId}/taskFlow/{id}",
+      "description": "This operation retrieves a TaskFlow entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "processFlowId",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the parent ProcessFlow entity",
+          "in": "path"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TaskFlow",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "taskFlow"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchTaskFlow",
+      "type": "PATCH",
+      "path": "/processFlow/{processFlowId}/taskFlow/{id}",
+      "description": "This operation updates partially a TaskFlow entity.",
+      "parameters": [
+        {
+          "name": "processFlowId",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the parent ProcessFlow entity",
+          "in": "path"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TaskFlow",
+          "in": "path"
+        },
+        {
+          "name": "taskFlow",
+          "required": true,
+          "description": "The TaskFlow to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlow_Update"
+          }
+        }
+      ],
+      "tags": [
+        "taskFlow"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "Data containing the callback endpoint to deliver the information",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Subscribed"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The id of the registered listener",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowSpecificationCreateEvent",
+      "type": "POST",
+      "path": "/listener/processFlowSpecificationCreateEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowSpecificationCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowSpecificationCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowSpecificationStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/processFlowSpecificationStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowSpecificationStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowSpecificationStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowSpecificationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/processFlowSpecificationDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowSpecificationDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowSpecificationDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowSpecificationAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/processFlowSpecificationAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowSpecificationAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowSpecificationAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowSpecificationCreateEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowSpecificationCreateEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowSpecificationCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowSpecificationCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowSpecificationStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowSpecificationStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowSpecificationStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowSpecificationStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowSpecificationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowSpecificationDeleteEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowSpecificationDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowSpecificationDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowSpecificationAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowSpecificationAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowSpecificationAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowSpecificationAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowCreateEvent",
+      "type": "POST",
+      "path": "/listener/processFlowCreateEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/processFlowStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowDeleteEvent",
+      "type": "POST",
+      "path": "/listener/processFlowDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProcessFlowAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/processFlowAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProcessFlowAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProcessFlowAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowCreateEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowCreateEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowDeleteEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowDeleteEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTaskFlowInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/taskFlowInformationRequiredEvent",
+      "description": "Example of a client listener for receiving the notification TaskFlowInformationRequiredEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TaskFlowInformationRequiredEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

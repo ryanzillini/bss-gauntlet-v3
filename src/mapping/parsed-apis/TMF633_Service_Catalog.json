@@ -1,0 +1,1333 @@
+{
+  "api": "TMF633_Service_Catalog",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listServiceCatalog",
+      "type": "GET",
+      "path": "/serviceCatalog",
+      "description": "Retrieves a list of ServiceCatalog entities. You can filter the results by specifying the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceCatalog entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceCatalog",
+      "type": "POST",
+      "path": "/serviceCatalog",
+      "description": "Creates a new ServiceCatalog entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "serviceCatalog",
+          "required": true,
+          "description": "The details of the ServiceCatalog entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceCatalog_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the newly created ServiceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceCatalog",
+      "type": "GET",
+      "path": "/serviceCatalog/{id}",
+      "description": "Retrieves a specific ServiceCatalog entity by its ID. You can specify the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceCatalog entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ServiceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceCatalog",
+      "type": "PATCH",
+      "path": "/serviceCatalog/{id}",
+      "description": "Updates a specific ServiceCatalog entity by its ID. The updated details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceCatalog entity you want to update."
+        },
+        {
+          "name": "serviceCatalog",
+          "required": true,
+          "description": "The updated details of the ServiceCatalog entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceCatalog_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ServiceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceCatalog",
+      "type": "DELETE",
+      "path": "/serviceCatalog/{id}",
+      "description": "Deletes a specific ServiceCatalog entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceCatalog entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the ServiceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listServiceCategory",
+      "type": "GET",
+      "path": "/serviceCategory",
+      "description": "This endpoint retrieves a list of ServiceCategory entities. You can filter the results by specifying certain fields, setting an offset, or limiting the number of results.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Set the starting point in the list of resources for the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Limit the number of resources provided in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceCategory entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceCategory",
+      "type": "POST",
+      "path": "/serviceCategory",
+      "description": "This endpoint creates a new ServiceCategory entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "serviceCategory",
+          "required": true,
+          "description": "The details of the ServiceCategory to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceCategory_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created ServiceCategory."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceCategory",
+      "type": "GET",
+      "path": "/serviceCategory/{id}",
+      "description": "This endpoint retrieves a specific ServiceCategory entity by its ID. You can also specify certain fields to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceCategory you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ServiceCategory."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceCategory",
+      "type": "PATCH",
+      "path": "/serviceCategory/{id}",
+      "description": "This endpoint partially updates a specific ServiceCategory entity by its ID. You need to provide the details to be updated in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceCategory you want to update."
+        },
+        {
+          "name": "serviceCategory",
+          "required": true,
+          "description": "The details to be updated for the ServiceCategory, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceCategory_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ServiceCategory."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceCategory",
+      "type": "DELETE",
+      "path": "/serviceCategory/{id}",
+      "description": "This endpoint deletes a specific ServiceCategory entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceCategory you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listServiceCandidate",
+      "type": "GET",
+      "path": "/serviceCandidate",
+      "description": "This endpoint retrieves a list of ServiceCandidate entities. You can filter the results by specifying certain fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of ServiceCandidate entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ServiceCandidate entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceCandidate entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceCandidate",
+      "type": "POST",
+      "path": "/serviceCandidate",
+      "description": "This endpoint creates a new ServiceCandidate entity. You need to provide the ServiceCandidate details in the request body.",
+      "parameters": [
+        {
+          "name": "serviceCandidate",
+          "required": true,
+          "description": "The ServiceCandidate entity to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceCandidate_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created ServiceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceCandidate",
+      "type": "GET",
+      "path": "/serviceCandidate/{id}",
+      "description": "This endpoint retrieves a specific ServiceCandidate entity by its ID. You can specify additional fields to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ServiceCandidate entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify additional properties to be included in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ServiceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceCandidate",
+      "type": "PATCH",
+      "path": "/serviceCandidate/{id}",
+      "description": "This endpoint partially updates a specific ServiceCandidate entity by its ID. You need to provide the updated ServiceCandidate details in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ServiceCandidate entity you want to update."
+        },
+        {
+          "name": "serviceCandidate",
+          "required": true,
+          "description": "The updated ServiceCandidate entity. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceCandidate_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ServiceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceCandidate",
+      "type": "DELETE",
+      "path": "/serviceCandidate/{id}",
+      "description": "This endpoint deletes a specific ServiceCandidate entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ServiceCandidate entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the ServiceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listServiceSpecification",
+      "type": "GET",
+      "path": "/serviceSpecification",
+      "description": "Fetches a list of ServiceSpecification entities. You can filter the results by specifying the parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceSpecification entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceSpecification",
+      "type": "POST",
+      "path": "/serviceSpecification",
+      "description": "Creates a new ServiceSpecification entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "serviceSpecification",
+          "required": true,
+          "description": "The details of the ServiceSpecification entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceSpecification_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created ServiceSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceSpecification",
+      "type": "GET",
+      "path": "/serviceSpecification/{id}",
+      "description": "Fetches a specific ServiceSpecification entity based on its identifier. You can specify the properties you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ServiceSpecification entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ServiceSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceSpecification",
+      "type": "PATCH",
+      "path": "/serviceSpecification/{id}",
+      "description": "Partially updates a specific ServiceSpecification entity based on its identifier. The details to be updated should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ServiceSpecification entity you want to update."
+        },
+        {
+          "name": "serviceSpecification",
+          "required": true,
+          "description": "The details to be updated in the ServiceSpecification entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceSpecification_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ServiceSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceSpecification",
+      "type": "DELETE",
+      "path": "/serviceSpecification/{id}",
+      "description": "Deletes a specific ServiceSpecification entity based on its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ServiceSpecification entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the ServiceSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listImportJob",
+      "type": "GET",
+      "path": "/importJob",
+      "description": "Fetches a list of ImportJob entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response. Use comma-separated values for multiple fields."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ImportJob entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createImportJob",
+      "type": "POST",
+      "path": "/importJob",
+      "description": "Creates a new ImportJob entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "importJob",
+          "required": true,
+          "description": "The details of the ImportJob to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ImportJob_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created ImportJob."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveImportJob",
+      "type": "GET",
+      "path": "/importJob/{id}",
+      "description": "Fetches a specific ImportJob entity based on the provided ID. You can specify the fields you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ImportJob you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response. Use comma-separated values for multiple fields."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ImportJob."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteImportJob",
+      "type": "DELETE",
+      "path": "/importJob/{id}",
+      "description": "Deletes a specific ImportJob entity based on the provided ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ImportJob you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the ImportJob."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listExportJob",
+      "type": "GET",
+      "path": "/exportJob",
+      "description": "Fetches a list of ExportJob entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response. Use comma-separated values for multiple fields."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ExportJob entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createExportJob",
+      "type": "POST",
+      "path": "/exportJob",
+      "description": "This endpoint initiates the creation of a new ExportJob entity. The ExportJob details must be provided in the request body.",
+      "parameters": [
+        {
+          "name": "exportJob",
+          "type": "object",
+          "required": true,
+          "description": "The ExportJob object to be created. This object should follow the schema defined in '#/definitions/ExportJob_Create'."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created ExportJob object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveExportJob",
+      "type": "GET",
+      "path": "/exportJob/{id}",
+      "description": "This endpoint retrieves the details of an existing ExportJob entity using its unique identifier. You can also specify the attributes you want to retrieve using the 'fields' query parameter.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ExportJob to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. If not provided, all first-level attributes will be returned."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested ExportJob object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteExportJob",
+      "type": "DELETE",
+      "path": "/exportJob/{id}",
+      "description": "This endpoint deletes an existing ExportJob entity using its unique identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ExportJob to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message upon successful deletion of the ExportJob."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint registers a new listener for the service instance. The listener's details, including the callback endpoint, must be provided in the request body.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The data object containing the callback endpoint and other details of the listener. This object should follow the schema defined in '#/definitions/EventSubscriptionInput'."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the registered listener object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint unregisters an existing listener from the service instance using its unique identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener to be unregistered."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message upon successful unregistration of the listener."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceCatalogCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceCatalogCreateEvent",
+      "description": "This endpoint allows a client to listen for a ServiceCatalogCreateEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a ServiceCatalogCreateEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the client has been successfully notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCatalogChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceCatalogChangeEvent",
+      "description": "This endpoint allows a client to listen for a ServiceCatalogChangeEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a ServiceCatalogChangeEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the client has been successfully notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCatalogBatchEvent",
+      "type": "POST",
+      "path": "/listener/serviceCatalogBatchEvent",
+      "description": "This endpoint allows a client to listen for a ServiceCatalogBatchEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a ServiceCatalogBatchEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the client has been successfully notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCatalogDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceCatalogDeleteEvent",
+      "description": "This endpoint allows a client to listen for a ServiceCatalogDeleteEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a ServiceCatalogDeleteEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the client has been successfully notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCategoryCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceCategoryCreateEvent",
+      "description": "This endpoint allows a client to listen for a ServiceCategoryCreateEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a ServiceCategoryCreateEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the client has been successfully notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCategoryChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceCategoryChangeEvent",
+      "description": "This endpoint allows a client to listen for ServiceCategoryChangeEvent notifications. When a change event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that is sent when a ServiceCategoryChangeEvent occurs. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the ServiceCategoryChangeEvent."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCategoryDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceCategoryDeleteEvent",
+      "description": "This endpoint allows a client to listen for ServiceCategoryDeleteEvent notifications. When a delete event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that is sent when a ServiceCategoryDeleteEvent occurs. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the ServiceCategoryDeleteEvent."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCandidateCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceCandidateCreateEvent",
+      "description": "This endpoint allows a client to listen for ServiceCandidateCreateEvent notifications. When a create event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that is sent when a ServiceCandidateCreateEvent occurs. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the ServiceCandidateCreateEvent."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCandidateChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceCandidateChangeEvent",
+      "description": "This endpoint allows a client to listen for ServiceCandidateChangeEvent notifications. When a change event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that is sent when a ServiceCandidateChangeEvent occurs. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the ServiceCandidateChangeEvent."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceCandidateDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceCandidateDeleteEvent",
+      "description": "This endpoint allows a client to listen for ServiceCandidateDeleteEvent notifications. When a delete event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that is sent when a ServiceCandidateDeleteEvent occurs. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the ServiceCandidateDeleteEvent."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToServiceSpecificationCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceSpecificationCreateEvent",
+      "description": "Example of a client listener for receiving the notification ServiceSpecificationCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceSpecificationCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceSpecificationChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceSpecificationChangeEvent",
+      "description": "Example of a client listener for receiving the notification ServiceSpecificationChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceSpecificationChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceSpecificationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceSpecificationDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ServiceSpecificationDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceSpecificationDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

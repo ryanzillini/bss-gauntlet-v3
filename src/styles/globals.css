@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Primary Colors */
+  --totogi-purple: 151 71 255;  /* #9747FF */
+  --electric-blue: 0 163 255;   /* #00A3FF */
+  --coral-pink: 255 92 114;     /* #FF5C72 */
+  --dark-navy: 10 25 41;        /* #0A1929 */
+  --pure-white: 255 255 255;    /* #FFFFFF */
+
+  /* UI State Colors */
+  --success: 46 204 113;        /* #2ECC71 */
+  --warning: 241 196 15;        /* #F1C40F */
+  --error: 231 76 60;          /* #E74C3C */
+  --info: 52 152 219;          /* #3498DB */
+
+  /* Spacing System */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+}
+
+/* Light Mode Variables */
+.light-mode {
+  --dark-navy: 243 244 255;     /* Light purple background */
+  --card-bg: 255 255 255;       /* White for card backgrounds */
+  --text-primary: 0 0 0;        /* Pure black for primary text */
+  --text-secondary: 71 85 105;  /* Darker gray for better readability */
+  --border-color: 226 232 240;  /* Slate-200 for borders */
+}
+
+@layer base {
+  html {
+    font-family: 'Poppins', system-ui, sans-serif;
+    background: rgb(var(--dark-navy));
+    color: rgb(var(--pure-white));
+  }
+
+  .light-mode {
+    color: rgb(var(--text-primary));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 2rem; }
+  h4 { font-size: 1.5rem; }
+  body { font-size: 1rem; }
+  small { font-size: 0.875rem; }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-totogi-navy/30 backdrop-blur-sm border border-totogi-purple/20 rounded-xl;
+    background: linear-gradient(135deg, rgba(151, 71, 255, 0.1) 0%, rgba(0, 163, 255, 0.1) 100%);
+  }
+
+  .light-mode .glass-card {
+    @apply bg-white border-slate-200 shadow-sm;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%);
+  }
+
+  .glass-card:hover {
+    @apply border-totogi-purple/40;
+    box-shadow: 0 0 20px rgba(151, 71, 255, 0.2);
+  }
+
+  .light-mode .glass-card:hover {
+    @apply border-totogi-purple/30 shadow-md;
+  }
+
+  .ai-card {
+    @apply border border-totogi-purple/20 rounded-xl p-6;
+    background: linear-gradient(135deg, rgba(151, 71, 255, 0.1) 0%, rgba(0, 163, 255, 0.05) 100%);
+  }
+
+  .light-mode .ai-card {
+    @apply border-slate-200 bg-white shadow-sm;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, rgb(var(--totogi-purple)) 0%, rgb(var(--electric-blue)) 100%);
+    color: rgb(var(--pure-white));
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(151, 71, 255, 0.3);
+  }
+
+  .btn-ai {
+    @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+    background: linear-gradient(135deg, rgb(var(--coral-pink)) 0%, rgb(var(--totogi-purple)) 100%);
+    color: rgb(var(--pure-white));
+  }
+
+  .ai-glow {
+    filter: drop-shadow(0 0 8px rgba(151, 71, 255, 0.5));
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(var(--dark-navy));
+}
+
+.light-mode ::-webkit-scrollbar-track {
+  background: rgb(var(--card-bg));
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(151, 71, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(151, 71, 255, 0.5);
+}
+
+.neural-bg {
+  background-image: radial-gradient(circle at 10px 10px, rgba(151, 71, 255, 0.1) 2px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.light-mode .neural-bg {
+  background-image: radial-gradient(circle at 10px 10px, rgba(151, 71, 255, 0.2) 2px, transparent 0);
+}
+
+/* Tailwind custom utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-totogi-purple via-totogi-pink to-totogi-blue text-transparent bg-clip-text;
+  }
+} 

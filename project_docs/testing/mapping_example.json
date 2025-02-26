@@ -1,0 +1,68 @@
+{
+  "description": "This is a hypothetical example of a declarative ontology mapping configuration. It demonstrates one possible approach for mapping between TMF APIs and customer data sources. The specific mapping patterns and structures will be refined through real-world usage and testing.",
+  "mappings": [
+    {
+      "name": "retrievePartyAccount",
+      "upstream": {
+        "method": "GET",
+        "path": "/accountManagement/v5/partyAccount/{id}"
+      },
+      "downstream": [
+        {
+          "method": "GET",
+          "path": "/customer/profile/${upstream.parameters.id}",
+          "response": {
+            "transform": {
+              "id": "${response.customerId}",
+              "href": "/accountManagement/v5/partyAccount/${response.customerId}",
+              "accountType": "individual",
+              "name": "${response.firstName} ${response.lastName}",
+              "state": "${response.status}"
+            }
+          }
+        },
+        {
+          "name": "getBillingInfo",
+          "method": "GET",
+          "path": "/billing/accounts/${upstream.parameters.id}",
+          "response": {
+            "merge": true,
+            "transform": {
+              "creditLimit": "${response.maxCredit}",
+              "paymentStatus": "${response.accountStatus}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "updatePartyAccount",
+      "upstream": {
+        "method": "PATCH",
+        "path": "/accountManagement/v5/partyAccount/{id}"
+      },
+      "downstream": [
+        {
+          "name": "updateCustomerProfile",
+          "method": "PUT",
+          "path": "/customer/profile/${upstream.parameters.id}",
+          "transform": {
+            "firstName": "${request.body.name.split(' ')[0]}",
+            "lastName": "${request.body.name.split(' ')[1]}",
+            "status": "${request.body.state}"
+          }
+        },
+        {
+          "name": "updateBillingAccount",
+          "method": "PATCH",
+          "path": "/billing/accounts/${upstream.parameters.id}",
+          "condition": "${request.body.creditLimit !== undefined}",
+          "transform": {
+            "maxCredit": "${request.body.creditLimit}",
+            "accountStatus": "${request.body.paymentStatus}"
+          }
+        }
+      ]
+    }
+  ]
+}

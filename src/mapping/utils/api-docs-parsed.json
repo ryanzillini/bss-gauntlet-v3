@@ -1,0 +1,2458 @@
+{
+  "endpoints": [
+    {
+      "name": "getAccount",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "accountId",
+          "type": "ID!",
+          "required": true,
+          "description": "Account ID."
+        },
+        {
+          "name": "balanceTypeIds",
+          "type": "[ID!]",
+          "required": false,
+          "description": "Balance type Ids to retrieve."
+        }
+      ],
+      "response": {
+        "type": "AccountResult",
+        "description": "Returns an AccountResult"
+      },
+      "description": "Returns an account for a provider by an account ID.",
+      "errors": [
+        "AccountNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getAccountBalanceTypeCounters",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetAccountBalanceTypeCountersInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "AccountBalanceTypeCountersResult",
+        "description": "Returns an AccountBalanceTypeCountersResult"
+      },
+      "description": "Retrieve Balance Type Counters configured for an account.",
+      "errors": [
+        "AccountNotFound",
+        "BalanceTypeNotFound",
+        "AccountBalanceTypeCountersPayload",
+        "AccountBalanceTypeCounterNotFound",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getAccountCohort",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetAccountCohortInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetAccountCohortResult",
+        "description": "Returns a GetAccountCohortResult"
+      },
+      "description": "Fetch an Account Cohort by ID and provider ID.",
+      "errors": [
+        "AccountCohort",
+        "CampaignsNotEnabled",
+        "AccountCohortNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getAccountCohorts",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetAccountCohortsInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetAccountCohortsResult",
+        "description": "Returns a GetAccountCohortsResult"
+      },
+      "description": "Fetch a list of Account Cohorts by provider ID with pagination.",
+      "errors": [
+        "AccountCohortConnection",
+        "CampaignsNotEnabled",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getBalanceType",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "getBalanceTypeInput",
+          "type": "GetBalanceTypeInput!",
+          "required": true,
+          "description": "Includes the provider ID and balance type ID."
+        }
+      ],
+      "response": {
+        "type": "GetBalanceTypeResult",
+        "description": "Returns a GetBalanceTypeResult"
+      },
+      "description": "Gets the balance type information of a specific balance type ID.",
+      "errors": [
+        "BalanceTypePayload",
+        "BalanceTypeNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getBalanceTypeCounters",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetBalanceTypeCountersInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetBalanceTypeCountersResult",
+        "description": "Returns a GetBalanceTypeCountersResult"
+      },
+      "description": "Retrieve Balance Type Counter notifications based on the provided input parameters. At least one value must be supplied.",
+      "errors": [
+        "BalanceTypeCountersPayload",
+        "BalanceTypeCounterNotFound",
+        "BalanceTypeNotFound",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getBalanceTypes",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "getBalanceTypesInput",
+          "type": "GetBalanceTypesInput!",
+          "required": true,
+          "description": "Includes the provider ID and an optional list of balance type IDs."
+        }
+      ],
+      "response": {
+        "type": "GetBalanceTypesResult",
+        "description": "Returns a GetBalanceTypesResult"
+      },
+      "description": "Gets the balance type information of a list or all balance type IDs. If none is provided, all are returned. If some are provided, the ones that are found are returned.",
+      "errors": [
+        "GetBalanceTypesPayload",
+        "BalanceTypeNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getBalanceTypeCounters",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetBalanceTypeCountersInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetBalanceTypeCountersResult",
+        "description": "Returns a GetBalanceTypeCountersResult"
+      },
+      "description": "Retrieve Balance Type Counter notifications based on the provided input parameters. At least one value must be supplied.",
+      "errors": [
+        "BalanceTypeCounterNotFound",
+        "BalanceTypeNotFound",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getBalanceTypes",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "getBalanceTypesInput",
+          "type": "GetBalanceTypesInput!",
+          "required": true,
+          "description": "Includes the provider ID and an optional list of balance type IDs."
+        }
+      ],
+      "response": {
+        "type": "GetBalanceTypesResult",
+        "description": "Returns a GetBalanceTypesResult"
+      },
+      "description": "Gets the balance type information of a list or all balance type IDs. If none is provided, all are returned. If some are provided, the ones that are found are returned.",
+      "errors": [
+        "BalanceTypeNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getBulkMetadataJobStatus",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetBulkUploadMetadataInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetBulkUploadMetadataResult!",
+        "description": "Returns a GetBulkUploadMetadataResult!"
+      },
+      "description": "Get the status of a bulk metadata job.",
+      "errors": [
+        "BulkUploadMetadataJobNotFound",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getCampaign",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetCampaignInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetCampaignResult!",
+        "description": "Returns a GetCampaignResult!"
+      },
+      "description": "Get details of a specific campaign.",
+      "errors": [
+        "CampaignNotFound",
+        "CampaignsNotEnabled",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getCampaignStatistics",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetCampaignStatisticsInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "CampaignStatisticsResult",
+        "description": "Returns a CampaignStatisticsResult"
+      },
+      "description": "Retrieve Campaign Statistics.",
+      "errors": [
+        "CampaignsNotEnabled",
+        "CampaignNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getCampaigns",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetCampaignsInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetCampaignsResult!",
+        "description": "Returns a GetCampaignsResult!"
+      },
+      "description": "Get a list of campaigns with pagination.",
+      "errors": [
+        "CampaignsNotEnabled",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getCampaigns",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "GetCampaignsInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetCampaignsResult!",
+        "description": "Returns a GetCampaignsResult!"
+      },
+      "description": "Get a list of campaigns with pagination.",
+      "errors": []
+    },
+    {
+      "name": "getCurrentUser",
+      "type": "query",
+      "parameters": [],
+      "response": {
+        "type": "GetUserPayload",
+        "description": "Returns a GetUserPayload"
+      },
+      "description": "Gets info for the currently logged in User. When used in an API context, this will return the API user.",
+      "errors": []
+    },
+    {
+      "name": "getDeployedFieldMappings",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list or a maximum of 25."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        }
+      ],
+      "response": {
+        "type": "DeployedFieldMappingConnection",
+        "description": "Returns a DeployedFieldMappingConnection"
+      },
+      "description": "Gets deployed field mappings for a provider sorted by when they will be applied.",
+      "errors": []
+    },
+    {
+      "name": "getDevice",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "deviceId",
+          "type": "ID!",
+          "required": true,
+          "description": "Device ID."
+        }
+      ],
+      "response": {
+        "type": "DeviceResult",
+        "description": "Returns a DeviceResult"
+      },
+      "description": "Returns a Device for a provider by a device ID.",
+      "errors": []
+    },
+    {
+      "name": "getEventDataRecordsByAccount",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "accountId",
+          "type": "ID!",
+          "required": true,
+          "description": "Account ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list or a maximum of 25."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        },
+        {
+          "name": "filterBy",
+          "type": "EventDataRecordFilter",
+          "required": false,
+          "description": "Filtering options for event data records returned in the connection."
+        }
+      ],
+      "response": {
+        "type": "EventDataRecordAccountConnectionResult",
+        "description": "Returns an EventDataRecordAccountConnectionResult"
+      },
+      "description": "Gets a list of event data records for an Account with pagination.",
+      "errors": []
+    },
+    {
+      "name": "getEventDataRecordsByDevice",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "deviceId",
+          "type": "ID!",
+          "required": true,
+          "description": "Device ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list or a maximum of 25."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        },
+        {
+          "name": "filterBy",
+          "type": "EventDataRecordFilter",
+          "required": false,
+          "description": "Filtering options for event data records returned in the connection."
+        }
+      ],
+      "response": {
+        "type": "EventDataRecordDeviceConnectionResult",
+        "description": "Returns an EventDataRecordDeviceConnectionResult"
+      },
+      "description": "Gets a list of event data records for a Device with pagination.",
+      "errors": [
+        "DeviceNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getFieldMappings",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list or a maximum of 25."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        }
+      ],
+      "response": {
+        "type": "FieldMappingConnection",
+        "description": "Returns a FieldMappingConnection"
+      },
+      "description": "Gets NOT deployed field mappings for a provider.",
+      "errors": []
+    },
+    {
+      "name": "getLifecycle",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "lifecycleId",
+          "type": "ID!",
+          "required": true,
+          "description": "Lifecyle ID."
+        }
+      ],
+      "response": {
+        "type": "GetLifecycleResult",
+        "description": "Returns a GetLifecycleResult"
+      },
+      "description": "Gets a single lifecycle.",
+      "errors": [
+        "LifecycleNotFound",
+        "ProviderNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getLifecycles",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        }
+      ],
+      "response": {
+        "type": "GetLifecyclesResult",
+        "description": "Returns a GetLifecyclesResult"
+      },
+      "description": "Gets a list of all lifecycles.",
+      "errors": [
+        "ProviderNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getMyExportJobs",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "getMyExportJobsInput",
+          "type": "GetMyExportJobsInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetMyExportJobsResult",
+        "description": "Returns a GetMyExportJobsResult"
+      },
+      "description": "Gets export jobs of the current tenant.",
+      "errors": [
+        "InvalidField",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getMyProviderConfig",
+      "type": "query",
+      "parameters": [],
+      "response": {
+        "type": "GetMyProviderConfigResult",
+        "description": "Returns a GetMyProviderConfigResult"
+      },
+      "description": "Gets tenant configuration of the logged in User.",
+      "errors": [
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getMyRestoreJobs",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "getMyRestoreJobsInput",
+          "type": "GetMyRestoreJobsInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "GetMyRestoreJobsResult",
+        "description": "Returns a GetMyRestoreJobsResult"
+      },
+      "description": "Gets restore jobs of the current tenant.",
+      "errors": [
+        "InvalidField",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getOffers",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        }
+      ],
+      "response": {
+        "type": "GetOffersResult",
+        "description": "Returns a GetOffersResult"
+      },
+      "description": "Returns the list of Offers for a provider.",
+      "errors": [
+        "CampaignsNotEnabled",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getPlan",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "planId",
+          "type": "ID!",
+          "required": true,
+          "description": "Already existing plan ID."
+        }
+      ],
+      "response": {
+        "type": "PlanResult",
+        "description": "Returns a PlanResult"
+      },
+      "description": "Gets a Plan for a provider by a plan ID.",
+      "errors": [
+        "PlanNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getPlanVersion",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "planVersionId",
+          "type": "ID!",
+          "required": true,
+          "description": "Already existing plan version ID."
+        }
+      ],
+      "response": {
+        "type": "PlanVersionResult",
+        "description": "Returns a PlanVersionResult"
+      },
+      "description": "Gets a Plan Version for a provider by a plan version ID.",
+      "errors": [
+        "PlanVersionNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "getPlans",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list or a maximum of 25."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        },
+        {
+          "name": "orderBy",
+          "type": "PlanOrder",
+          "required": false,
+          "description": "Ordering options for plans returned from the connection."
+        }
+      ],
+      "response": {
+        "type": "PlanConnection",
+        "description": "Returns a PlanConnection"
+      },
+      "description": "Gets a list of plans for a provider with pagination.",
+      "errors": []
+    },
+    {
+      "name": "getPlans",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list or a maximum of 25."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        },
+        {
+          "name": "orderBy",
+          "type": "PlanOrder",
+          "required": false,
+          "description": "Ordering options for plans returned from the connection."
+        }
+      ],
+      "response": {
+        "type": "PlanConnection",
+        "description": "Returns a PlanConnection"
+      },
+      "description": "Gets a list of plans for a provider with pagination.",
+      "errors": []
+    },
+    {
+      "name": "getRatingGroupHierarchy",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        }
+      ],
+      "response": {
+        "type": "RatingGroupResult",
+        "description": "Returns a RatingGroupResult"
+      },
+      "description": "Gets Rating Group hierarchy for a provider.",
+      "errors": []
+    },
+    {
+      "name": "getRelatedAccountsByDevice",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "deviceId",
+          "type": "ID!",
+          "required": true,
+          "description": "Finds all related accounts by a device ID."
+        }
+      ],
+      "response": {
+        "type": "GetRelatedAccountsByDeviceResult",
+        "description": "Returns a GetRelatedAccountsByDeviceResult"
+      },
+      "description": "Gets a list of all parent accounts for a provided device ID.",
+      "errors": []
+    },
+    {
+      "name": "getSGSNTable",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        }
+      ],
+      "response": {
+        "type": "SGSNTableResult",
+        "description": "Returns an SGSNTableResult"
+      },
+      "description": "Gets the SGSN table for a provider.",
+      "errors": []
+    },
+    {
+      "name": "getSettings",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        }
+      ],
+      "response": {
+        "type": "SettingsResult",
+        "description": "Returns a SettingsResult"
+      },
+      "description": "Gets settings for a provider.",
+      "errors": []
+    },
+    {
+      "name": "getUser",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "getUserInput",
+          "type": "GetUserInput!",
+          "required": true,
+          "description": "Get user input"
+        }
+      ],
+      "response": {
+        "type": "GetUserResult",
+        "description": "Returns a GetUserResult"
+      },
+      "description": "Gets a User for a given provider ID and user ID, or returns a UserNotFound error.",
+      "errors": [
+        "UserNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "listUsers",
+      "type": "query",
+      "parameters": [
+        {
+          "name": "providerId",
+          "type": "ID!",
+          "required": true,
+          "description": "Service provider ID."
+        },
+        {
+          "name": "first",
+          "type": "Int!",
+          "required": true,
+          "description": "Returns the first n elements from the list or a maximum of 25."
+        },
+        {
+          "name": "after",
+          "type": "String",
+          "required": false,
+          "description": "Returns the elements in the list that come after the specified cursor."
+        }
+      ],
+      "response": {
+        "type": "ListUsersResult",
+        "description": "Returns a ListUsersResult"
+      },
+      "description": "Lists the users for the given provider ID.",
+      "errors": [
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "archivePlanVersion",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "ArchivePlanVersionInput!",
+          "required": true,
+          "description": "Parameters for DeletePlanVersion."
+        }
+      ],
+      "response": {
+        "type": "ArchivePlanVersionResult!",
+        "description": "Returns an ArchivePlanVersionResult!"
+      },
+      "description": "Archives a Plan Version if it is suspended with no subscribed accounts.",
+      "errors": [
+        "PlanVersionNotFound",
+        "PlanVersionWrongTransition",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "bulkUploadMetadata",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "BulkUploadMetadataInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "BulkUploadMetadataResult",
+        "description": "Returns a BulkUploadMetadataResult"
+      },
+      "description": "Bulk upload metadata for Accounts provided by customer",
+      "errors": [
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "cancelPlanSubscription",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CancelPlanSubscriptionInput!",
+          "required": true,
+          "description": "Parameters for CancelPlanSubscription."
+        }
+      ],
+      "response": {
+        "type": "CancelPlanVersionSubscriptionResult!",
+        "description": "Returns a CancelPlanVersionSubscriptionResult!"
+      },
+      "description": "Cancels existing assignment of a Plan to an Account. Uses the planSubscriptionId to identify the correct plan. Balances from the Plan remain after cancellation.",
+      "errors": [
+        "AccountNotFound",
+        "SubscriptionNotFound",
+        "InternalServerError",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded"
+      ]
+    },
+    {
+      "name": "createAccount",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateAccountInput!",
+          "required": true,
+          "description": "Parameters for CreateAccount."
+        }
+      ],
+      "response": {
+        "type": "CreateAccountResult!",
+        "description": "Returns a CreateAccountResult!"
+      },
+      "description": "Creates an Account for a provider. Authorized Roles: Account_Admin",
+      "errors": []
+    },
+    {
+      "name": "createAccountCohort",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateAccountCohortInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "CreateAccountCohortResult",
+        "description": "Returns a CreateAccountCohortResult"
+      },
+      "description": "Create a new Account Cohort.",
+      "errors": []
+    },
+    {
+      "name": "createBalance",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateBalanceInput!",
+          "required": true,
+          "description": "Payload with provider ID and balance information."
+        }
+      ],
+      "response": {
+        "type": "CreateBalanceResult",
+        "description": "Returns a CreateBalanceResult"
+      },
+      "description": "Creates a new balance for the provider.",
+      "errors": []
+    },
+    {
+      "name": "createBalanceType",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateBalanceTypeInput!",
+          "required": true,
+          "description": "Payload with provider ID and balance type information."
+        }
+      ],
+      "response": {
+        "type": "CreateBalanceTypeResult",
+        "description": "Returns a CreateBalanceTypeResult"
+      },
+      "description": "Creates a new balance type for the provider.",
+      "errors": []
+    },
+    {
+      "name": "createCampaign",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateCampaignInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "CreateCampaignResult!",
+        "description": "Returns a CreateCampaignResult!"
+      },
+      "description": "Create a new Campaign. Authorized Roles: Account_Admin",
+      "errors": []
+    },
+    {
+      "name": "createDevice",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateDeviceInput!",
+          "required": true,
+          "description": "Parameters for CreateDevice."
+        }
+      ],
+      "response": {
+        "type": "CreateDeviceResult!",
+        "description": "Returns a CreateDeviceResult!"
+      },
+      "description": "Creates a Device in an Account.",
+      "errors": [
+        "AccountNotFound",
+        "DeviceAlreadyExists",
+        "InvalidField",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "createFieldMapping",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateFieldMappingInput!",
+          "required": true,
+          "description": "Parameters for CreateFieldMapping."
+        }
+      ],
+      "response": {
+        "type": "CreateFieldMappingResult!",
+        "description": "Returns a CreateFieldMappingResult!"
+      },
+      "description": "Creates a Field Mapping in draft. Draft field mappings need to be deployed using deployFieldMappings to become effective.",
+      "errors": [
+        "InvalidField",
+        "FieldMappingAlreadyExists",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "createLifecycle",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateLifecycleInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "CreateLifecycleResult",
+        "description": "Returns a CreateLifecycleResult"
+      },
+      "description": "Creates a lifecycle.",
+      "errors": [
+        "InvalidNumberOfStates",
+        "InvalidStateTransitions",
+        "ProviderNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "createOffer",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateOfferInput!",
+          "required": true,
+          "description": "Parameters for CreateOffer."
+        }
+      ],
+      "response": {
+        "type": "CreateOfferResult!",
+        "description": "Returns a CreateOfferResult!"
+      },
+      "description": "Creates an Offer.",
+      "errors": [
+        "OfferAlreadyExists",
+        "InvalidField",
+        "RateLimitExceeded",
+        "CampaignsNotEnabled",
+        "InternalServerError",
+        "PlanVersionNotFound"
+      ]
+    },
+    {
+      "name": "createPlanFromInitialRecurringFirstUsageTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreatePlanFromInitialRecurringFirstUsageTemplateInput!",
+          "required": true,
+          "description": "Parameters for CreatePlanFromInitialRecurringFirstUsageTemplate."
+        }
+      ],
+      "response": {
+        "type": "CreatePlanFromInitialTemplateResult!",
+        "description": "Returns a CreatePlanFromInitialTemplateResult!"
+      },
+      "description": "Creates a plan by using a template.",
+      "errors": [
+        "InvalidField",
+        "PlanAlreadyExists",
+        "BalanceTypeNotFound",
+        "CreatePlanValidationFailed",
+        "InvalidProviderLifecycleStage",
+        "ServiceFormatError",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "createPlanFromInitialTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreatePlanFromInitialTemplateInput!",
+          "required": true,
+          "description": "Parameters for CreatePlanFromInitialTemplate."
+        }
+      ],
+      "response": {
+        "type": "CreatePlanFromInitialTemplateResult!",
+        "description": "Returns a CreatePlanFromInitialTemplateResult!"
+      },
+      "description": "Creates a Plan by using a template.",
+      "errors": [
+        "InvalidField",
+        "PlanAlreadyExists",
+        "BalanceTypeNotFound",
+        "CreatePlanValidationFailed",
+        "InvalidProviderLifecycleStage",
+        "ServiceFormatError",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "createPlanVersionFromInitialRecurringFirstUsageTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreatePlanVersionFromInitialRecurringFirstUsageTemplateInput!",
+          "required": true,
+          "description": "Parameters for CreatePlanVersionFromInitialRecurringFirstUsageTemplate."
+        }
+      ],
+      "response": {
+        "type": "CreatePlanVersionFromInitialTemplateResult!",
+        "description": "Returns a CreatePlanVersionFromInitialTemplateResult!"
+      },
+      "description": "Updates a plan that was created by using a template. Creates a new version of the plan.",
+      "errors": [
+        "InvalidField",
+        "PlanVersionNotFound",
+        "BalanceTypeNotFound",
+        "CreatePlanValidationFailed",
+        "PlanVersionAlreadyExists",
+        "InvalidProviderLifecycleStage",
+        "ServiceFormatError",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "createPlanVersionFromInitialTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreatePlanVersionFromInitialTemplateInput!",
+          "required": true,
+          "description": "Parameters for CreatePlanVersionFromInitialTemplate."
+        }
+      ],
+      "response": {
+        "type": "CreatePlanVersionFromInitialTemplateResult!",
+        "description": "Returns a CreatePlanVersionFromInitialTemplateResult!"
+      },
+      "description": "Creates a new Plan Version of a Plan that was originally created by using createPlanFromInitialTemplate.",
+      "errors": [
+        "InvalidField",
+        "PlanVersionNotFound",
+        "BalanceTypeNotFound",
+        "CreatePlanValidationFailed",
+        "PlanVersionAlreadyExists",
+        "InvalidProviderLifecycleStage",
+        "ServiceFormatError",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "createUser",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "CreateUserInput!",
+          "required": true,
+          "description": "Parameters for CreateUser."
+        }
+      ],
+      "response": {
+        "type": "CreateUserResult!",
+        "description": "Returns a CreateUserResult!"
+      },
+      "description": "Creates a tenant User.",
+      "errors": [
+        "UserAlreadyExists",
+        "InvalidField",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteAccount",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteAccountInput!",
+          "required": true,
+          "description": "Parameters for DeleteAccount."
+        }
+      ],
+      "response": {
+        "type": "DeleteAccountResult!",
+        "description": "Returns a DeleteAccountResult!"
+      },
+      "description": "Deletes an Account if it does not have any children or devices.",
+      "errors": [
+        "TransactionHasBeenProcessed",
+        "AccountNotFound",
+        "AccountHasReferences",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteAccountBalanceTypeCounter",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteAccountBalanceTypeCounterInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "DeleteAccountBalanceTypeCounterResult",
+        "description": "Returns a DeleteAccountBalanceTypeCounterResult"
+      },
+      "description": "Delete a Balance Type Counter for an account based on the provided input parameters.",
+      "errors": [
+        "AccountNotFound",
+        "AccountBalanceTypeCounterNotFound",
+        "BalanceTypeNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteAccountCohort",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteAccountCohortInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "DeleteAccountCohortResult",
+        "description": "Returns a DeleteAccountCohortResult"
+      },
+      "description": "Delete an existing Account Cohort.",
+      "errors": [
+        "CampaignsNotEnabled",
+        "AccountCohortNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteAccountBalanceTypeCounter",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteAccountBalanceTypeCounterInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "DeleteAccountBalanceTypeCounterResult",
+        "description": ""
+      },
+      "description": "Delete a Balance Type Counter for an account based on the provided input parameters.",
+      "errors": [
+        "AccountNotFound",
+        "AccountBalanceTypeCounterNotFound",
+        "BalanceTypeNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteAccountCohort",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteAccountCohortInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "DeleteAccountCohortResult",
+        "description": ""
+      },
+      "description": "Delete an existing Account Cohort.",
+      "errors": [
+        "CampaignsNotEnabled",
+        "AccountCohortNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteBalance",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteBalanceInput!",
+          "required": true,
+          "description": "Payload with provider ID and balance ID."
+        }
+      ],
+      "response": {
+        "type": "DeleteBalanceResult",
+        "description": ""
+      },
+      "description": "Deletes an existing balance for the provider.",
+      "errors": [
+        "TransactionHasBeenProcessed",
+        "BalanceNotFound",
+        "BalanceTypeNotFound",
+        "AccountNotFound",
+        "BalanceHasReferences",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteBalanceType",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteBalanceTypeInput!",
+          "required": true,
+          "description": "Payload with provider ID and balance type ID."
+        }
+      ],
+      "response": {
+        "type": "DeleteBalanceTypeResult",
+        "description": ""
+      },
+      "description": "Deletes an existing balance type for the provider.",
+      "errors": [
+        "BalanceTypeNotFound",
+        "BalanceTypeHasReferences",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteBalanceTypeCounter",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteBalanceTypeCounterInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "DeleteBalanceTypeCounterResult",
+        "description": ""
+      },
+      "description": "Delete a Balance Type Counter based on the provided input parameters.",
+      "errors": [
+        "BalanceTypeCounterNotFound",
+        "BalanceTypeNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteCampaign",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteCampaignInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "DeleteCampaignResult!",
+        "description": "Returns a DeleteCampaignResult!"
+      },
+      "description": "Deletes an existing Campaign. Authorized Roles: Account_Admin",
+      "errors": [
+        "CampaignsNotEnabled",
+        "CampaignNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteDevice",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteDeviceInput!",
+          "required": true,
+          "description": "Parameters for DeleteDevice."
+        }
+      ],
+      "response": {
+        "type": "DeleteDeviceResult!",
+        "description": "Returns a DeleteDeviceResult!"
+      },
+      "description": "Deletes a Device from an Account. Authorized Roles: Account_Admin",
+      "errors": [
+        "DeviceNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteFieldMapping",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteFieldMappingInput!",
+          "required": true,
+          "description": "Parameters for DeleteFieldMapping."
+        }
+      ],
+      "response": {
+        "type": "DeleteFieldMappingResult!",
+        "description": "Returns a DeleteFieldMappingResult!"
+      },
+      "description": "Deletes a Field Mapping in draft. Draft field mappings need to be deployed using deployFieldMappings to become effective. Authorized Roles: Network_Operator, Plan_Publisher",
+      "errors": [
+        "FieldMappingNotFound",
+        "FieldMappingHasReferences",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteLifecycle",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteLifecycleInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "DeleteLifecycleResult",
+        "description": "Returns a DeleteLifecycleResult"
+      },
+      "description": "Deletes a lifecycle. Authorized Roles: Plan_Designer, Plan_Publisher",
+      "errors": [
+        "LifecycleNotFound",
+        "ProviderNotFound",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteOffer",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteOfferInput!",
+          "required": true,
+          "description": "Parameters for DeleteOffer."
+        }
+      ],
+      "response": {
+        "type": "DeleteOfferResult!",
+        "description": "Returns a DeleteOfferResult!"
+      },
+      "description": "Deletes an Offer. Authorized Roles: Account_Admin",
+      "errors": [
+        "OfferNotFound",
+        "OfferIsReadOnly",
+        "RateLimitExceeded",
+        "CampaignsNotEnabled",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deletePlan",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeletePlanInput!",
+          "required": true,
+          "description": "Parameters for DeletePlan."
+        }
+      ],
+      "response": {
+        "type": "DeletePlanResult!",
+        "description": "Returns a DeletePlanResult!"
+      },
+      "description": "Deletes a Plan. Deployed plans cannot be deleted but its plan versions can be archived using archivePlanVersion.",
+      "errors": [
+        "PlanNotFound",
+        "PlanVersionHasReferences",
+        "PlanIsReadOnly",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deletePlanVersion",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeletePlanVersionInput!",
+          "required": true,
+          "description": "Parameters for DeletePlanVersion."
+        }
+      ],
+      "response": {
+        "type": "DeletePlanVersionResult!",
+        "description": "Returns a DeletePlanVersionResult!"
+      },
+      "description": "Deletes a Plan Version if it was never deployed.",
+      "errors": [
+        "PlanVersionNotFound",
+        "PlanVersionHasReferences",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deleteUser",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeleteUserInput!",
+          "required": true,
+          "description": "Parameters for DeleteUser."
+        }
+      ],
+      "response": {
+        "type": "DeleteUserResult!",
+        "description": "Returns a DeleteUserResult!"
+      },
+      "description": "Deletes a tenant User.",
+      "errors": [
+        "UserNotFound",
+        "UserIsReadOnly",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deployFieldMappings",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeployFieldMappingsInput!",
+          "required": true,
+          "description": "Parameters for DeployFieldMappings."
+        }
+      ],
+      "response": {
+        "type": "DeployFieldMappingsResult!",
+        "description": "Returns a DeployFieldMappingsResult!"
+      },
+      "description": "Once you have defined a new Field Mapping, you can call deployFieldMappings and specify the path of the field mapping you want to deploy.",
+      "errors": [
+        "FieldMappingNotFound",
+        "InvalidField",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "deployPlan",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "DeployPlanVersionInput!",
+          "required": true,
+          "description": "Parameters for DeployPlan."
+        }
+      ],
+      "response": {
+        "type": "DeployPlanVersionResult!",
+        "description": "Returns a DeployPlanVersionResult!"
+      },
+      "description": "Deploys a Plan so it can be subscribed by accounts. A deployed plan cannot be updated anymore.",
+      "errors": [
+        "PlanVersionNotFound",
+        "DeploymentVerificationFailed",
+        "MigrationAlreadyInProgress",
+        "PlanVersionWrongTransition",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "makePlanAssignable",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "AssignablePlanVersionInput!",
+          "required": true,
+          "description": "Parameters for MakePlanAssignable."
+        }
+      ],
+      "response": {
+        "type": "AssignablePlanVersionResult!",
+        "description": "Returns an AssignablePlanVersionResult!"
+      },
+      "description": "Makes a Plan assignable so it can be subscribed by accounts. Plan must be deployed to be able to make it assignable.",
+      "errors": [
+        "PlanVersionNotFound",
+        "PlanVersionWrongTransition",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "makePlanNotAssignable",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "AssignablePlanVersionInput!",
+          "required": true,
+          "description": "Parameters for MakePlanNotAssignable."
+        }
+      ],
+      "response": {
+        "type": "AssignablePlanVersionResult!",
+        "description": "Returns an AssignablePlanVersionResult!"
+      },
+      "description": "Makes a Plan NOT assignable. It can be done at any point in time to make sure that a Plan cannot be subscribed by accounts.",
+      "errors": [
+        "PlanVersionNotFound",
+        "PlanVersionWrongTransition",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "resetUserPassword",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "ResetUserPasswordInput!",
+          "required": true,
+          "description": "Parameters for ResetUserPasswordInput"
+        }
+      ],
+      "response": {
+        "type": "ResetUserPasswordResult!",
+        "description": "Returns a ResetUserPasswordResult!"
+      },
+      "description": "Resets the password of a given User.",
+      "errors": [
+        "UserNotFound",
+        "UserIncorrectStatus",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "subscribeToPlan",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "SubscribeToPlanVersionInput!",
+          "required": true,
+          "description": "Parameters for SubscribeToPlan."
+        }
+      ],
+      "response": {
+        "type": "SubscribeToPlanVersionResult!",
+        "description": "Returns a SubscribeToPlanVersionResult!"
+      },
+      "description": "Assigns a Plan to an Account for a predefined period of time. If the from parameter is not specified, the plan starts immediately. If the to parameter is not specified, the plan continues indefinitely for recurring plans, or until the end of the plan period for non-recurring plans.",
+      "errors": [
+        "PlanVersionNotFound",
+        "PlanVersionIsNotAssignable",
+        "AccountNotFound",
+        "SubscriptionNotFound",
+        "InvalidField",
+        "SubscribeToPlanVersionValidationFailed",
+        "InternalServerError",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "PlanNotFound",
+        "PlanAliasNotFound",
+        "PlanAliasNotActive"
+      ]
+    },
+    {
+      "name": "triggerRar",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "TriggerRarInput!",
+          "required": true,
+          "description": "Payload with provider ID and account ID."
+        }
+      ],
+      "response": {
+        "type": "TriggerRarResult",
+        "description": "Returns a TriggerRarResult"
+      },
+      "description": "Create RARs for all active sessions of an account.",
+      "errors": [
+        "AccountNotFound",
+        "RarNotEnabled",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateAccount",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateAccountInput!",
+          "required": true,
+          "description": "Parameters for UpdateAccount."
+        }
+      ],
+      "response": {
+        "type": "UpdateAccountResult!",
+        "description": "Returns an UpdateAccountResult!"
+      },
+      "description": "Updates Account attributes. Authorized Roles: Account_Admin",
+      "errors": [
+        "AccountNotFound",
+        "InvalidField",
+        "CannotChangeAccountType",
+        "PostpaidFieldInPrepaidAccount",
+        "CannotSetLongFirstBillingCycle",
+        "DayOfMonthAlreadySet",
+        "LifecycleNotFound",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateAccountBalanceTypeCounter",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateAccountBalanceTypeCounterInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "AccountBalanceTypeCounterResult",
+        "description": "Returns an AccountBalanceTypeCounterResult"
+      },
+      "description": "Updates or creates a Balance Type Counter for an account based on the provided input parameters. If balanceTypeCounterId is specified, the new configuration will override the settings inherited from the associated BalanceType. Note: A BalanceType Counter operates on the sum of all balances of the same BalanceType on the account, not on an individual balance.",
+      "errors": [
+        "AccountNotFound",
+        "BalanceTypeNotFound",
+        "AccountBalanceTypeCounterNotFound",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateAccountCohort",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateAccountCohortInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "UpdateAccountCohortResult",
+        "description": "Returns an UpdateAccountCohortResult"
+      },
+      "description": "Update an existing Account Cohort.",
+      "errors": [
+        "CampaignsNotEnabled",
+        "AccountCohortNotFound",
+        "RateLimitExceeded",
+        "InternalServerError",
+        "InvalidField"
+      ]
+    },
+    {
+      "name": "updateArchivingPolicy",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateArchivingPolicyInput!",
+          "required": true,
+          "description": "Parameters for UpdateArchivingPolicy."
+        }
+      ],
+      "response": {
+        "type": "UpdateArchivingPolicyResult!",
+        "description": "Returns an UpdateArchivingPolicyResult!"
+      },
+      "description": "Creates a lifecycle rule on EDR S3 bucket to move objects to Glacier store after a period of time. Authorized Roles: Tenant_Admin",
+      "errors": [
+        "UpdateArchivingPolicyFailed",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateBalance",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateBalanceInput!",
+          "required": true,
+          "description": "Payload with provider ID, balance ID, and fields to be updated."
+        }
+      ],
+      "response": {
+        "type": "UpdateBalanceResult",
+        "description": "Returns an UpdateBalanceResult"
+      },
+      "description": "Updates an existing balance for the provider.",
+      "errors": [
+        "TransactionHasBeenProcessed",
+        "BalanceNotFound",
+        "BalanceTypeNotFound",
+        "AccountNotFound",
+        "InvalidField",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateBalanceType",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateBalanceTypeInput!",
+          "required": true,
+          "description": "Payload with provider ID, balance type ID, and fields to be updated."
+        }
+      ],
+      "response": {
+        "type": "UpdateBalanceTypeResult",
+        "description": "Returns an UpdateBalanceTypeResult"
+      },
+      "description": "Updates an existing balance type for the provider.",
+      "errors": [
+        "BalanceTypeNameInUse",
+        "BalanceTypeNotFound",
+        "BalanceTypeHasReferences",
+        "BalanceTypeCounterNotFound",
+        "InvalidField",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateBalanceTypeCounter",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateBalanceTypeCounterInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "BalanceTypeCounterResult",
+        "description": "Returns a BalanceTypeCounterResult"
+      },
+      "description": "Update or create Balance Type Counter notifications based on the provided input parameters. Creates or updates BalanceTypeCounter.",
+      "errors": [
+        "BalanceTypeCounterNotFound",
+        "BalanceTypeNotFound",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateBalanceType",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateBalanceTypeInput!",
+          "required": true,
+          "description": "Payload with provider ID, balance type ID, and fields to be updated."
+        }
+      ],
+      "response": {
+        "type": "UpdateBalanceTypeResult",
+        "description": "Returns an UpdateBalanceTypeResult"
+      },
+      "description": "Updates an existing balance type for the provider.",
+      "errors": [
+        "BalanceTypePayload",
+        "BalanceTypeNameInUse",
+        "BalanceTypeNotFound",
+        "BalanceTypeHasReferences",
+        "BalanceTypeCounterNotFound",
+        "InvalidField",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateBalanceTypeCounter",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateBalanceTypeCounterInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "BalanceTypeCounterResult",
+        "description": "Returns a BalanceTypeCounterResult"
+      },
+      "description": "Update or create Balance Type Counter notifications based on the provided input parameters. Creates or updates BalanceTypeCounter.",
+      "errors": [
+        "UpdateBalanceTypeCounterPayload",
+        "BalanceTypeCounterNotFound",
+        "BalanceTypeNotFound",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateCampaign",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateCampaignInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "UpdateCampaignResult!",
+        "description": "Returns an UpdateCampaignResult!"
+      },
+      "description": "Updates an existing Campaign. Authorized Roles: Account_Admin",
+      "errors": [
+        "UpdateCampaignPayload",
+        "CampaignAlreadyCompleted",
+        "CampaignsNotEnabled",
+        "OfferNotFound",
+        "AccountCohortNotFound",
+        "CampaignNotFound",
+        "InvalidProviderLifecycleStage",
+        "CampaignManagementNotReady",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateDevice",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateDeviceInput!",
+          "required": true,
+          "description": "Parameters for UpdateDevice."
+        }
+      ],
+      "response": {
+        "type": "UpdateDeviceResult!",
+        "description": "Returns an UpdateDeviceResult!"
+      },
+      "description": "Updates Device attributes. Authorized Roles: Account_Admin",
+      "errors": [
+        "UpdateDevicePayload",
+        "DeviceNotFound",
+        "AccountNotFound",
+        "InvalidField",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateFieldMapping",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateFieldMappingInput!",
+          "required": true,
+          "description": "Parameters for UpdateFieldMapping."
+        }
+      ],
+      "response": {
+        "type": "UpdateFieldMappingResult!",
+        "description": "Returns an UpdateFieldMappingResult!"
+      },
+      "description": "Updates a Field Mapping in draft. Draft field mappings need to be deployed using deployFieldMappings to become effective. Authorized Roles: Network_Operator, Plan_Publisher",
+      "errors": [
+        "UpdateFieldMappingPayload",
+        "FieldMappingNotFound",
+        "InvalidField",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateLifecycle",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateLifecycleInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "UpdateLifecycleResult",
+        "description": ""
+      },
+      "description": "Updates a lifecycle.",
+      "errors": []
+    },
+    {
+      "name": "updateMyProviderConfig",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateMyProviderConfigInput!",
+          "required": true,
+          "description": "Parameters for UpdateMyProviderConfig."
+        }
+      ],
+      "response": {
+        "type": "UpdateMyProviderConfigResult!",
+        "description": ""
+      },
+      "description": "Updates config of the current tenant.",
+      "errors": []
+    },
+    {
+      "name": "updateOffer",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateOfferInput!",
+          "required": true,
+          "description": "Parameters for UpdateOffer."
+        }
+      ],
+      "response": {
+        "type": "UpdateOfferResult!",
+        "description": ""
+      },
+      "description": "Updates Offer attributes.",
+      "errors": []
+    },
+    {
+      "name": "updatePlan",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdatePlanInput!",
+          "required": true,
+          "description": "Parameters for UpdatePlan."
+        }
+      ],
+      "response": {
+        "type": "UpdatePlanResult!",
+        "description": ""
+      },
+      "description": "Updates attributes of a Plan, such as name. This mutation is deprecated. Only template APIs are supported moving forward. Deprecated date is 2024-10-31. Expiration date is 2025-01-31.",
+      "errors": []
+    },
+    {
+      "name": "updatePlanSubscription",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdatePlanSubscriptionInput!",
+          "required": true,
+          "description": "Parameters for UpdatePlanSubscription."
+        }
+      ],
+      "response": {
+        "type": "UpdatePlanVersionSubscriptionResult!",
+        "description": ""
+      },
+      "description": "Updates the properties of a Plan instance subscribed by an Account or switches the subscription to a different plan.",
+      "errors": []
+    },
+    {
+      "name": "updatePlanVersionFromInitialRecurringFirstUsageTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdatePlanVersionFromInitialRecurringFirstUsageTemplateInput!",
+          "required": true,
+          "description": "Parameters for UpdatePlanVersionFromInitialRecurringFirstUsageTemplate."
+        }
+      ],
+      "response": {
+        "type": "UpdatePlanVersionFromInitialTemplateResult!",
+        "description": ""
+      },
+      "description": "Updates a plan that was created by using a template.",
+      "errors": []
+    },
+    {
+      "name": "updatePlanVersionFromInitialTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdatePlanVersionFromInitialTemplateInput!",
+          "required": true,
+          "description": "Parameters for UpdatePlanVersionFromInitialTemplate."
+        }
+      ],
+      "response": {
+        "type": "UpdatePlanVersionFromInitialTemplateResult!",
+        "description": ""
+      },
+      "description": "Updates Plan Version of a Plan that was originally created by using a template.",
+      "errors": []
+    },
+    {
+      "name": "updatePlanVersionFromInitialRecurringFirstUsageTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdatePlanVersionFromInitialRecurringFirstUsageTemplateInput!",
+          "required": true,
+          "description": "Parameters for UpdatePlanVersionFromInitialRecurringFirstUsageTemplate."
+        }
+      ],
+      "response": {
+        "type": "UpdatePlanVersionFromInitialTemplateResult!",
+        "description": "Returns an UpdatePlanVersionFromInitialTemplateResult!"
+      },
+      "description": "Updates a plan that was created by using a template.",
+      "errors": []
+    },
+    {
+      "name": "updatePlanVersionFromInitialTemplate",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdatePlanVersionFromInitialTemplateInput!",
+          "required": true,
+          "description": "Parameters for UpdatePlanVersionFromInitialTemplate."
+        }
+      ],
+      "response": {
+        "type": "UpdatePlanVersionFromInitialTemplateResult!",
+        "description": "Returns an UpdatePlanVersionFromInitialTemplateResult!"
+      },
+      "description": "Updates Plan Version of a Plan that was originally created by using a template.",
+      "errors": []
+    },
+    {
+      "name": "updateRatingGroupHierarchy",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateRatingGroupHierarchyInput!",
+          "required": true,
+          "description": "Parameters for UpdateRatingGroupHierarchy."
+        }
+      ],
+      "response": {
+        "type": "UpdateRatingGroupHierarchyResult!",
+        "description": "Returns an UpdateRatingGroupHierarchyResult!"
+      },
+      "description": "Updates and deploys after verifying Rating Group hierarchy.",
+      "errors": []
+    },
+    {
+      "name": "updateSGSNTable",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateSGSNTableInput!",
+          "required": true,
+          "description": "Parameters for UpdateSGSNTable."
+        }
+      ],
+      "response": {
+        "type": "UpdateSGSNTableResult!",
+        "description": "Returns an UpdateSGSNTableResult!"
+      },
+      "description": "Update the SGSN table for a provider.",
+      "errors": []
+    },
+    {
+      "name": "updateSettings",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateSettingsInput!",
+          "required": true,
+          "description": "Parameters for UpdateSettings."
+        }
+      ],
+      "response": {
+        "type": "UpdateSettingsResult!",
+        "description": "Returns an UpdateSettingsResult!"
+      },
+      "description": "Updates settings of a provider.",
+      "errors": []
+    },
+    {
+      "name": "updateUser",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateUserInput!",
+          "required": true,
+          "description": "Parameters for UpdateUser"
+        }
+      ],
+      "response": {
+        "type": "UpdateUserResult!",
+        "description": "Returns the updated user or an error."
+      },
+      "description": "Updates a specific User for a given tenant.",
+      "errors": [
+        "UserNotFound",
+        "InvalidField",
+        "UserIsReadOnly",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "updateUserProfile",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UpdateUserProfileInput!",
+          "required": true,
+          "description": "Parameters for UpdateUserProfile."
+        }
+      ],
+      "response": {
+        "type": "UpdateUserProfileResult!",
+        "description": "Returns an UpdateUserProfileResult!"
+      },
+      "description": "Updates user profile for current User.",
+      "errors": [
+        "InvalidField",
+        "InvalidProviderLifecycleStage",
+        "RateLimitExceeded",
+        "InternalServerError"
+      ]
+    },
+    {
+      "name": "uploadMetadata",
+      "type": "mutation",
+      "parameters": [
+        {
+          "name": "input",
+          "type": "UploadMetadataInput!",
+          "required": true,
+          "description": ""
+        }
+      ],
+      "response": {
+        "type": "UploadMetadataResult",
+        "description": "Returns an UploadMetadataResult"
+      },
+      "description": "Upload metadata for Account provided by customer",
+      "errors": [
+        "AccountNotFound",
+        "InternalServerError"
+      ]
+    }
+  ]
+}

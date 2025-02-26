@@ -1,0 +1,1294 @@
+{
+  "api": "TMF642_Alarm",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listAlarm",
+      "type": "GET",
+      "path": "/alarm",
+      "description": "Fetches a list of Alarm entities. You can filter the results by specifying the fields, offset, and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Defines the starting point from which to return the list of resources."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Limits the number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of Alarm entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createAlarm",
+      "type": "POST",
+      "path": "/alarm",
+      "description": "Creates a new Alarm entity. The alarm details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "alarm",
+          "required": true,
+          "description": "The Alarm entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Alarm_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created Alarm entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveAlarm",
+      "type": "GET",
+      "path": "/alarm/{id}",
+      "description": "Fetches a specific Alarm entity by its ID. You can specify the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the Alarm entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested Alarm entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchAlarm",
+      "type": "PATCH",
+      "path": "/alarm/{id}",
+      "description": "Partially updates a specific Alarm entity by its ID. The updated alarm details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the Alarm entity to be updated."
+        },
+        {
+          "name": "alarm",
+          "required": true,
+          "description": "The updated Alarm entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Alarm_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated Alarm entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteAlarm",
+      "type": "DELETE",
+      "path": "/alarm/{id}",
+      "description": "Deletes a specific Alarm entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the Alarm entity to be deleted."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listAckAlarms",
+      "type": "GET",
+      "path": "/ackAlarms",
+      "description": "This endpoint retrieves a list of AckAlarms entities. It can also be used to search for specific AckAlarms based on certain criteria.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to specify the starting point within the list of resources for the items to be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to limit the number of resources returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns an object containing the requested AckAlarms entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createAckAlarms",
+      "type": "POST",
+      "path": "/ackAlarms",
+      "description": "This endpoint creates a new AckAlarms entity.",
+      "parameters": [
+        {
+          "name": "ackAlarms",
+          "required": true,
+          "description": "The AckAlarms entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AckAlarms_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns an object containing the created AckAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveAckAlarms",
+      "type": "GET",
+      "path": "/ackAlarms/{id}",
+      "description": "This endpoint retrieves a specific AckAlarms entity based on its identifier. You can also select specific attributes to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the AckAlarms entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns an object containing the requested AckAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listUnAckAlarms",
+      "type": "GET",
+      "path": "/unAckAlarms",
+      "description": "This endpoint retrieves a list of UnAckAlarms entities. It can also be used to search for specific UnAckAlarms based on certain criteria.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to specify the starting point within the list of resources for the items to be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to limit the number of resources returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns an object containing the requested UnAckAlarms entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createUnAckAlarms",
+      "type": "POST",
+      "path": "/unAckAlarms",
+      "description": "This endpoint creates a new UnAckAlarms entity.",
+      "parameters": [
+        {
+          "name": "unAckAlarms",
+          "required": true,
+          "description": "The UnAckAlarms entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/UnAckAlarms_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns an object containing the created UnAckAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveUnAckAlarms",
+      "type": "GET",
+      "path": "/unAckAlarms/{id}",
+      "description": "This endpoint fetches a specific UnAckAlarms entity using its unique identifier. You can select specific attributes to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the UnAckAlarms entity you want to retrieve.",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want included in the response, separated by commas.",
+          "in": "query"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested UnAckAlarms entity if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listClearAlarms",
+      "type": "GET",
+      "path": "/clearAlarms",
+      "description": "This endpoint retrieves a list of ClearAlarms entities. You can specify the number of entities and the starting index for the list.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want included in the response, separated by commas.",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of ClearAlarms entities you want to retrieve.",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The number of ClearAlarms entities you want to retrieve.",
+          "in": "query"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of ClearAlarms entities if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createClearAlarms",
+      "type": "POST",
+      "path": "/clearAlarms",
+      "description": "This endpoint creates a new ClearAlarms entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "clearAlarms",
+          "required": true,
+          "description": "The details of the ClearAlarms entity you want to create.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ClearAlarms_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created ClearAlarms entity if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveClearAlarms",
+      "type": "GET",
+      "path": "/clearAlarms/{id}",
+      "description": "This endpoint fetches a specific ClearAlarms entity using its unique identifier. You can select specific attributes to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ClearAlarms entity you want to retrieve.",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want included in the response, separated by commas.",
+          "in": "query"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested ClearAlarms entity if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listCommentAlarms",
+      "type": "GET",
+      "path": "/commentAlarms",
+      "description": "This endpoint retrieves a list of CommentAlarms entities. You can specify the number of entities and the starting index for the list.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want included in the response, separated by commas.",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of CommentAlarms entities you want to retrieve.",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The number of CommentAlarms entities you want to retrieve.",
+          "in": "query"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of CommentAlarms entities if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createCommentAlarms",
+      "type": "POST",
+      "path": "/commentAlarms",
+      "description": "This endpoint allows you to create a new CommentAlarms entity. The entity details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "commentAlarms",
+          "type": "object",
+          "required": true,
+          "description": "The CommentAlarms entity to be created. This should be provided in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created CommentAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "retrieveCommentAlarms",
+      "type": "GET",
+      "path": "/commentAlarms/{id}",
+      "description": "This endpoint retrieves a specific CommentAlarms entity by its ID. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the CommentAlarms entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested CommentAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listGroupAlarms",
+      "type": "GET",
+      "path": "/groupAlarms",
+      "description": "This endpoint retrieves a list of GroupAlarms entities. You can specify which properties to include in the response, as well as pagination parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from which to return the results."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of results to return."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of GroupAlarms entities."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "createGroupAlarms",
+      "type": "POST",
+      "path": "/groupAlarms",
+      "description": "This endpoint allows you to create a new GroupAlarms entity. The entity details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "groupAlarms",
+          "type": "object",
+          "required": true,
+          "description": "The GroupAlarms entity to be created. This should be provided in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created GroupAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "retrieveGroupAlarms",
+      "type": "GET",
+      "path": "/groupAlarms/{id}",
+      "description": "This endpoint retrieves a specific GroupAlarms entity by its ID. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the GroupAlarms entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested GroupAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - The requested resource could not be found.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listUnGroupAlarms",
+      "type": "GET",
+      "path": "/unGroupAlarms",
+      "description": "This endpoint retrieves a list of UnGroupAlarms entities. You can customize the response by specifying certain fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Define the starting point from where the list of resources will be provided in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Define the maximum number of resources to be provided in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested UnGroupAlarms entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createUnGroupAlarms",
+      "type": "POST",
+      "path": "/unGroupAlarms",
+      "description": "This endpoint allows you to create a new UnGroupAlarms entity. You need to provide the necessary information in the request body.",
+      "parameters": [
+        {
+          "name": "unGroupAlarms",
+          "required": true,
+          "description": "The UnGroupAlarms entity to be created. This should be provided in the request body.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created UnGroupAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveUnGroupAlarms",
+      "type": "GET",
+      "path": "/unGroupAlarms/{id}",
+      "description": "This endpoint retrieves a specific UnGroupAlarms entity by its ID. You can also specify certain fields in the query parameters to customize the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the UnGroupAlarms entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested UnGroupAlarms entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint sets the communication endpoint address that the service instance will use to deliver information about its health state, execution state, failures, and metrics. The callback endpoint should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "Data containing the callback endpoint to deliver the information. This should be provided in the request body.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm that the listener has been registered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint removes the communication endpoint address that the service instance uses to deliver information. You need to provide the ID of the registered listener in the path.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the registered listener you want to remove."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm that the listener has been unregistered."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAlarmCreateEvent",
+      "type": "POST",
+      "path": "/listener/alarmCreateEvent",
+      "description": "This endpoint allows a client to listen for the AlarmCreateEvent notification. When an alarm is created, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that contains the details of the created alarm. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the client has been successfully notified of the alarm creation event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAlarmAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/alarmAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the AlarmAttributeValueChangeEvent notification. When an attribute value of an alarm changes, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that contains the details of the changed attribute value of the alarm. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the client has been successfully notified of the alarm attribute value change event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAlarmStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/alarmStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the AlarmStateChangeEvent notification. When the state of an alarm changes, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that contains the details of the changed state of the alarm. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the client has been successfully notified of the alarm state change event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAlarmDeleteEvent",
+      "type": "POST",
+      "path": "/listener/alarmDeleteEvent",
+      "description": "This endpoint allows a client to listen for the AlarmDeleteEvent notification. When an alarm is deleted, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that contains the details of the deleted alarm. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the client has been successfully notified of the alarm deletion event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAckAlarmsCreateEvent",
+      "type": "POST",
+      "path": "/listener/ackAlarmsCreateEvent",
+      "description": "This endpoint allows a client to listen for the AckAlarmsCreateEvent notification. When an alarm acknowledgement is created, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that contains the details of the created alarm acknowledgement. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the client has been successfully notified of the alarm acknowledgement creation event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAckAlarmsStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/ackAlarmsStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the AckAlarmsStateChangeEvent notification. It is typically used to receive updates when the state of acknowledged alarms changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that contains the details of the AckAlarmsStateChangeEvent. This data should adhere to the AckAlarmsStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToUnAckAlarmsCreateEvent",
+      "type": "POST",
+      "path": "/listener/unAckAlarmsCreateEvent",
+      "description": "This endpoint enables a client to listen for the UnAckAlarmsCreateEvent notification. It is typically used to receive updates when new unacknowledged alarms are created.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that contains the details of the UnAckAlarmsCreateEvent. This data should adhere to the UnAckAlarmsCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToUnAckAlarmsStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/unAckAlarmsStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the UnAckAlarmsStateChangeEvent notification. It is typically used to receive updates when the state of unacknowledged alarms changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that contains the details of the UnAckAlarmsStateChangeEvent. This data should adhere to the UnAckAlarmsStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToClearAlarmsCreateEvent",
+      "type": "POST",
+      "path": "/listener/clearAlarmsCreateEvent",
+      "description": "This endpoint enables a client to listen for the ClearAlarmsCreateEvent notification. It is typically used to receive updates when new cleared alarms are created.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that contains the details of the ClearAlarmsCreateEvent. This data should adhere to the ClearAlarmsCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToClearAlarmsStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/clearAlarmsStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the ClearAlarmsStateChangeEvent notification. It is typically used to receive updates when the state of cleared alarms changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that contains the details of the ClearAlarmsStateChangeEvent. This data should adhere to the ClearAlarmsStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the notification has been received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToCommentAlarmsCreateEvent",
+      "type": "POST",
+      "path": "/listener/commentAlarmsCreateEvent",
+      "description": "Example of a client listener for receiving the notification CommentAlarmsCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CommentAlarmsCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCommentAlarmsStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/commentAlarmsStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification CommentAlarmsStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CommentAlarmsStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToGroupAlarmsCreateEvent",
+      "type": "POST",
+      "path": "/listener/groupAlarmsCreateEvent",
+      "description": "Example of a client listener for receiving the notification GroupAlarmsCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/GroupAlarmsCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToGroupAlarmsStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/groupAlarmsStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification GroupAlarmsStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/GroupAlarmsStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToUnGroupAlarmsCreateEvent",
+      "type": "POST",
+      "path": "/listener/unGroupAlarmsCreateEvent",
+      "description": "Example of a client listener for receiving the notification UnGroupAlarmsCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/UnGroupAlarmsCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToUnGroupAlarmsStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/unGroupAlarmsStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification UnGroupAlarmsStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/UnGroupAlarmsStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

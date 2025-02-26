@@ -1,0 +1,572 @@
+{
+  "api": "TMF688_Event",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listEvent",
+      "type": "GET",
+      "path": "/topic/{topicId}/event",
+      "description": "Retrieves a list of Event entities associated with a specific Topic. The list can be customized using query parameters.",
+      "parameters": [
+        {
+          "name": "topicId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic entity whose associated Events are to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to include in the response. If not specified, all properties will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from which to return the results. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of Event entities to return in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of Event entities associated with the specified Topic."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createEvent",
+      "type": "POST",
+      "path": "/topic/{topicId}/event",
+      "description": "Creates a new Event entity associated with a specific Topic.",
+      "parameters": [
+        {
+          "name": "topicId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic entity to which the new Event will be associated."
+        },
+        {
+          "name": "event",
+          "required": true,
+          "description": "The Event entity to be created. This should be a JSON object that follows the Event_Create schema.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Event_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the created Event entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveEvent",
+      "type": "GET",
+      "path": "/topic/{topicId}/event/{id}",
+      "description": "Retrieves a specific Event entity associated with a Topic.",
+      "parameters": [
+        {
+          "name": "topicId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic entity associated with the Event to be retrieved."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Event entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to include in the response. If not specified, all properties will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested Event entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listTopic",
+      "type": "GET",
+      "path": "/topic",
+      "description": "Retrieves a list of Topic entities. The list can be customized using query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to include in the response. If not specified, all properties will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from which to return the results. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of Topic entities to return in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of Topic entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTopic",
+      "type": "POST",
+      "path": "/topic",
+      "description": "Creates a new Topic entity.",
+      "parameters": [
+        {
+          "name": "topic",
+          "required": true,
+          "description": "The Topic entity to be created. This should be a JSON object that follows the Topic_Create schema.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Topic_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the created Topic entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTopic",
+      "type": "GET",
+      "path": "/topic/{id}",
+      "description": "This endpoint fetches a specific Topic entity using its unique identifier. It also allows attribute selection for all first-level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested Topic entity if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteTopic",
+      "type": "DELETE",
+      "path": "/topic/{id}",
+      "description": "This endpoint deletes a specific Topic entity using its unique identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message if the Topic entity was deleted successfully."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listHub",
+      "type": "GET",
+      "path": "/topic/{topicId}/hub",
+      "description": "This endpoint lists all Hub entities associated with a specific Topic entity.",
+      "parameters": [
+        {
+          "name": "topicId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic entity whose associated Hubs you want to list."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of Hubs should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of Hubs to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of Hub entities associated with the specified Topic entity if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createHub",
+      "type": "POST",
+      "path": "/topic/{topicId}/hub",
+      "description": "This endpoint creates a new Hub entity associated with a specific Topic entity.",
+      "parameters": [
+        {
+          "name": "topicId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic entity you want to associate the new Hub with."
+        },
+        {
+          "name": "hub",
+          "type": "object",
+          "required": true,
+          "description": "The Hub entity to be created. This should be provided in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created Hub entity if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveHub",
+      "type": "GET",
+      "path": "/topic/{topicId}/hub/{id}",
+      "description": "This endpoint fetches a specific Hub entity associated with a specific Topic entity.",
+      "parameters": [
+        {
+          "name": "topicId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Topic entity the Hub is associated with."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Hub you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested Hub entity if successful."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteHub",
+      "type": "DELETE",
+      "path": "/topic/{topicId}/hub/{id}",
+      "description": "This endpoint allows you to delete a specific Hub entity associated with a given Topic entity. The Hub is identified by its unique ID and the Topic by its unique ID.",
+      "parameters": [
+        {
+          "name": "topicId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the parent Topic entity. This is a path parameter."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the Hub entity to be deleted. This is a path parameter."
+        }
+      ],
+      "response": {
+        "type": "string",
+        "description": "A confirmation message indicating successful deletion of the Hub entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint allows you to register a communication endpoint address that the service instance will use to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The data object containing the callback endpoint to which the service instance will deliver information. This is a body parameter.",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating successful subscription to the service instance."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint allows you to unregister a previously registered communication endpoint address. The service instance will no longer deliver information to this endpoint.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the registered listener to be unregistered. This is a path parameter."
+        }
+      ],
+      "response": {
+        "type": "string",
+        "description": "A confirmation message indicating successful unregistration of the listener."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToEventCreateEvent",
+      "type": "POST",
+      "path": "/listener/eventCreateEvent",
+      "description": "This endpoint is an example of a client listener for receiving the notification EventCreateEvent. It accepts event data in the request body.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data object that the client listener receives. This is a body parameter.",
+          "schema": {
+            "$ref": "#/definitions/EventCreateEvent"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating successful notification of the EventCreateEvent."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToTopicCreateEvent",
+      "type": "POST",
+      "path": "/listener/topicCreateEvent",
+      "description": "This endpoint is an example of a client listener for receiving the notification TopicCreateEvent. It accepts event data in the request body.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data object that the client listener receives. This is a body parameter.",
+          "schema": {
+            "$ref": "#/definitions/TopicCreateEvent"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response object indicating successful notification of the TopicCreateEvent."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToTopicChangeEvent",
+      "type": "POST",
+      "path": "/listener/topicChangeEvent",
+      "description": "This endpoint allows a client to listen for a TopicChangeEvent. When the event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that needs to be sent in the body of the request. This data should conform to the TopicChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful subscription, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToTopicDeleteEvent",
+      "type": "POST",
+      "path": "/listener/topicDeleteEvent",
+      "description": "This endpoint allows a client to listen for a TopicDeleteEvent. When the event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data that needs to be sent in the body of the request. This data should conform to the TopicDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful subscription, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    }
+  ]
+}

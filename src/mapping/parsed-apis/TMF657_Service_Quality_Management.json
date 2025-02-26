@@ -1,0 +1,559 @@
+{
+  "api": "TMF657_Service_Quality_Management",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listServiceLevelObjective",
+      "type": "GET",
+      "path": "/serviceLevelObjective",
+      "description": "Retrieves a list of ServiceLevelObjective entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Specify the starting index of the resources you want to include in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Specify the maximum number of resources you want to include in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns an object containing the requested ServiceLevelObjective entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceLevelObjective",
+      "type": "POST",
+      "path": "/serviceLevelObjective",
+      "description": "Creates a new ServiceLevelObjective entity.",
+      "parameters": [
+        {
+          "name": "serviceLevelObjective",
+          "required": true,
+          "description": "The ServiceLevelObjective entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceLevelObjective_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns an object containing the created ServiceLevelObjective entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceLevelObjective",
+      "type": "GET",
+      "path": "/serviceLevelObjective/{id}",
+      "description": "Retrieves a specific ServiceLevelObjective entity by its identifier. You can specify the attributes you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ServiceLevelObjective entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns an object containing the requested ServiceLevelObjective entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceLevelObjective",
+      "type": "PATCH",
+      "path": "/serviceLevelObjective/{id}",
+      "description": "Partially updates a specific ServiceLevelObjective entity by its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ServiceLevelObjective entity you want to update."
+        },
+        {
+          "name": "serviceLevelObjective",
+          "required": true,
+          "description": "The updated ServiceLevelObjective entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceLevelObjective_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns an object containing the updated ServiceLevelObjective entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceLevelObjective",
+      "type": "DELETE",
+      "path": "/serviceLevelObjective/{id}",
+      "description": "Deletes a specific ServiceLevelObjective entity by its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ServiceLevelObjective entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns an object indicating that the ServiceLevelObjective entity has been deleted."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listServiceLevelSpecification",
+      "type": "GET",
+      "path": "/serviceLevelSpecification",
+      "description": "Fetches a list of ServiceLevelSpecification entities. You can filter the results by specifying parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceLevelSpecification entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceLevelSpecification",
+      "type": "POST",
+      "path": "/serviceLevelSpecification",
+      "description": "Creates a new ServiceLevelSpecification entity.",
+      "parameters": [
+        {
+          "name": "serviceLevelSpecification",
+          "required": true,
+          "description": "The ServiceLevelSpecification entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceLevelSpecification_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created ServiceLevelSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceLevelSpecification",
+      "type": "GET",
+      "path": "/serviceLevelSpecification/{id}",
+      "description": "Fetches a specific ServiceLevelSpecification entity by its ID. You can specify the attributes you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceLevelSpecification entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceLevelSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceLevelSpecification",
+      "type": "PATCH",
+      "path": "/serviceLevelSpecification/{id}",
+      "description": "Partially updates a specific ServiceLevelSpecification entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceLevelSpecification entity you want to update."
+        },
+        {
+          "name": "serviceLevelSpecification",
+          "required": true,
+          "description": "The updated ServiceLevelSpecification entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceLevelSpecification_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the updated ServiceLevelSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceLevelSpecification",
+      "type": "DELETE",
+      "path": "/serviceLevelSpecification/{id}",
+      "description": "Deletes a specific ServiceLevelSpecification entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ServiceLevelSpecification entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data that will be used to deliver the information. The data should adhere to the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the listener has been successfully registered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to remove the communication endpoint address that the service instance uses to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceLevelObjectiveCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceLevelObjectiveCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives the ServiceLevelObjectiveCreateEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should adhere to the ServiceLevelObjectiveCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceLevelObjectiveAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceLevelObjectiveAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives the ServiceLevelObjectiveAttributeValueChangeEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should adhere to the ServiceLevelObjectiveAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceLevelObjectiveDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceLevelObjectiveDeleteEvent",
+      "description": "This endpoint is an example of a client listener that receives the ServiceLevelObjectiveDeleteEvent notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data. The data should adhere to the ServiceLevelObjectiveDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object indicating that the notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceLevelSpecificationCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceLevelSpecificationCreateEvent",
+      "description": "Example of a client listener for receiving the notification ServiceLevelSpecificationCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceLevelSpecificationCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceLevelSpecificationAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceLevelSpecificationAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ServiceLevelSpecificationAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceLevelSpecificationAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceLevelSpecificationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/serviceLevelSpecificationDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ServiceLevelSpecificationDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceLevelSpecificationDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

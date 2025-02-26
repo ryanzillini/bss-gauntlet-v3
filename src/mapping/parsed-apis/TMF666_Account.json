@@ -1,0 +1,1689 @@
+{
+  "api": "TMF666_Account",
+  "version": "v4.1.0",
+  "endpoints": [
+    {
+      "name": "listPartyAccount",
+      "type": "GET",
+      "path": "/partyAccount",
+      "description": "Fetches a list of PartyAccount entities. You can filter the results by specifying the fields, offset, and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of PartyAccount entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of PartyAccount entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested PartyAccount entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPartyAccount",
+      "type": "POST",
+      "path": "/partyAccount",
+      "description": "Creates a new PartyAccount entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "partyAccount",
+          "required": true,
+          "description": "The details of the PartyAccount entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyAccount_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the newly created PartyAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePartyAccount",
+      "type": "GET",
+      "path": "/partyAccount/{id}",
+      "description": "Fetches a specific PartyAccount entity based on its ID. You can specify the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the PartyAccount entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. These should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested PartyAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchPartyAccount",
+      "type": "PATCH",
+      "path": "/partyAccount/{id}",
+      "description": "Updates a specific PartyAccount entity based on its ID. The updated details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the PartyAccount entity you want to update."
+        },
+        {
+          "name": "partyAccount",
+          "required": true,
+          "description": "The updated details of the PartyAccount entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyAccount_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated PartyAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deletePartyAccount",
+      "type": "DELETE",
+      "path": "/partyAccount/{id}",
+      "description": "Deletes a specific PartyAccount entity based on its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the PartyAccount entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the PartyAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listBillingAccount",
+      "type": "GET",
+      "path": "/billingAccount",
+      "description": "Retrieves a list of BillingAccount entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of BillingAccount entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of BillingAccount entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of BillingAccount entities."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "createBillingAccount",
+      "type": "POST",
+      "path": "/billingAccount",
+      "description": "Creates a new BillingAccount entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "billingAccount",
+          "required": true,
+          "description": "The details of the BillingAccount entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingAccount_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the created BillingAccount entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "retrieveBillingAccount",
+      "type": "GET",
+      "path": "/billingAccount/{id}",
+      "description": "Retrieves a specific BillingAccount entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillingAccount entity to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. Use a comma to separate multiple properties."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the requested BillingAccount entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "patchBillingAccount",
+      "type": "PATCH",
+      "path": "/billingAccount/{id}",
+      "description": "Updates a specific BillingAccount entity partially by its ID. The details to be updated should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillingAccount entity to update."
+        },
+        {
+          "name": "billingAccount",
+          "required": true,
+          "description": "The details to be updated for the BillingAccount entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingAccount_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the updated BillingAccount entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "deleteBillingAccount",
+      "type": "DELETE",
+      "path": "/billingAccount/{id}",
+      "description": "Deletes a specific BillingAccount entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillingAccount entity to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm the deletion of the BillingAccount entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listSettlementAccount",
+      "type": "GET",
+      "path": "/settlementAccount",
+      "description": "Retrieves a list of SettlementAccount entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested SettlementAccount entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createSettlementAccount",
+      "type": "POST",
+      "path": "/settlementAccount",
+      "description": "Creates a new SettlementAccount entity. The new entity's details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "settlementAccount",
+          "required": true,
+          "description": "The details of the SettlementAccount to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/SettlementAccount_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created SettlementAccount."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveSettlementAccount",
+      "type": "GET",
+      "path": "/settlementAccount/{id}",
+      "description": "Retrieves a specific SettlementAccount entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the SettlementAccount to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested SettlementAccount."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchSettlementAccount",
+      "type": "PATCH",
+      "path": "/settlementAccount/{id}",
+      "description": "Partially updates a specific SettlementAccount entity by its ID. The updated details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the SettlementAccount to be updated."
+        },
+        {
+          "name": "settlementAccount",
+          "required": true,
+          "description": "The updated details of the SettlementAccount, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/SettlementAccount_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated SettlementAccount."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteSettlementAccount",
+      "type": "DELETE",
+      "path": "/settlementAccount/{id}",
+      "description": "Deletes a specific SettlementAccount entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the SettlementAccount to be deleted."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listFinancialAccount",
+      "type": "GET",
+      "path": "/financialAccount",
+      "description": "Retrieves a list of FinancialAccount entities. You can filter the results by specifying the fields, offset, and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of FinancialAccount entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of FinancialAccount entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested FinancialAccount entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createFinancialAccount",
+      "type": "POST",
+      "path": "/financialAccount",
+      "description": "Creates a new FinancialAccount entity. The new entity's details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "financialAccount",
+          "required": true,
+          "description": "The details of the FinancialAccount entity to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/FinancialAccount_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the newly created FinancialAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveFinancialAccount",
+      "type": "GET",
+      "path": "/financialAccount/{id}",
+      "description": "Retrieves a specific FinancialAccount entity based on its identifier. You can specify the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the FinancialAccount entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested FinancialAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchFinancialAccount",
+      "type": "PATCH",
+      "path": "/financialAccount/{id}",
+      "description": "Updates a specific FinancialAccount entity partially based on its identifier. The updated details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the FinancialAccount entity you want to update."
+        },
+        {
+          "name": "financialAccount",
+          "required": true,
+          "description": "The updated details of the FinancialAccount entity. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/FinancialAccount_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated FinancialAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteFinancialAccount",
+      "type": "DELETE",
+      "path": "/financialAccount/{id}",
+      "description": "Deletes a specific FinancialAccount entity based on its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the FinancialAccount entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the FinancialAccount entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listBillingCycleSpecification",
+      "type": "GET",
+      "path": "/billingCycleSpecification",
+      "description": "Retrieves a list of BillingCycleSpecification entities. You can filter the results by specifying the properties you want in the response, the starting index, and the number of resources.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Specify the starting index of the resources you want to retrieve."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Specify the maximum number of resources you want to retrieve."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of BillingCycleSpecification entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createBillingCycleSpecification",
+      "type": "POST",
+      "path": "/billingCycleSpecification",
+      "description": "Creates a new BillingCycleSpecification entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "billingCycleSpecification",
+          "required": true,
+          "description": "The details of the BillingCycleSpecification entity to be created.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingCycleSpecification_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created BillingCycleSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveBillingCycleSpecification",
+      "type": "GET",
+      "path": "/billingCycleSpecification/{id}",
+      "description": "Retrieves a specific BillingCycleSpecification entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillingCycleSpecification entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested BillingCycleSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchBillingCycleSpecification",
+      "type": "PATCH",
+      "path": "/billingCycleSpecification/{id}",
+      "description": "Updates a specific BillingCycleSpecification entity partially by its ID. You need to provide the details to be updated in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillingCycleSpecification entity you want to update."
+        },
+        {
+          "name": "billingCycleSpecification",
+          "required": true,
+          "description": "The details to be updated in the BillingCycleSpecification entity.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingCycleSpecification_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated BillingCycleSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteBillingCycleSpecification",
+      "type": "DELETE",
+      "path": "/billingCycleSpecification/{id}",
+      "description": "Deletes a specific BillingCycleSpecification entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillingCycleSpecification entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a confirmation message upon successful deletion."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listBillFormat",
+      "type": "GET",
+      "path": "/billFormat",
+      "description": "Retrieves a list of BillFormat entities. You can filter the response by specifying certain fields, or control the number of results returned by using offset and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Defines the starting point from which to return results. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Defines the maximum number of results to return. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of BillFormat entities. If successful, the response includes a status code of 200."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "createBillFormat",
+      "type": "POST",
+      "path": "/billFormat",
+      "description": "Creates a new BillFormat entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "billFormat",
+          "required": true,
+          "description": "The details of the BillFormat entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillFormat_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created BillFormat entity. If successful, the response includes a status code of 201."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "retrieveBillFormat",
+      "type": "GET",
+      "path": "/billFormat/{id}",
+      "description": "Retrieves a specific BillFormat entity by its ID. You can specify certain fields to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillFormat entity to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested BillFormat entity. If successful, the response includes a status code of 200."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "patchBillFormat",
+      "type": "PATCH",
+      "path": "/billFormat/{id}",
+      "description": "Updates a specific BillFormat entity partially by its ID. The updated details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillFormat entity to update."
+        },
+        {
+          "name": "billFormat",
+          "required": true,
+          "description": "The updated details of the BillFormat entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillFormat_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the updated BillFormat entity. If successful, the response includes a status code of 200."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "deleteBillFormat",
+      "type": "DELETE",
+      "path": "/billFormat/{id}",
+      "description": "Deletes a specific BillFormat entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the BillFormat entity to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a status code of 204 if the deletion was successful."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listBillPresentationMedia",
+      "type": "GET",
+      "path": "/billPresentationMedia",
+      "description": "Retrieves a list of BillPresentationMedia entities. You can filter the results by specifying the desired fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Set the starting point from where the list of resources will be provided in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Define the maximum number of resources to be included in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested BillPresentationMedia entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createBillPresentationMedia",
+      "type": "POST",
+      "path": "/billPresentationMedia",
+      "description": "Creates a new BillPresentationMedia entity. You need to provide the necessary information in the request body.",
+      "parameters": [
+        {
+          "name": "billPresentationMedia",
+          "required": true,
+          "description": "The information of the BillPresentationMedia entity to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillPresentationMedia_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created BillPresentationMedia entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveBillPresentationMedia",
+      "type": "GET",
+      "path": "/billPresentationMedia/{id}",
+      "description": "Retrieves a specific BillPresentationMedia entity by its ID. You can specify the desired fields in the query parameters.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the BillPresentationMedia entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested BillPresentationMedia entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchBillPresentationMedia",
+      "type": "PATCH",
+      "path": "/billPresentationMedia/{id}",
+      "description": "Partially updates a specific BillPresentationMedia entity by its ID. You need to provide the updated information in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the BillPresentationMedia entity you want to update."
+        },
+        {
+          "name": "billPresentationMedia",
+          "required": true,
+          "description": "The updated information of the BillPresentationMedia entity, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillPresentationMedia_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the updated BillPresentationMedia entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteBillPresentationMedia",
+      "type": "DELETE",
+      "path": "/billPresentationMedia/{id}",
+      "description": "Deletes a specific BillPresentationMedia entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the BillPresentationMedia entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the BillPresentationMedia entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "Data containing the callback endpoint to deliver the information",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Subscribed"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The id of the registered listener",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyAccountCreateEvent",
+      "type": "POST",
+      "path": "/listener/partyAccountCreateEvent",
+      "description": "Example of a client listener for receiving the notification PartyAccountCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyAccountCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyAccountAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyAccountAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyAccountAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyAccountAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyAccountStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/partyAccountStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification PartyAccountStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyAccountStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToPartyAccountDeleteEvent",
+      "type": "POST",
+      "path": "/listener/partyAccountDeleteEvent",
+      "description": "Example of a client listener for receiving the notification PartyAccountDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/PartyAccountDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToBillingAccountCreateEvent",
+      "type": "POST",
+      "path": "/listener/billingAccountCreateEvent",
+      "description": "Example of a client listener for receiving the notification BillingAccountCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingAccountCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToBillingAccountAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/billingAccountAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification BillingAccountAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingAccountAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToBillingAccountStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/billingAccountStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification BillingAccountStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingAccountStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToBillingAccountDeleteEvent",
+      "type": "POST",
+      "path": "/listener/billingAccountDeleteEvent",
+      "description": "Example of a client listener for receiving the notification BillingAccountDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/BillingAccountDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToSettlementAccountCreateEvent",
+      "type": "POST",
+      "path": "/listener/settlementAccountCreateEvent",
+      "description": "This endpoint allows a client to listen for a SettlementAccountCreateEvent notification. When a new settlement account is created, this event is triggered and the client is notified.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the newly created settlement account."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToSettlementAccountAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/settlementAccountAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for a SettlementAccountAttributeValueChangeEvent notification. When an attribute value of a settlement account changes, this event is triggered and the client is notified.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the changed attribute of the settlement account."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToSettlementAccountStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/settlementAccountStateChangeEvent",
+      "description": "This endpoint allows a client to listen for a SettlementAccountStateChangeEvent notification. When the state of a settlement account changes, this event is triggered and the client is notified.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the state change of the settlement account."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToSettlementAccountDeleteEvent",
+      "type": "POST",
+      "path": "/listener/settlementAccountDeleteEvent",
+      "description": "This endpoint allows a client to listen for a SettlementAccountDeleteEvent notification. When a settlement account is deleted, this event is triggered and the client is notified.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the deleted settlement account."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToFinancialAccountCreateEvent",
+      "type": "POST",
+      "path": "/listener/financialAccountCreateEvent",
+      "description": "This endpoint allows a client to listen for a FinancialAccountCreateEvent notification. When a new financial account is created, this event is triggered and the client is notified.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data containing details about the newly created financial account."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToFinancialAccountAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/financialAccountAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications about changes in financial account attribute values. It is designed to be used as a client-side notification listener.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a financial account attribute value changes. It should follow the structure defined in the FinancialAccountAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the server has successfully received the notification. It does not contain any specific data."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToFinancialAccountStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/financialAccountStateChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications about changes in the state of financial accounts. It is designed to be used as a client-side notification listener.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a financial account state changes. It should follow the structure defined in the FinancialAccountStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the server has successfully received the notification. It does not contain any specific data."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToFinancialAccountDeleteEvent",
+      "type": "POST",
+      "path": "/listener/financialAccountDeleteEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications about the deletion of financial accounts. It is designed to be used as a client-side notification listener.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter represents the event data that is sent when a financial account is deleted. It should follow the structure defined in the FinancialAccountDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "The response indicates that the server has successfully received the notification. It does not contain any specific data."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    }
+  ]
+}

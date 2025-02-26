@@ -1,0 +1,388 @@
+{
+  "api": "TMF673_Geographic_Address",
+  "version": "v4.0.1",
+  "endpoints": [
+    {
+      "name": "listGeographicAddressValidation",
+      "type": "GET",
+      "path": "/geographicAddressValidation",
+      "description": "This endpoint retrieves a list of GeographicAddressValidation entities. It can also be used to find specific entities by applying filters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to set the starting point within the list of entities for the data that is returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to limit the number of entities returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns the requested GeographicAddressValidation entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createGeographicAddressValidation",
+      "type": "POST",
+      "path": "/geographicAddressValidation",
+      "description": "This endpoint creates a new GeographicAddressValidation entity.",
+      "parameters": [
+        {
+          "name": "geographicAddressValidation",
+          "required": true,
+          "description": "The GeographicAddressValidation entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/GeographicAddressValidation_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns the details of the newly created GeographicAddressValidation entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveGeographicAddressValidation",
+      "type": "GET",
+      "path": "/geographicAddressValidation/{id}",
+      "description": "This endpoint retrieves a specific GeographicAddressValidation entity by its ID. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the GeographicAddressValidation entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. These should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns the requested GeographicAddressValidation entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchGeographicAddressValidation",
+      "type": "PATCH",
+      "path": "/geographicAddressValidation/{id}",
+      "description": "This endpoint updates a specific GeographicAddressValidation entity by its ID. Only the specified attributes are updated.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the GeographicAddressValidation entity you want to update."
+        },
+        {
+          "name": "geographicAddressValidation",
+          "required": true,
+          "description": "The updated GeographicAddressValidation entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/GeographicAddressValidation_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns the details of the updated GeographicAddressValidation entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listGeographicAddress",
+      "type": "GET",
+      "path": "/geographicAddress",
+      "description": "This endpoint retrieves a list of GeographicAddress entities. It can also be used to find specific entities by applying filters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to set the starting point within the list of entities for the data that is returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Use this parameter to limit the number of entities returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns the requested GeographicAddress entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveGeographicAddress",
+      "type": "GET",
+      "path": "/geographicAddress/{id}",
+      "description": "This endpoint fetches a specific GeographicAddress entity using its unique identifier. You can select specific attributes to be returned by providing a comma-separated list of attribute names.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the GeographicAddress entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of attribute names you want to be included in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the requested GeographicAddress entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listGeographicSubAddress",
+      "type": "GET",
+      "path": "/geographicAddress/{geographicAddressId}/geographicSubAddress",
+      "description": "This endpoint fetches a list of GeographicSubAddress entities associated with a specific GeographicAddress entity. You can limit the number of results and specify an offset for pagination.",
+      "parameters": [
+        {
+          "name": "geographicAddressId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the parent GeographicAddress entity."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of attribute names you want to be included in the response."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of GeographicSubAddress entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of GeographicSubAddress entities to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns a list of GeographicSubAddress entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveGeographicSubAddress",
+      "type": "GET",
+      "path": "/geographicAddress/{geographicAddressId}/geographicSubAddress/{id}",
+      "description": "This endpoint fetches a specific GeographicSubAddress entity associated with a GeographicAddress entity using their unique identifiers. You can select specific attributes to be returned by providing a comma-separated list of attribute names.",
+      "parameters": [
+        {
+          "name": "geographicAddressId",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the parent GeographicAddress entity."
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the GeographicSubAddress entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of attribute names you want to be included in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the requested GeographicSubAddress entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint registers a communication endpoint for the service to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data containing the callback endpoint where the service should deliver the information.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been registered successfully."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint unregisters a previously registered communication endpoint, stopping the service from delivering information to it.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the registered listener you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the listener has been unregistered successfully."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToGeographicAddressValidationStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/geographicAddressValidationStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification GeographicAddressValidationStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/GeographicAddressValidationStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

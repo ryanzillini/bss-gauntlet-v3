@@ -1,0 +1,1428 @@
+{
+  "api": "TMF634_Resource_Catalog",
+  "version": "v4.1.0",
+  "endpoints": [
+    {
+      "name": "listResourceCatalog",
+      "type": "GET",
+      "path": "/resourceCatalog",
+      "description": "Retrieves a list of ResourceCatalog entities. You can customize the response by specifying certain fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Define the starting point from where the list of resources will be returned in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Define the maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ResourceCatalog entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createResourceCatalog",
+      "type": "POST",
+      "path": "/resourceCatalog",
+      "description": "Creates a new ResourceCatalog entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "resourceCatalog",
+          "required": true,
+          "description": "The details of the ResourceCatalog entity to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceCatalog_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the newly created ResourceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveResourceCatalog",
+      "type": "GET",
+      "path": "/resourceCatalog/{id}",
+      "description": "Retrieves a specific ResourceCatalog entity based on its identifier. You can customize the response by specifying certain fields in the query parameters.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ResourceCatalog entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ResourceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchResourceCatalog",
+      "type": "PATCH",
+      "path": "/resourceCatalog/{id}",
+      "description": "Updates a specific ResourceCatalog entity partially based on its identifier. The updated details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ResourceCatalog entity to be updated."
+        },
+        {
+          "name": "resourceCatalog",
+          "required": true,
+          "description": "The updated details of the ResourceCatalog entity, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceCatalog_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ResourceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteResourceCatalog",
+      "type": "DELETE",
+      "path": "/resourceCatalog/{id}",
+      "description": "Deletes a specific ResourceCatalog entity based on its identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ResourceCatalog entity to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the ResourceCatalog entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listResourceCategory",
+      "type": "GET",
+      "path": "/resourceCategory",
+      "description": "Fetches a list of ResourceCategory entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ResourceCategory entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createResourceCategory",
+      "type": "POST",
+      "path": "/resourceCategory",
+      "description": "Creates a new ResourceCategory entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "resourceCategory",
+          "required": true,
+          "description": "The details of the ResourceCategory to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceCategory_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created ResourceCategory."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveResourceCategory",
+      "type": "GET",
+      "path": "/resourceCategory/{id}",
+      "description": "Fetches a specific ResourceCategory entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ResourceCategory you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ResourceCategory entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchResourceCategory",
+      "type": "PATCH",
+      "path": "/resourceCategory/{id}",
+      "description": "Updates a specific ResourceCategory entity partially by its ID. You need to provide the updated details in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ResourceCategory you want to update."
+        },
+        {
+          "name": "resourceCategory",
+          "required": true,
+          "description": "The updated details of the ResourceCategory, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceCategory_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ResourceCategory."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteResourceCategory",
+      "type": "DELETE",
+      "path": "/resourceCategory/{id}",
+      "description": "Deletes a specific ResourceCategory entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ResourceCategory you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listResourceCandidate",
+      "type": "GET",
+      "path": "/resourceCandidate",
+      "description": "This endpoint retrieves a list of ResourceCandidate entities. You can filter the results by specifying the desired fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Define the starting point from where the list of resources will be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Specify the maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ResourceCandidate entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createResourceCandidate",
+      "type": "POST",
+      "path": "/resourceCandidate",
+      "description": "This endpoint allows you to create a new ResourceCandidate entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "resourceCandidate",
+          "required": true,
+          "description": "The details of the ResourceCandidate entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceCandidate_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created ResourceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveResourceCandidate",
+      "type": "GET",
+      "path": "/resourceCandidate/{id}",
+      "description": "This endpoint retrieves a specific ResourceCandidate entity based on its identifier. You can specify the desired fields in the query parameters.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ResourceCandidate entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ResourceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchResourceCandidate",
+      "type": "PATCH",
+      "path": "/resourceCandidate/{id}",
+      "description": "This endpoint allows you to update a specific ResourceCandidate entity partially. You need to provide the identifier and the details to be updated in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ResourceCandidate entity you want to update."
+        },
+        {
+          "name": "resourceCandidate",
+          "required": true,
+          "description": "The details to be updated in the ResourceCandidate entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceCandidate_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ResourceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteResourceCandidate",
+      "type": "DELETE",
+      "path": "/resourceCandidate/{id}",
+      "description": "This endpoint allows you to delete a specific ResourceCandidate entity. You need to provide the identifier in the path.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the ResourceCandidate entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the ResourceCandidate entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listResourceSpecification",
+      "type": "GET",
+      "path": "/resourceSpecification",
+      "description": "Fetches a list of ResourceSpecification entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas. If not provided, all properties will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned. If not provided, the list will start from the first resource."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to return in the response. If not provided, all resources will be returned."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the requested ResourceSpecification entities."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the requested resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "createResourceSpecification",
+      "type": "POST",
+      "path": "/resourceSpecification",
+      "description": "Creates a new ResourceSpecification entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "resourceSpecification",
+          "required": true,
+          "description": "The details of the ResourceSpecification entity to be created. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceSpecification_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the created ResourceSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the requested resource.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "retrieveResourceSpecification",
+      "type": "GET",
+      "path": "/resourceSpecification/{id}",
+      "description": "Fetches a specific ResourceSpecification entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ResourceSpecification entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas. If not provided, all properties will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the requested ResourceSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the requested resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "patchResourceSpecification",
+      "type": "PATCH",
+      "path": "/resourceSpecification/{id}",
+      "description": "Updates a specific ResourceSpecification entity partially by its ID. You need to provide the details to be updated in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ResourceSpecification entity you want to update."
+        },
+        {
+          "name": "resourceSpecification",
+          "required": true,
+          "description": "The details to be updated in the ResourceSpecification entity. This should be provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceSpecification_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the updated ResourceSpecification entity."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the requested resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "deleteResourceSpecification",
+      "type": "DELETE",
+      "path": "/resourceSpecification/{id}",
+      "description": "Deletes a specific ResourceSpecification entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ResourceSpecification entity you want to delete."
+        }
+      ],
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the requested resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listImportJob",
+      "type": "GET",
+      "path": "/importJob",
+      "description": "Retrieves a list of ImportJob entities. You can filter and customize the list by using the provided parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Set the starting point of the list of resources in the response. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Limit the number of resources in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns an object containing the requested ImportJob entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createImportJob",
+      "type": "POST",
+      "path": "/importJob",
+      "description": "Creates a new ImportJob entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "importJob",
+          "required": true,
+          "description": "The details of the ImportJob to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ImportJob_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the details of the created ImportJob entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveImportJob",
+      "type": "GET",
+      "path": "/importJob/{id}",
+      "description": "Retrieves the details of a specific ImportJob entity. You need to provide the ID of the ImportJob in the path.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ImportJob you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns the details of the requested ImportJob entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteImportJob",
+      "type": "DELETE",
+      "path": "/importJob/{id}",
+      "description": "Deletes a specific ImportJob entity. You need to provide the ID of the ImportJob in the path.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ImportJob you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response indicates that the ImportJob entity has been deleted."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listExportJob",
+      "type": "GET",
+      "path": "/exportJob",
+      "description": "Retrieves a list of ExportJob entities. You can filter and customize the list by using the provided parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Set the starting point of the list of resources in the response. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Limit the number of resources in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response returns an object containing the requested ExportJob entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createExportJob",
+      "type": "POST",
+      "path": "/exportJob",
+      "description": "This endpoint initiates the creation of a new ExportJob entity. It requires the ExportJob details in the request body.",
+      "parameters": [
+        {
+          "name": "exportJob",
+          "type": "object",
+          "required": true,
+          "description": "The ExportJob object to be created. This should be included in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created ExportJob object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveExportJob",
+      "type": "GET",
+      "path": "/exportJob/{id}",
+      "description": "This endpoint retrieves the details of an existing ExportJob entity using its unique identifier. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ExportJob to be retrieved. This should be included in the path."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. This should be included in the query string."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested ExportJob object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteExportJob",
+      "type": "DELETE",
+      "path": "/exportJob/{id}",
+      "description": "This endpoint deletes an existing ExportJob entity using its unique identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ExportJob to be deleted. This should be included in the path."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message upon successful deletion of the ExportJob."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint registers a new listener for service health, execution state, failures, and metrics updates. It requires the callback endpoint details in the request body.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The data object containing the callback endpoint details. This should be included in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the registered listener details upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint unregisters an existing listener using its unique identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener to be unregistered. This should be included in the path."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message upon successful unregistration of the listener."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToResourceCatalogCreateEvent",
+      "type": "POST",
+      "path": "/listener/resourceCatalogCreateEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCatalogCreateEvent. When a new resource catalog is created, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the creation of a new resource catalog. The data should follow the ResourceCatalogCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful listening, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCatalogChangeEvent",
+      "type": "POST",
+      "path": "/listener/resourceCatalogChangeEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCatalogChangeEvent. When a resource catalog is updated, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the update of a resource catalog. The data should follow the ResourceCatalogChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful listening, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCatalogDeleteEvent",
+      "type": "POST",
+      "path": "/listener/resourceCatalogDeleteEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCatalogDeleteEvent. When a resource catalog is deleted, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the deletion of a resource catalog. The data should follow the ResourceCatalogDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful listening, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCategoryCreateEvent",
+      "type": "POST",
+      "path": "/listener/resourceCategoryCreateEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCategoryCreateEvent. When a new resource category is created, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the creation of a new resource category. The data should follow the ResourceCategoryCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful listening, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCategoryChangeEvent",
+      "type": "POST",
+      "path": "/listener/resourceCategoryChangeEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCategoryChangeEvent. When a resource category is updated, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the update of a resource category. The data should follow the ResourceCategoryChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful listening, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCategoryDeleteEvent",
+      "type": "POST",
+      "path": "/listener/resourceCategoryDeleteEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCategoryDeleteEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the deletion of a resource category."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful subscription, the client will be notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCandidateCreateEvent",
+      "type": "POST",
+      "path": "/listener/resourceCandidateCreateEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCandidateCreateEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the creation of a resource candidate."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful subscription, the client will be notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCandidateChangeEvent",
+      "type": "POST",
+      "path": "/listener/resourceCandidateChangeEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCandidateChangeEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the change in a resource candidate."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful subscription, the client will be notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceCandidateDeleteEvent",
+      "type": "POST",
+      "path": "/listener/resourceCandidateDeleteEvent",
+      "description": "This endpoint allows a client to listen for a ResourceCandidateDeleteEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the deletion of a resource candidate."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful subscription, the client will be notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceSpecificationCreateEvent",
+      "type": "POST",
+      "path": "/listener/resourceSpecificationCreateEvent",
+      "description": "This endpoint allows a client to listen for a ResourceSpecificationCreateEvent. When such an event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This parameter contains the event data related to the creation of a resource specification."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful subscription, the client will be notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToResourceSpecificationChangeEvent",
+      "type": "POST",
+      "path": "/listener/resourceSpecificationChangeEvent",
+      "description": "Example of a client listener for receiving the notification ResourceSpecificationChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceSpecificationChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToResourceSpecificationDeleteEvent",
+      "type": "POST",
+      "path": "/listener/resourceSpecificationDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ResourceSpecificationDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ResourceSpecificationDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToImportJobCreateEvent",
+      "type": "POST",
+      "path": "/listener/importJobCreateEvent",
+      "description": "Example of a client listener for receiving the notification ImportJobCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ImportJobCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToImportJobStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/importJobStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ImportJobStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ImportJobStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToExportJobCreateEvent",
+      "type": "POST",
+      "path": "/listener/exportJobCreateEvent",
+      "description": "Example of a client listener for receiving the notification ExportJobCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ExportJobCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToExportJobStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/exportJobStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ExportJobStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ExportJobStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

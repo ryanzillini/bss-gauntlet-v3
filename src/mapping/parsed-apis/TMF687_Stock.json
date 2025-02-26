@@ -1,0 +1,1221 @@
+{
+  "api": "TMF687_Stock",
+  "version": "v4.1.0",
+  "endpoints": [
+    {
+      "name": "listProductStock",
+      "type": "GET",
+      "path": "/productStock",
+      "description": "Retrieves a list of ProductStock entities. You can specify certain fields to be included in the response, and control pagination through offset and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of ProductStock entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ProductStock entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of ProductStock entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProductStock",
+      "type": "POST",
+      "path": "/productStock",
+      "description": "Creates a new ProductStock entity. The new entity's details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "productStock",
+          "required": true,
+          "description": "The details of the ProductStock entity to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductStock_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the newly created ProductStock entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveProductStock",
+      "type": "GET",
+      "path": "/productStock/{id}",
+      "description": "Retrieves a specific ProductStock entity by its ID. You can specify certain fields to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ProductStock entity to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the requested ProductStock entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchProductStock",
+      "type": "PATCH",
+      "path": "/productStock/{id}",
+      "description": "Partially updates a specific ProductStock entity by its ID. The updated details should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ProductStock entity to update."
+        },
+        {
+          "name": "productStock",
+          "required": true,
+          "description": "The updated details of the ProductStock entity, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductStock_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the updated ProductStock entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteProductStock",
+      "type": "DELETE",
+      "path": "/productStock/{id}",
+      "description": "Deletes a specific ProductStock entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ProductStock entity to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm the deletion of the ProductStock entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listAdjustProductStock",
+      "type": "GET",
+      "path": "/adjustProductStock",
+      "description": "This endpoint retrieves a list of AdjustProductStock entities. It can also be used to search for specific entities based on certain criteria.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested AdjustProductStock entities."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "createAdjustProductStock",
+      "type": "POST",
+      "path": "/adjustProductStock",
+      "description": "This endpoint creates a new AdjustProductStock entity.",
+      "parameters": [
+        {
+          "name": "adjustProductStock",
+          "required": true,
+          "description": "The AdjustProductStock entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AdjustProductStock_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created AdjustProductStock entity."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "retrieveAdjustProductStock",
+      "type": "GET",
+      "path": "/adjustProductStock/{id}",
+      "description": "This endpoint retrieves a specific AdjustProductStock entity based on its identifier. You can also specify which attributes you want included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The identifier of the AdjustProductStock entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested AdjustProductStock entity."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listCheckProductStock",
+      "type": "GET",
+      "path": "/checkProductStock",
+      "description": "This endpoint retrieves a list of CheckProductStock entities. It can also be used to search for specific entities based on certain criteria.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of resources will be returned in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of resources to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested CheckProductStock entities."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "createCheckProductStock",
+      "type": "POST",
+      "path": "/checkProductStock",
+      "description": "This endpoint creates a new CheckProductStock entity.",
+      "parameters": [
+        {
+          "name": "checkProductStock",
+          "required": true,
+          "description": "The CheckProductStock entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CheckProductStock_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the created CheckProductStock entity."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "retrieveCheckProductStock",
+      "type": "GET",
+      "path": "/checkProductStock/{id}",
+      "description": "This endpoint retrieves the details of a specific CheckProductStock entity using its unique identifier. You can select specific attributes to be returned in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the CheckProductStock entity."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want to be included in the response. Attributes should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested CheckProductStock entity. If the entity does not exist, an error is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listReserveProductStock",
+      "type": "GET",
+      "path": "/reserveProductStock",
+      "description": "This endpoint retrieves a list of ReserveProductStock entities. You can specify the number of entities and the starting point for the list.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want to be included in the response. Attributes should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of ReserveProductStock entities."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ReserveProductStock entities to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of ReserveProductStock entities. If no entities exist, an empty list is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createReserveProductStock",
+      "type": "POST",
+      "path": "/reserveProductStock",
+      "description": "This endpoint creates a new ReserveProductStock entity.",
+      "parameters": [
+        {
+          "name": "reserveProductStock",
+          "required": true,
+          "description": "The ReserveProductStock entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveProductStock_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created ReserveProductStock entity. If the entity could not be created, an error is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveReserveProductStock",
+      "type": "GET",
+      "path": "/reserveProductStock/{id}",
+      "description": "This endpoint retrieves the details of a specific ReserveProductStock entity using its unique identifier. You can select specific attributes to be returned in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ReserveProductStock entity."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want to be included in the response. Attributes should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested ReserveProductStock entity. If the entity does not exist, an error is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listQueryProductStock",
+      "type": "GET",
+      "path": "/queryProductStock",
+      "description": "This endpoint retrieves a list of QueryProductStock entities. You can specify the number of entities and the starting point for the list.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the attributes you want to be included in the response. Attributes should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of QueryProductStock entities."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of QueryProductStock entities to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of QueryProductStock entities. If no entities exist, an empty list is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createQueryProductStock",
+      "type": "POST",
+      "path": "/queryProductStock",
+      "description": "This endpoint creates a new QueryProductStock entity. It requires a JSON body with the details of the QueryProductStock to be created.",
+      "parameters": [
+        {
+          "name": "queryProductStock",
+          "type": "JSON object",
+          "required": true,
+          "description": "A JSON object containing the details of the QueryProductStock to be created."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message if the QueryProductStock entity is created successfully."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveQueryProductStock",
+      "type": "GET",
+      "path": "/queryProductStock/{id}",
+      "description": "This endpoint retrieves a specific QueryProductStock entity by its ID. You can also specify a comma-separated list of properties to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the QueryProductStock entity to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested QueryProductStock entity. If 'fields' parameter is specified, only the requested properties are included."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint registers a new listener for service health, execution state, failures, and metrics. It requires a JSON body with the callback endpoint details.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "JSON object",
+          "required": true,
+          "description": "A JSON object containing the callback endpoint details for the listener."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message if the listener is registered successfully."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint unregisters a listener using its unique ID, stopping it from receiving updates about service health, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener to be unregistered."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message if the listener is unregistered successfully."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductStockCreateEvent",
+      "type": "POST",
+      "path": "/listener/productStockCreateEvent",
+      "description": "This endpoint allows a client to listen for the ProductStockCreateEvent notification. It requires a JSON body with the event data.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "JSON object",
+          "required": true,
+          "description": "A JSON object containing the event data for the ProductStockCreateEvent notification."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message if the event data is received successfully."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductStockAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/productStockAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications related to changes in product stock attribute values.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the product stock attribute value change."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToProductStockStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/productStockStateChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications related to changes in product stock states.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the product stock state change."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToProductStockBatchEvent",
+      "type": "POST",
+      "path": "/listener/productStockBatchEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications related to batch events in product stock.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the product stock batch event."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToProductStockDeleteEvent",
+      "type": "POST",
+      "path": "/listener/productStockDeleteEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications related to product stock deletions.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the product stock deletion."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToAdjustProductStockCreateEvent",
+      "type": "POST",
+      "path": "/listener/adjustProductStockCreateEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications related to the creation of product stock adjustments.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the product stock adjustment creation."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The request was not completed due to an internal error on the server side."
+      ]
+    },
+    {
+      "name": "listenToAdjustProductStockAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/adjustProductStockAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the AdjustProductStockAttributeValueChangeEvent. When this event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that is sent when the AdjustProductStockAttributeValueChangeEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToAdjustProductStockStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/adjustProductStockStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the AdjustProductStockStateChangeEvent. When this event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that is sent when the AdjustProductStockStateChangeEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToAdjustProductStockBatchEvent",
+      "type": "POST",
+      "path": "/listener/adjustProductStockBatchEvent",
+      "description": "This endpoint allows a client to listen for the AdjustProductStockBatchEvent. When this event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that is sent when the AdjustProductStockBatchEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToCheckProductStockCreateEvent",
+      "type": "POST",
+      "path": "/listener/checkProductStockCreateEvent",
+      "description": "This endpoint allows a client to listen for the CheckProductStockCreateEvent. When this event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that is sent when the CheckProductStockCreateEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToCheckProductStockAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/checkProductStockAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the CheckProductStockAttributeValueChangeEvent. When this event occurs, the client will receive a notification.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data that is sent when the CheckProductStockAttributeValueChangeEvent occurs."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the client has been notified of the event."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - An error occurred on the server."
+      ]
+    },
+    {
+      "name": "listenToCheckProductStockStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/checkProductStockStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification CheckProductStockStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CheckProductStockStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCheckProductStockBatchEvent",
+      "type": "POST",
+      "path": "/listener/checkProductStockBatchEvent",
+      "description": "Example of a client listener for receiving the notification CheckProductStockBatchEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CheckProductStockBatchEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveProductStockCreateEvent",
+      "type": "POST",
+      "path": "/listener/reserveProductStockCreateEvent",
+      "description": "Example of a client listener for receiving the notification ReserveProductStockCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveProductStockCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveProductStockAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/reserveProductStockAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ReserveProductStockAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveProductStockAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveProductStockStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/reserveProductStockStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ReserveProductStockStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ReserveProductStockStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToReserveProductStockBatchEvent",
+      "type": "POST",
+      "path": "/listener/reserveProductStockBatchEvent",
+      "description": "This endpoint is designed for clients to listen and receive notifications for the ReserveProductStockBatchEvent. It is triggered when a batch of product stock is reserved.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the reserved product stock batch. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToQueryProductStockCreateEvent",
+      "type": "POST",
+      "path": "/listener/queryProductStockCreateEvent",
+      "description": "This endpoint allows clients to listen and receive notifications for the QueryProductStockCreateEvent. It is triggered when a new product stock is created.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the newly created product stock. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToQueryProductStockAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/queryProductStockAttributeValueChangeEvent",
+      "description": "This endpoint allows clients to listen and receive notifications for the QueryProductStockAttributeValueChangeEvent. It is triggered when an attribute value of a product stock changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the changed attribute value of the product stock. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToQueryProductStockStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/queryProductStockStateChangeEvent",
+      "description": "This endpoint allows clients to listen and receive notifications for the QueryProductStockStateChangeEvent. It is triggered when the state of a product stock changes.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the changed state of the product stock. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToQueryProductStockBatchEvent",
+      "type": "POST",
+      "path": "/listener/queryProductStockBatchEvent",
+      "description": "This endpoint allows clients to listen and receive notifications for the QueryProductStockBatchEvent. It is triggered when a batch of product stock is queried.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data containing details about the queried product stock batch. This data is sent in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received and processed."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    }
+  ]
+}

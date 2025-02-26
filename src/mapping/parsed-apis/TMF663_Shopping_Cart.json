@@ -1,0 +1,304 @@
+{
+  "api": "TMF663_Shopping_Cart",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listShoppingCart",
+      "type": "GET",
+      "path": "/shoppingCart",
+      "description": "Retrieves a list of ShoppingCart entities. You can filter the results by specifying the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas. If left empty, all properties will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index of the ShoppingCart entities you want to retrieve. Use this for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ShoppingCart entities you want to retrieve. Use this for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of ShoppingCart entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createShoppingCart",
+      "type": "POST",
+      "path": "/shoppingCart",
+      "description": "Creates a new ShoppingCart entity. You need to provide the ShoppingCart details in the request body.",
+      "parameters": [
+        {
+          "name": "shoppingCart",
+          "required": true,
+          "description": "The details of the ShoppingCart entity to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ShoppingCart_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the created ShoppingCart entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveShoppingCart",
+      "type": "GET",
+      "path": "/shoppingCart/{id}",
+      "description": "Retrieves a specific ShoppingCart entity by its ID. You can specify the properties you want in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ShoppingCart entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want in the response, separated by commas. If left empty, all properties will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the requested ShoppingCart entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchShoppingCart",
+      "type": "PATCH",
+      "path": "/shoppingCart/{id}",
+      "description": "Updates a specific ShoppingCart entity by its ID. You need to provide the updated details in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ShoppingCart entity you want to update."
+        },
+        {
+          "name": "shoppingCart",
+          "required": true,
+          "description": "The updated details of the ShoppingCart entity. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ShoppingCart_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the updated ShoppingCart entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteShoppingCart",
+      "type": "DELETE",
+      "path": "/shoppingCart/{id}",
+      "description": "Deletes a specific ShoppingCart entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ShoppingCart entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm the deletion of the ShoppingCart entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint data where the service instance will deliver the information. The data should follow the EventSubscriptionInput schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the successful subscription."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to remove the communication endpoint address that the service instance has been using to deliver updates.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the successful unsubscription."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToShoppingCartCreateEvent",
+      "type": "POST",
+      "path": "/listener/shoppingCartCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a ShoppingCartCreateEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the ShoppingCartCreateEvent. The data should follow the ShoppingCartCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the successful notification."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToShoppingCartAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/shoppingCartAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a ShoppingCartAttributeValueChangeEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the ShoppingCartAttributeValueChangeEvent. The data should follow the ShoppingCartAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the successful notification."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToShoppingCartDeleteEvent",
+      "type": "POST",
+      "path": "/listener/shoppingCartDeleteEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a ShoppingCartDeleteEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the ShoppingCartDeleteEvent. The data should follow the ShoppingCartDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns an object confirming the successful notification."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

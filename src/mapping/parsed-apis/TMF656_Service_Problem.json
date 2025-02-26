@@ -1,0 +1,455 @@
+{
+  "api": "TMF656_Service_Problem",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listServiceProblem",
+      "type": "GET",
+      "path": "/serviceProblem",
+      "description": "This endpoint retrieves a list of ServiceProblem entities. You can filter the results by specifying certain fields, offset, and limit in the query parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Define the starting point from where the list of resources will be provided in the response."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Define the maximum number of resources to be provided in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested ServiceProblem entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createServiceProblem",
+      "type": "POST",
+      "path": "/serviceProblem",
+      "description": "This endpoint allows you to create a new ServiceProblem entity. You need to provide the necessary details in the request body.",
+      "parameters": [
+        {
+          "name": "serviceProblem",
+          "required": true,
+          "description": "The details of the ServiceProblem entity to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceProblem_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the newly created ServiceProblem entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceProblem",
+      "type": "GET",
+      "path": "/serviceProblem/{id}",
+      "description": "This endpoint retrieves a specific ServiceProblem entity based on its ID. You can also specify certain fields to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ServiceProblem entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested ServiceProblem entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchServiceProblem",
+      "type": "PATCH",
+      "path": "/serviceProblem/{id}",
+      "description": "This endpoint allows you to update a specific ServiceProblem entity partially. You need to provide the ID of the entity and the details to be updated in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ServiceProblem entity you want to update."
+        },
+        {
+          "name": "serviceProblem",
+          "required": true,
+          "description": "The details to be updated in the ServiceProblem entity, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ServiceProblem_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated ServiceProblem entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteServiceProblem",
+      "type": "DELETE",
+      "path": "/serviceProblem/{id}",
+      "description": "This endpoint allows you to delete a specific ServiceProblem entity. You need to provide the ID of the entity in the path.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ServiceProblem entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the ServiceProblem entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listServiceProblemEventRecord",
+      "type": "GET",
+      "path": "/serviceProblemEventRecord",
+      "description": "This endpoint retrieves a list of ServiceProblemEventRecord entities. You can filter the results by specifying certain fields, limit the number of results, or set an offset for the starting point of the results.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Set the starting point for the list of results. This is useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Limit the number of results returned. This is useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of ServiceProblemEventRecord entities. If successful, the response will be a JSON object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveServiceProblemEventRecord",
+      "type": "GET",
+      "path": "/serviceProblemEventRecord/{id}",
+      "description": "This endpoint retrieves a specific ServiceProblemEventRecord entity based on its ID. You can specify certain fields to be included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the ServiceProblemEventRecord you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want included in the response. These should be comma-separated."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a specific ServiceProblemEventRecord entity. If successful, the response will be a JSON object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProblemGroup",
+      "type": "POST",
+      "path": "/problemGroup",
+      "description": "This endpoint creates a new ProblemGroup entity. You need to provide the necessary data in the request body.",
+      "parameters": [
+        {
+          "name": "problemGroup",
+          "required": true,
+          "description": "The data for the ProblemGroup entity you want to create. This should be a JSON object.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created ProblemGroup entity. If successful, the response will be a JSON object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProblemUngroup",
+      "type": "POST",
+      "path": "/problemUngroup",
+      "description": "This endpoint creates a new ProblemUngroup entity. You need to provide the necessary data in the request body.",
+      "parameters": [
+        {
+          "name": "problemUngroup",
+          "required": true,
+          "description": "The data for the ProblemUngroup entity you want to create. This should be a JSON object.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created ProblemUngroup entity. If successful, the response will be a JSON object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint sets the communication endpoint address that the service instance will use to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data containing the callback endpoint to deliver the information. This should be a JSON object.",
+          "in": "body"
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a confirmation that the listener has been registered. If successful, the response will be a JSON object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to unregister a listener from the service hub. It resets the communication endpoint address that the service instance uses to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter represents the unique identifier of the registered listener that you want to unregister."
+        }
+      ],
+      "response": {
+        "type": "string",
+        "description": "A successful request returns a confirmation message."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceProblemCreateEvent",
+      "type": "POST",
+      "path": "/listener/serviceProblemCreateEvent",
+      "description": "This endpoint allows a client listener to receive notifications when a ServiceProblemCreateEvent occurs. It's an example of how to set up a client-side notification listener.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the ServiceProblemCreateEvent."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns a notification object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceProblemStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceProblemStateChangeEvent",
+      "description": "This endpoint allows a client listener to receive notifications when a ServiceProblemStateChangeEvent occurs. It's an example of how to set up a client-side notification listener.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the ServiceProblemStateChangeEvent."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns a notification object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceProblemAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/serviceProblemAttributeValueChangeEvent",
+      "description": "This endpoint allows a client listener to receive notifications when a ServiceProblemAttributeValueChangeEvent occurs. It's an example of how to set up a client-side notification listener.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the ServiceProblemAttributeValueChangeEvent."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns a notification object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToServiceProblemInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/serviceProblemInformationRequiredEvent",
+      "description": "This endpoint allows a client listener to receive notifications when a ServiceProblemInformationRequiredEvent occurs. It's an example of how to set up a client-side notification listener.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data for the ServiceProblemInformationRequiredEvent."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful request returns a notification object."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

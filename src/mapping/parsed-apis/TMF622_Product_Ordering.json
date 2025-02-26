@@ -1,0 +1,557 @@
+{
+  "api": "TMF622_Product_Ordering",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listProductOrder",
+      "type": "GET",
+      "path": "/productOrder",
+      "description": "Fetches a list of ProductOrder entities. You can filter the results by specifying the fields you want in the response, and control pagination through offset and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response, separated by commas. If not specified, all fields will be included."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of ProductOrder entities should be returned. Useful for pagination."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of ProductOrder entities to return in the response. Useful for pagination."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return a list of ProductOrder entities."
+      },
+      "errors": [
+        "400: Bad Request - Invalid request parameters",
+        "401: Unauthorized - User authentication required",
+        "403: Forbidden - User does not have necessary permissions",
+        "404: Not Found - No ProductOrder entities found",
+        "405: Method Not allowed - Invalid HTTP method used",
+        "409: Conflict - Request conflicts with current server state",
+        "500: Internal Server Error - Unexpected server error"
+      ]
+    },
+    {
+      "name": "createProductOrder",
+      "type": "POST",
+      "path": "/productOrder",
+      "description": "Creates a new ProductOrder entity. The details of the ProductOrder to be created should be included in the request body.",
+      "parameters": [
+        {
+          "name": "productOrder",
+          "required": true,
+          "description": "The details of the ProductOrder to be created. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOrder_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the created ProductOrder entity."
+      },
+      "errors": [
+        "400: Bad Request - Invalid request parameters",
+        "401: Unauthorized - User authentication required",
+        "403: Forbidden - User does not have necessary permissions",
+        "405: Method Not allowed - Invalid HTTP method used",
+        "409: Conflict - Request conflicts with current server state",
+        "500: Internal Server Error - Unexpected server error"
+      ]
+    },
+    {
+      "name": "retrieveProductOrder",
+      "type": "GET",
+      "path": "/productOrder/{id}",
+      "description": "Fetches a specific ProductOrder entity by its ID. You can specify the fields you want included in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ProductOrder entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the fields you want included in the response, separated by commas. If not specified, all fields will be included."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the requested ProductOrder entity."
+      },
+      "errors": [
+        "400: Bad Request - Invalid request parameters",
+        "401: Unauthorized - User authentication required",
+        "403: Forbidden - User does not have necessary permissions",
+        "404: Not Found - No ProductOrder entity found with the specified ID",
+        "405: Method Not allowed - Invalid HTTP method used",
+        "409: Conflict - Request conflicts with current server state",
+        "500: Internal Server Error - Unexpected server error"
+      ]
+    },
+    {
+      "name": "patchProductOrder",
+      "type": "PATCH",
+      "path": "/productOrder/{id}",
+      "description": "Updates a specific ProductOrder entity partially by its ID. The details of the updates should be included in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ProductOrder entity you want to update."
+        },
+        {
+          "name": "productOrder",
+          "required": true,
+          "description": "The details of the updates to the ProductOrder. This should be included in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProductOrder_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return the details of the updated ProductOrder entity."
+      },
+      "errors": [
+        "400: Bad Request - Invalid request parameters",
+        "401: Unauthorized - User authentication required",
+        "403: Forbidden - User does not have necessary permissions",
+        "404: Not Found - No ProductOrder entity found with the specified ID",
+        "405: Method Not allowed - Invalid HTTP method used",
+        "409: Conflict - Request conflicts with current server state",
+        "500: Internal Server Error - Unexpected server error"
+      ]
+    },
+    {
+      "name": "deleteProductOrder",
+      "type": "DELETE",
+      "path": "/productOrder/{id}",
+      "description": "Deletes a specific ProductOrder entity by its ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the ProductOrder entity you want to delete."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will confirm the deletion of the ProductOrder entity."
+      },
+      "errors": [
+        "400: Bad Request - Invalid request parameters",
+        "401: Unauthorized - User authentication required",
+        "403: Forbidden - User does not have necessary permissions",
+        "404: Not Found - No ProductOrder entity found with the specified ID",
+        "405: Method Not allowed - Invalid HTTP method used",
+        "409: Conflict - Request conflicts with current server state",
+        "500: Internal Server Error - Unexpected server error"
+      ]
+    },
+    {
+      "name": "listCancelProductOrder",
+      "type": "GET",
+      "path": "/cancelProductOrder",
+      "description": "Fetches a list of CancelProductOrder entities. You can filter the results by specifying the fields, offset, and limit parameters.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of CancelProductOrder entities should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of CancelProductOrder entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested CancelProductOrder entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createCancelProductOrder",
+      "type": "POST",
+      "path": "/cancelProductOrder",
+      "description": "Creates a new CancelProductOrder entity. The entity details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "cancelProductOrder",
+          "required": true,
+          "description": "The details of the CancelProductOrder entity to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelProductOrder_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created CancelProductOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveCancelProductOrder",
+      "type": "GET",
+      "path": "/cancelProductOrder/{id}",
+      "description": "Fetches a specific CancelProductOrder entity by its ID. You can specify the fields you want to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the CancelProductOrder entity you want to retrieve."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested CancelProductOrder entity."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Registers a communication endpoint for the service to deliver information about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The data containing the callback endpoint where the service should deliver the information.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the registration of the listener."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Unregisters a previously registered communication endpoint, stopping the service from delivering information to it.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The ID of the listener to be unregistered."
+        }
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProductOrderCreateEvent",
+      "type": "POST",
+      "path": "/listener/productOrderCreateEvent",
+      "description": "This endpoint allows a client to listen for the ProductOrderCreateEvent notification. When a product order is created, this event is triggered and the client can receive the details of the event.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This is the event data that contains the details of the product order creation. The data should adhere to the ProductOrderCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful receipt of the event, the server responds with an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToProductOrderAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/productOrderAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for the ProductOrderAttributeValueChangeEvent notification. When an attribute value of a product order changes, this event is triggered and the client can receive the details of the event.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This is the event data that contains the details of the product order attribute value change. The data should adhere to the ProductOrderAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful receipt of the event, the server responds with an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToProductOrderDeleteEvent",
+      "type": "POST",
+      "path": "/listener/productOrderDeleteEvent",
+      "description": "This endpoint allows a client to listen for the ProductOrderDeleteEvent notification. When a product order is deleted, this event is triggered and the client can receive the details of the event.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This is the event data that contains the details of the product order deletion. The data should adhere to the ProductOrderDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful receipt of the event, the server responds with an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToProductOrderStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/productOrderStateChangeEvent",
+      "description": "This endpoint allows a client to listen for the ProductOrderStateChangeEvent notification. When the state of a product order changes, this event is triggered and the client can receive the details of the event.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This is the event data that contains the details of the product order state change. The data should adhere to the ProductOrderStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful receipt of the event, the server responds with an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToProductOrderInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/productOrderInformationRequiredEvent",
+      "description": "This endpoint allows a client to listen for the ProductOrderInformationRequiredEvent notification. When additional information is required for a product order, this event is triggered and the client can receive the details of the event.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "This is the event data that contains the details of the additional information required for the product order. The data should adhere to the ProductOrderInformationRequiredEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful receipt of the event, the server responds with an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToCancelProductOrderCreateEvent",
+      "type": "POST",
+      "path": "/listener/cancelProductOrderCreateEvent",
+      "description": "Example of a client listener for receiving the notification CancelProductOrderCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelProductOrderCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCancelProductOrderStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/cancelProductOrderStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification CancelProductOrderStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelProductOrderStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCancelProductOrderInformationRequiredEvent",
+      "type": "POST",
+      "path": "/listener/cancelProductOrderInformationRequiredEvent",
+      "description": "Example of a client listener for receiving the notification CancelProductOrderInformationRequiredEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CancelProductOrderInformationRequiredEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

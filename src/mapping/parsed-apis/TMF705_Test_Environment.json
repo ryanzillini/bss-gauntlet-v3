@@ -1,0 +1,1453 @@
+{
+  "api": "TMF705_Test_Environment",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listAbstractEnvironment",
+      "type": "GET",
+      "path": "/abstractEnvironment",
+      "description": "This operation list or find AbstractEnvironment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "abstractEnvironment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createAbstractEnvironment",
+      "type": "POST",
+      "path": "/abstractEnvironment",
+      "description": "This operation creates a AbstractEnvironment entity.",
+      "parameters": [
+        {
+          "name": "abstractEnvironment",
+          "required": true,
+          "description": "The AbstractEnvironment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AbstractEnvironment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "abstractEnvironment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveAbstractEnvironment",
+      "type": "GET",
+      "path": "/abstractEnvironment/{id}",
+      "description": "This operation retrieves a AbstractEnvironment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the AbstractEnvironment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "abstractEnvironment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchAbstractEnvironment",
+      "type": "PATCH",
+      "path": "/abstractEnvironment/{id}",
+      "description": "This operation updates partially a AbstractEnvironment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the AbstractEnvironment",
+          "in": "path"
+        },
+        {
+          "name": "abstractEnvironment",
+          "required": true,
+          "description": "The AbstractEnvironment to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AbstractEnvironment_Update"
+          }
+        }
+      ],
+      "tags": [
+        "abstractEnvironment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteAbstractEnvironment",
+      "type": "DELETE",
+      "path": "/abstractEnvironment/{id}",
+      "description": "This operation deletes a AbstractEnvironment entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the AbstractEnvironment",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "abstractEnvironment"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listConcreteEnvironmentMetaModel",
+      "type": "GET",
+      "path": "/concreteEnvironmentMetaModel",
+      "description": "This operation list or find ConcreteEnvironmentMetaModel entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "concreteEnvironmentMetaModel"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createConcreteEnvironmentMetaModel",
+      "type": "POST",
+      "path": "/concreteEnvironmentMetaModel",
+      "description": "This operation creates a ConcreteEnvironmentMetaModel entity.",
+      "parameters": [
+        {
+          "name": "concreteEnvironmentMetaModel",
+          "required": true,
+          "description": "The ConcreteEnvironmentMetaModel to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ConcreteEnvironmentMetaModel_Create"
+          }
+        }
+      ],
+      "tags": [
+        "concreteEnvironmentMetaModel"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveConcreteEnvironmentMetaModel",
+      "type": "GET",
+      "path": "/concreteEnvironmentMetaModel/{id}",
+      "description": "This operation retrieves a ConcreteEnvironmentMetaModel entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ConcreteEnvironmentMetaModel",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "concreteEnvironmentMetaModel"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchConcreteEnvironmentMetaModel",
+      "type": "PATCH",
+      "path": "/concreteEnvironmentMetaModel/{id}",
+      "description": "This operation updates partially a ConcreteEnvironmentMetaModel entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ConcreteEnvironmentMetaModel",
+          "in": "path"
+        },
+        {
+          "name": "concreteEnvironmentMetaModel",
+          "required": true,
+          "description": "The ConcreteEnvironmentMetaModel to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ConcreteEnvironmentMetaModel_Update"
+          }
+        }
+      ],
+      "tags": [
+        "concreteEnvironmentMetaModel"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteConcreteEnvironmentMetaModel",
+      "type": "DELETE",
+      "path": "/concreteEnvironmentMetaModel/{id}",
+      "description": "This operation deletes a ConcreteEnvironmentMetaModel entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ConcreteEnvironmentMetaModel",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "concreteEnvironmentMetaModel"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listTestResourceAPI",
+      "type": "GET",
+      "path": "/testResourceAPI",
+      "description": "This operation list or find TestResourceAPI entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "testResourceAPI"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createTestResourceAPI",
+      "type": "POST",
+      "path": "/testResourceAPI",
+      "description": "This operation creates a TestResourceAPI entity.",
+      "parameters": [
+        {
+          "name": "testResourceAPI",
+          "required": true,
+          "description": "The TestResourceAPI to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestResourceAPI_Create"
+          }
+        }
+      ],
+      "tags": [
+        "testResourceAPI"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveTestResourceAPI",
+      "type": "GET",
+      "path": "/testResourceAPI/{id}",
+      "description": "This operation retrieves a TestResourceAPI entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestResourceAPI",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "testResourceAPI"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchTestResourceAPI",
+      "type": "PATCH",
+      "path": "/testResourceAPI/{id}",
+      "description": "This operation updates partially a TestResourceAPI entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestResourceAPI",
+          "in": "path"
+        },
+        {
+          "name": "testResourceAPI",
+          "required": true,
+          "description": "The TestResourceAPI to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestResourceAPI_Update"
+          }
+        }
+      ],
+      "tags": [
+        "testResourceAPI"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteTestResourceAPI",
+      "type": "DELETE",
+      "path": "/testResourceAPI/{id}",
+      "description": "This operation deletes a TestResourceAPI entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the TestResourceAPI",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "testResourceAPI"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listProvisioningArtifact",
+      "type": "GET",
+      "path": "/provisioningArtifact",
+      "description": "This operation list or find ProvisioningArtifact entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "provisioningArtifact"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createProvisioningArtifact",
+      "type": "POST",
+      "path": "/provisioningArtifact",
+      "description": "This operation creates a ProvisioningArtifact entity.",
+      "parameters": [
+        {
+          "name": "provisioningArtifact",
+          "required": true,
+          "description": "The ProvisioningArtifact to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProvisioningArtifact_Create"
+          }
+        }
+      ],
+      "tags": [
+        "provisioningArtifact"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveProvisioningArtifact",
+      "type": "GET",
+      "path": "/provisioningArtifact/{id}",
+      "description": "This operation retrieves a ProvisioningArtifact entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProvisioningArtifact",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "provisioningArtifact"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchProvisioningArtifact",
+      "type": "PATCH",
+      "path": "/provisioningArtifact/{id}",
+      "description": "This operation updates partially a ProvisioningArtifact entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProvisioningArtifact",
+          "in": "path"
+        },
+        {
+          "name": "provisioningArtifact",
+          "required": true,
+          "description": "The ProvisioningArtifact to be updated",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProvisioningArtifact_Update"
+          }
+        }
+      ],
+      "tags": [
+        "provisioningArtifact"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Updated"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteProvisioningArtifact",
+      "type": "DELETE",
+      "path": "/provisioningArtifact/{id}",
+      "description": "This operation deletes a ProvisioningArtifact entity.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the ProvisioningArtifact",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "provisioningArtifact"
+      ],
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "Sets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "Data containing the callback endpoint to deliver the information",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/EventSubscriptionInput"
+          }
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Subscribed"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "Resets the communication endpoint address the service instance must use to deliver information about its health state, execution state, failures and metrics.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The id of the registered listener",
+          "in": "path"
+        }
+      ],
+      "tags": [
+        "events subscription"
+      ],
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAbstractEnvironmentCreateEvent",
+      "type": "POST",
+      "path": "/listener/abstractEnvironmentCreateEvent",
+      "description": "Example of a client listener for receiving the notification AbstractEnvironmentCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AbstractEnvironmentCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAbstractEnvironmentChangeEvent",
+      "type": "POST",
+      "path": "/listener/abstractEnvironmentChangeEvent",
+      "description": "Example of a client listener for receiving the notification AbstractEnvironmentChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AbstractEnvironmentChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAbstractEnvironmentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/abstractEnvironmentDeleteEvent",
+      "description": "Example of a client listener for receiving the notification AbstractEnvironmentDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AbstractEnvironmentDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAbstractEnvironmentAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/abstractEnvironmentAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification AbstractEnvironmentAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AbstractEnvironmentAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToAbstractEnvironmentStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/abstractEnvironmentStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification AbstractEnvironmentStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AbstractEnvironmentStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToConcreteEnvironmentMetaModelCreateEvent",
+      "type": "POST",
+      "path": "/listener/concreteEnvironmentMetaModelCreateEvent",
+      "description": "Example of a client listener for receiving the notification ConcreteEnvironmentMetaModelCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ConcreteEnvironmentMetaModelCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToConcreteEnvironmentMetaModelChangeEvent",
+      "type": "POST",
+      "path": "/listener/concreteEnvironmentMetaModelChangeEvent",
+      "description": "Example of a client listener for receiving the notification ConcreteEnvironmentMetaModelChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ConcreteEnvironmentMetaModelChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToConcreteEnvironmentMetaModelDeleteEvent",
+      "type": "POST",
+      "path": "/listener/concreteEnvironmentMetaModelDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ConcreteEnvironmentMetaModelDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ConcreteEnvironmentMetaModelDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToConcreteEnvironmentMetaModelAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/concreteEnvironmentMetaModelAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ConcreteEnvironmentMetaModelAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ConcreteEnvironmentMetaModelAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToConcreteEnvironmentMetaModelStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/concreteEnvironmentMetaModelStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ConcreteEnvironmentMetaModelStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ConcreteEnvironmentMetaModelStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestResourceAPICreateEvent",
+      "type": "POST",
+      "path": "/listener/testResourceAPICreateEvent",
+      "description": "Example of a client listener for receiving the notification TestResourceAPICreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestResourceAPICreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestResourceAPIChangeEvent",
+      "type": "POST",
+      "path": "/listener/testResourceAPIChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestResourceAPIChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestResourceAPIChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestResourceAPIDeleteEvent",
+      "type": "POST",
+      "path": "/listener/testResourceAPIDeleteEvent",
+      "description": "Example of a client listener for receiving the notification TestResourceAPIDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestResourceAPIDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestResourceAPIAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/testResourceAPIAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestResourceAPIAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestResourceAPIAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToTestResourceAPIStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/testResourceAPIStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification TestResourceAPIStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/TestResourceAPIStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProvisioningArtifactCreateEvent",
+      "type": "POST",
+      "path": "/listener/provisioningArtifactCreateEvent",
+      "description": "Example of a client listener for receiving the notification ProvisioningArtifactCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProvisioningArtifactCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProvisioningArtifactChangeEvent",
+      "type": "POST",
+      "path": "/listener/provisioningArtifactChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProvisioningArtifactChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProvisioningArtifactChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProvisioningArtifactDeleteEvent",
+      "type": "POST",
+      "path": "/listener/provisioningArtifactDeleteEvent",
+      "description": "Example of a client listener for receiving the notification ProvisioningArtifactDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProvisioningArtifactDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProvisioningArtifactAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/provisioningArtifactAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProvisioningArtifactAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProvisioningArtifactAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToProvisioningArtifactStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/provisioningArtifactStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification ProvisioningArtifactStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/ProvisioningArtifactStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

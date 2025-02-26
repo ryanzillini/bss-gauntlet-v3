@@ -1,0 +1,945 @@
+{
+  "api": "TMF676_Payment",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listPayment",
+      "type": "GET",
+      "path": "/payment",
+      "description": "This operation list or find Payment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "payment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createPayment",
+      "type": "POST",
+      "path": "/payment",
+      "description": "This operation creates a Payment entity.",
+      "parameters": [
+        {
+          "name": "payment",
+          "required": true,
+          "description": "The Payment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Payment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "payment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrievePayment",
+      "type": "GET",
+      "path": "/payment/{id}",
+      "description": "This operation retrieves a Payment entity. Attribute selection is enabled for all first level attributes.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "Identifier of the Payment",
+          "in": "path"
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to provide in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "payment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listAuthorizePayment",
+      "type": "GET",
+      "path": "/authorizePayment",
+      "description": "This operation list or find AuthorizePayment entities",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Comma-separated properties to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "Requested index for start of resources to be provided in response",
+          "in": "query"
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "Requested number of resources to be provided in response",
+          "in": "query"
+        }
+      ],
+      "tags": [
+        "authorizePayment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Success"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createAuthorizePayment",
+      "type": "POST",
+      "path": "/authorizePayment",
+      "description": "This operation creates a AuthorizePayment entity.",
+      "parameters": [
+        {
+          "name": "authorizePayment",
+          "required": true,
+          "description": "The AuthorizePayment to be created",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/AuthorizePayment_Create"
+          }
+        }
+      ],
+      "tags": [
+        "authorizePayment"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Created"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveAuthorizePayment",
+      "type": "GET",
+      "path": "/authorizePayment/{id}",
+      "description": "This endpoint retrieves the details of an AuthorizePayment entity using its unique identifier. You can select specific attributes to be returned by providing a comma-separated list of attribute names.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the AuthorizePayment entity."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of attribute names to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested AuthorizePayment entity. If the entity does not exist, an error is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listInitiatePayment",
+      "type": "GET",
+      "path": "/initiatePayment",
+      "description": "This endpoint returns a list of InitiatePayment entities. You can specify the number of entities to return and the starting index for the entities.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of attribute names to be returned in the response for each entity."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of entities to be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of entities to be returned."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of InitiatePayment entities. If no entities exist, an empty list is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createInitiatePayment",
+      "type": "POST",
+      "path": "/initiatePayment",
+      "description": "This endpoint creates a new InitiatePayment entity. The details of the entity to be created should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "initiatePayment",
+          "required": true,
+          "description": "The details of the InitiatePayment entity to be created.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/InitiatePayment_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created InitiatePayment entity. If the entity could not be created, an error is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveInitiatePayment",
+      "type": "GET",
+      "path": "/initiatePayment/{id}",
+      "description": "This endpoint retrieves the details of an InitiatePayment entity using its unique identifier. You can select specific attributes to be returned by providing a comma-separated list of attribute names.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the InitiatePayment entity."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of attribute names to be returned in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested InitiatePayment entity. If the entity does not exist, an error is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listRefund",
+      "type": "GET",
+      "path": "/refund",
+      "description": "This endpoint returns a list of Refund entities. You can specify the number of entities to return and the starting index for the entities.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of attribute names to be returned in the response for each entity."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index for the list of entities to be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of entities to be returned."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a list of Refund entities. If no entities exist, an empty list is returned."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createRefund",
+      "type": "POST",
+      "path": "/refund",
+      "description": "This endpoint allows you to create a new refund record. It requires a refund object in the request body.",
+      "parameters": [
+        {
+          "name": "refund",
+          "type": "object",
+          "required": true,
+          "description": "The refund object that needs to be added. This should be included in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the created refund object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "retrieveRefund",
+      "type": "GET",
+      "path": "/refund/{id}",
+      "description": "This endpoint retrieves a specific refund record by its unique identifier. You can also specify which attributes to include in the response.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the refund record you want to retrieve. This should be included in the path."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "A comma-separated list of properties to be included in the response. This should be included in the query string."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the requested refund object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint allows you to register a new listener for receiving notifications about the service's health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The data object containing the callback endpoint for receiving notifications. This should be included in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns the registered listener object upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint allows you to unregister a previously registered listener using its unique identifier.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the listener you want to unregister. This should be included in the path."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToPaymentCreateEvent",
+      "type": "POST",
+      "path": "/listener/paymentCreateEvent",
+      "description": "This endpoint allows a client to listen for a PaymentCreateEvent notification. It requires an event data object in the request body.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "The event data object that the client will receive. This should be included in the request body."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Returns a success message upon successful operation."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToPaymentAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/paymentAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of PaymentAttributeValueChangeEvents. It is typically used to track changes in payment attribute values.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which should conform to the PaymentAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToPaymentStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/paymentStateChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of PaymentStateChangeEvents. It is typically used to track changes in the state of payments.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which should conform to the PaymentStateChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToPaymentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/paymentDeleteEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of PaymentDeleteEvents. It is typically used to track when payments are deleted.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which should conform to the PaymentDeleteEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAuthorizePaymentCreateEvent",
+      "type": "POST",
+      "path": "/listener/authorizePaymentCreateEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of AuthorizePaymentCreateEvents. It is typically used to track when new authorized payments are created.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which should conform to the AuthorizePaymentCreateEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAuthorizePaymentAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/authorizePaymentAttributeValueChangeEvent",
+      "description": "This endpoint allows a client to listen for and receive notifications of AuthorizePaymentAttributeValueChangeEvents. It is typically used to track changes in attribute values of authorized payments.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "body",
+          "required": true,
+          "description": "The event data, which should conform to the AuthorizePaymentAttributeValueChangeEvent schema."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A confirmation that the notification was received."
+      },
+      "errors": [
+        "400: Bad Request - The request could not be understood or was missing required parameters.",
+        "401: Unauthorized - Authentication failed or user doesn't have permissions for the requested operation.",
+        "403: Forbidden - Authentication succeeded but authenticated user doesn't have access to the resource.",
+        "404: Not Found - Resource could not be found.",
+        "405: Method Not allowed - Requested method is not supported for the specified resource.",
+        "409: Conflict - The request could not be completed due to a conflict with the current state of the resource.",
+        "500: Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."
+      ]
+    },
+    {
+      "name": "listenToAuthorizePaymentStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/authorizePaymentStateChangeEvent",
+      "description": "This endpoint is designed for clients to receive notifications regarding changes in the state of payment authorization. It listens for the AuthorizePaymentStateChangeEvent.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the state change of payment authorization. It should be included in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToAuthorizePaymentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/authorizePaymentDeleteEvent",
+      "description": "This endpoint allows clients to receive notifications when a payment authorization is deleted. It listens for the AuthorizePaymentDeleteEvent.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the deletion of payment authorization. It should be included in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToInitiatePaymentCreateEvent",
+      "type": "POST",
+      "path": "/listener/initiatePaymentCreateEvent",
+      "description": "This endpoint is designed for clients to receive notifications when a new payment initiation is created. It listens for the InitiatePaymentCreateEvent.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the creation of a new payment initiation. It should be included in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToInitiatePaymentAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/initiatePaymentAttributeValueChangeEvent",
+      "description": "This endpoint allows clients to receive notifications when an attribute value of a payment initiation changes. It listens for the InitiatePaymentAttributeValueChangeEvent.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the change in an attribute value of a payment initiation. It should be included in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToInitiatePaymentStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/initiatePaymentStateChangeEvent",
+      "description": "This endpoint is designed for clients to receive notifications regarding changes in the state of payment initiation. It listens for the InitiatePaymentStateChangeEvent.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the state change of payment initiation. It should be included in the body of the request."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "Upon successful notification, the response will be an object indicating that the client has been notified."
+      },
+      "errors": [
+        "400: Bad Request - The server could not understand the request due to invalid syntax.",
+        "401: Unauthorized - The client must authenticate itself to get the requested response.",
+        "403: Forbidden - The client does not have access rights to the content.",
+        "404: Not Found - The server can not find the requested resource.",
+        "405: Method Not allowed - The method specified in the request is not allowed.",
+        "409: Conflict - This response is sent when a request conflicts with the current state of the server.",
+        "500: Internal Server Error - The server has encountered a situation it doesn't know how to handle."
+      ]
+    },
+    {
+      "name": "listenToInitiatePaymentDeleteEvent",
+      "type": "POST",
+      "path": "/listener/initiatePaymentDeleteEvent",
+      "description": "Example of a client listener for receiving the notification InitiatePaymentDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/InitiatePaymentDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToRefundCreateEvent",
+      "type": "POST",
+      "path": "/listener/refundCreateEvent",
+      "description": "Example of a client listener for receiving the notification RefundCreateEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/RefundCreateEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToRefundAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/refundAttributeValueChangeEvent",
+      "description": "Example of a client listener for receiving the notification RefundAttributeValueChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/RefundAttributeValueChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToRefundStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/refundStateChangeEvent",
+      "description": "Example of a client listener for receiving the notification RefundStateChangeEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/RefundStateChangeEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToRefundDeleteEvent",
+      "type": "POST",
+      "path": "/listener/refundDeleteEvent",
+      "description": "Example of a client listener for receiving the notification RefundDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/RefundDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}

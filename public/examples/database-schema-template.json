@@ -1,0 +1,157 @@
+{
+  "name": "Customer Database Schema",
+  "description": "Sample database schema for customer management",
+  "tables": [
+    {
+      "name": "customers",
+      "description": "Main customer table storing basic information",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "description": "Unique identifier for the customer",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "first_name",
+          "type": "varchar(100)",
+          "description": "Customer's first name"
+        },
+        {
+          "name": "last_name",
+          "type": "varchar(100)",
+          "description": "Customer's last name"
+        },
+        {
+          "name": "email",
+          "type": "varchar(255)",
+          "description": "Customer's email address"
+        },
+        {
+          "name": "phone_number",
+          "type": "varchar(20)",
+          "description": "Customer's contact phone number"
+        },
+        {
+          "name": "created_at",
+          "type": "timestamp",
+          "description": "When the customer record was created"
+        },
+        {
+          "name": "updated_at",
+          "type": "timestamp",
+          "description": "When the customer record was last updated"
+        }
+      ]
+    },
+    {
+      "name": "addresses",
+      "description": "Customer addresses",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "description": "Unique identifier for the address",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "customer_id",
+          "type": "uuid",
+          "description": "Reference to the customer",
+          "isForeignKey": true,
+          "references": {
+            "table": "customers",
+            "column": "id"
+          }
+        },
+        {
+          "name": "address_type",
+          "type": "varchar(20)",
+          "description": "Type of address (billing, shipping, etc.)"
+        },
+        {
+          "name": "street_address",
+          "type": "varchar(255)",
+          "description": "Street address"
+        },
+        {
+          "name": "city",
+          "type": "varchar(100)",
+          "description": "City"
+        },
+        {
+          "name": "state",
+          "type": "varchar(100)",
+          "description": "State or province"
+        },
+        {
+          "name": "postal_code",
+          "type": "varchar(20)",
+          "description": "Postal or ZIP code"
+        },
+        {
+          "name": "country",
+          "type": "varchar(100)",
+          "description": "Country"
+        }
+      ]
+    },
+    {
+      "name": "subscriptions",
+      "description": "Customer subscription information",
+      "columns": [
+        {
+          "name": "id",
+          "type": "uuid",
+          "description": "Unique identifier for the subscription",
+          "isPrimaryKey": true
+        },
+        {
+          "name": "customer_id",
+          "type": "uuid",
+          "description": "Reference to the customer",
+          "isForeignKey": true,
+          "references": {
+            "table": "customers",
+            "column": "id"
+          }
+        },
+        {
+          "name": "plan_id",
+          "type": "varchar(50)",
+          "description": "Identifier for the subscription plan"
+        },
+        {
+          "name": "status",
+          "type": "varchar(20)",
+          "description": "Subscription status (active, cancelled, etc.)"
+        },
+        {
+          "name": "start_date",
+          "type": "timestamp",
+          "description": "When the subscription started"
+        },
+        {
+          "name": "end_date",
+          "type": "timestamp",
+          "description": "When the subscription ends/ended"
+        },
+        {
+          "name": "billing_cycle",
+          "type": "varchar(20)",
+          "description": "Billing frequency (monthly, annual, etc.)"
+        },
+        {
+          "name": "amount",
+          "type": "decimal(10,2)",
+          "description": "Subscription amount"
+        },
+        {
+          "name": "currency",
+          "type": "varchar(3)",
+          "description": "Currency code (USD, EUR, etc.)"
+        }
+      ]
+    }
+  ]
+} 

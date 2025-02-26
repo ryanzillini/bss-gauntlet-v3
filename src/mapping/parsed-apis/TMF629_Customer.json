@@ -1,0 +1,337 @@
+{
+  "api": "TMF629_Customer",
+  "version": "v4.0.0",
+  "endpoints": [
+    {
+      "name": "listCustomer",
+      "type": "GET",
+      "path": "/customer",
+      "description": "Retrieves a list of Customer entities. You can filter the properties returned in the response using the 'fields' parameter.",
+      "parameters": [
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        },
+        {
+          "name": "offset",
+          "type": "integer",
+          "required": false,
+          "description": "The starting index from where the list of customers should be returned."
+        },
+        {
+          "name": "limit",
+          "type": "integer",
+          "required": false,
+          "description": "The maximum number of customer entities to return in the response."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the requested customer entities."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "createCustomer",
+      "type": "POST",
+      "path": "/customer",
+      "description": "Creates a new Customer entity. The customer details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "customer",
+          "required": true,
+          "description": "The details of the customer to be created, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Customer_Create"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the created customer."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "retrieveCustomer",
+      "type": "GET",
+      "path": "/customer/{id}",
+      "description": "Retrieves a specific Customer entity based on the provided ID. You can filter the properties returned in the response using the 'fields' parameter.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the customer to be retrieved."
+        },
+        {
+          "name": "fields",
+          "type": "string",
+          "required": false,
+          "description": "Specify the properties you want to include in the response, separated by commas."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the requested customer."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "patchCustomer",
+      "type": "PATCH",
+      "path": "/customer/{id}",
+      "description": "Updates the details of a specific Customer entity based on the provided ID. The updated details should be provided in the request body.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the customer to be updated."
+        },
+        {
+          "name": "customer",
+          "required": true,
+          "description": "The updated details of the customer, provided in the request body.",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/Customer_Update"
+          }
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object containing the details of the updated customer."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "deleteCustomer",
+      "type": "DELETE",
+      "path": "/customer/{id}",
+      "description": "Deletes a specific Customer entity based on the provided ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "The unique identifier of the customer to be deleted."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A successful response will return an object confirming the deletion of the customer."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "registerListener",
+      "type": "POST",
+      "path": "/hub",
+      "description": "This endpoint is used to set the communication endpoint address that the service instance will use to deliver updates about its health state, execution state, failures, and metrics.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the callback endpoint information where the service instance will deliver the updates."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the listener has been successfully registered."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "unregisterListener",
+      "type": "DELETE",
+      "path": "/hub/{id}",
+      "description": "This endpoint is used to remove the communication endpoint address that the service instance has been using to deliver updates.",
+      "parameters": [
+        {
+          "name": "id",
+          "type": "string",
+          "required": true,
+          "description": "This parameter is the unique identifier of the registered listener that needs to be removed."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the listener has been successfully unregistered."
+      },
+      "errors": [
+        "400: Bad request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method not allowed",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCustomerCreateEvent",
+      "type": "POST",
+      "path": "/listener/customerCreateEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a CustomerCreateEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the creation of a customer."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the event notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCustomerAttributeValueChangeEvent",
+      "type": "POST",
+      "path": "/listener/customerAttributeValueChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a CustomerAttributeValueChangeEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the change in a customer's attribute value."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the event notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCustomerStateChangeEvent",
+      "type": "POST",
+      "path": "/listener/customerStateChangeEvent",
+      "description": "This endpoint is an example of a client listener that receives notifications when a CustomerStateChangeEvent occurs.",
+      "parameters": [
+        {
+          "name": "data",
+          "type": "object",
+          "required": true,
+          "description": "This parameter contains the event data related to the change in a customer's state."
+        }
+      ],
+      "response": {
+        "type": "object",
+        "description": "A response indicating that the event notification has been successfully received."
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    },
+    {
+      "name": "listenToCustomerDeleteEvent",
+      "type": "POST",
+      "path": "/listener/customerDeleteEvent",
+      "description": "Example of a client listener for receiving the notification CustomerDeleteEvent",
+      "parameters": [
+        {
+          "name": "data",
+          "required": true,
+          "description": "The event data",
+          "in": "body",
+          "schema": {
+            "$ref": "#/definitions/CustomerDeleteEvent"
+          }
+        }
+      ],
+      "tags": [
+        "notification listeners (client side)"
+      ],
+      "response": {
+        "type": "object",
+        "description": "Notified"
+      },
+      "errors": [
+        "400: Bad Request",
+        "401: Unauthorized",
+        "403: Forbidden",
+        "404: Not Found",
+        "405: Method Not allowed",
+        "409: Conflict",
+        "500: Internal Server Error"
+      ]
+    }
+  ]
+}
