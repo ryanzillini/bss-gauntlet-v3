@@ -1,6 +1,277 @@
 import { Database, Table, Column } from './models';
 import { MappingStats, CondensedMapping } from './types';
 import { toast } from 'react-hot-toast';
+import { supabase } from '@/utils/supabase-client';
+
+interface ColumnMappingSource {
+    databaseId: string;
+    schema: string;
+    table: string;
+    column: string;
+}
+
+interface ColumnMapping {
+    sources: ColumnMappingSource[];
+    destinationSchema: string;
+    destinationTable: string;
+    destinationColumn: string;
+    description: string;
+}
+
+interface MappingInput {
+    columnMappings: ColumnMapping[];
+}
+
+interface DbSchemaMapping {
+    id: string;
+    name: string;
+    target_database: string;
+    source_database: string;
+    metadata: Record<string, any>;
+}
+
+interface DbSchemaMappingEntry {
+    schema_mapping_id: string;
+    target_table: string;
+    target_column: string;
+    transformation?: string;
+}
+
+interface DbSchemaMappingSource {
+    mapping_entry_id: string;
+    source_database: string;
+    source_table: string;
+    source_column: string;
+}
+
+// Helper function to validate database existence
+const validateDatabase = async (databaseId: string): Promise<boolean> => {
+    const { data, error } = await supabase
+        .from('databases')
+        .select('id')
+        .eq('id', databaseId)
+        .single();
+
+    if (error) {
+        console.error('Error validating database:', error);
+        return false;
+    }
+
+    return !!data;
+};
+
+// Helper function to validate table existence
+const validateTable = async (databaseId: string, schema: string, tableName: string): Promise<boolean> => {
+    const { data, error } = await supabase
+        .from('db_tables')
+        .select('id')
+        .eq('database_id', databaseId)
+        .eq('schema', schema)
+        .eq('name', tableName)
+        .single();
+
+    if (error) {
+        console.error('Error validating table:', error);
+        return false;
+    }
+
+    return !!data;
+};
+
+// Helper function to validate column existence
+const validateColumn = async (tableId: string, columnName: string): Promise<boolean> => {
+    const { data, error } = await supabase
+        .from('db_columns')
+        .select('id')
+        .eq('table_id', tableId)
+        .eq('name', columnName)
+        .single();
+
+    if (error) {
+        console.error('Error validating column:', error);
+        return false;
+    }
+
+    return !!data;
+};
+
+// Helper function to get table ID
+const getTableId = async (databaseId: string, schema: string, tableName: string): Promise<string | null> => {
+    const { data, error } = await supabase
+        .from('db_tables')
+        .select('id')
+        .eq('database_id', databaseId)
+        .eq('schema', schema)
+        .eq('name', tableName)
+        .single();
+
+    if (error || !data) {
+        console.error('Error getting table ID:', error);
+        return null;
+    }
+
+    return data.id;
+};
+
+export const saveMapping = async (
+    targetDatabaseId: string,
+    mappingInput: MappingInput,
+    mappingName: string = `Mapping ${new Date().toISOString()}`
+): Promise<void> => {
+    try {
+        // Validate target database exists
+        const isTargetValid = await validateDatabase(targetDatabaseId);
+        if (!isTargetValid) {
+            throw new Error(`Target database with ID ${targetDatabaseId} not found`);
+        }
+
+        // Validate all source databases exist and collect unique source databases
+        const uniqueSourceDbIds = Array.from(new Set(
+            mappingInput.columnMappings
+                .flatMap(mapping => mapping.sources)
+                .map(source => source.databaseId)
+        ));
+
+        for (const sourceDbId of uniqueSourceDbIds) {
+            const isSourceValid = await validateDatabase(sourceDbId);
+            if (!isSourceValid) {
+                throw new Error(`Source database with ID ${sourceDbId} not found`);
+            }
+        }
+
+        // Validate all tables and columns exist
+        for (const mapping of mappingInput.columnMappings) {
+            // Validate target table
+            const isTargetTableValid = await validateTable(
+                targetDatabaseId,
+                mapping.destinationSchema,
+                mapping.destinationTable
+            );
+            if (!isTargetTableValid) {
+                throw new Error(
+                    `Target table ${mapping.destinationSchema}.${mapping.destinationTable} not found`
+                );
+            }
+
+            // Validate target column
+            const targetTableId = await getTableId(
+                targetDatabaseId,
+                mapping.destinationSchema,
+                mapping.destinationTable
+            );
+            if (!targetTableId) {
+                throw new Error(
+                    `Could not find ID for table ${mapping.destinationSchema}.${mapping.destinationTable}`
+                );
+            }
+
+            const isTargetColumnValid = await validateColumn(targetTableId, mapping.destinationColumn);
+            if (!isTargetColumnValid) {
+                throw new Error(
+                    `Target column ${mapping.destinationColumn} not found in table ${mapping.destinationSchema}.${mapping.destinationTable}`
+                );
+            }
+
+            // Validate source tables and columns
+            for (const source of mapping.sources) {
+                const isSourceTableValid = await validateTable(
+                    source.databaseId,
+                    source.schema,
+                    source.table
+                );
+                if (!isSourceTableValid) {
+                    throw new Error(
+                        `Source table ${source.schema}.${source.table} not found in database ${source.databaseId}`
+                    );
+                }
+
+                const sourceTableId = await getTableId(
+                    source.databaseId,
+                    source.schema,
+                    source.table
+                );
+                if (!sourceTableId) {
+                    throw new Error(
+                        `Could not find ID for table ${source.schema}.${source.table}`
+                    );
+                }
+
+                const isSourceColumnValid = await validateColumn(sourceTableId, source.column);
+                if (!isSourceColumnValid) {
+                    throw new Error(
+                        `Source column ${source.column} not found in table ${source.schema}.${source.table}`
+                    );
+                }
+            }
+        }
+
+        // 1. Create the main schema mapping record
+        const { data: mappingData, error: mappingError } = await supabase
+            .from('schema_mappings')
+            .insert({
+                name: mappingName,
+                target_database: targetDatabaseId,
+                metadata: {
+                    description: 'Auto-generated mapping',
+                    validation_timestamp: new Date().toISOString()
+                }
+            })
+            .select()
+            .single();
+
+        if (mappingError) throw mappingError;
+        const mappingId = mappingData.id;
+
+        // 2. Create entries for each column mapping
+        for (const mapping of mappingInput.columnMappings) {
+            // Insert the mapping entry
+            const { data: entryData, error: entryError } = await supabase
+                .from('schema_mapping_entries')
+                .insert({
+                    schema_mapping_id: mappingId,
+                    target_table: mapping.destinationTable,
+                    target_column: mapping.destinationColumn,
+                    transformation: null // We'll add transformation support later
+                })
+                .select()
+                .single();
+
+            if (entryError) throw entryError;
+
+            // 3. Create source entries for each mapping
+            const sourcesPromises = mapping.sources.map(source =>
+                supabase
+                    .from('schema_mapping_sources')
+                    .insert({
+                        mapping_entry_id: entryData.id,
+                        source_database: source.databaseId,
+                        source_table: source.table,
+                        source_column: source.column
+                    })
+            );
+
+            await Promise.all(sourcesPromises);
+        }
+
+        // 4. Create entries in the junction table for source databases
+        const databaseMappingPromises = uniqueSourceDbIds.map(sourceDbId =>
+            supabase
+                .from('schema_mapping_databases')
+                .insert({
+                    schema_mapping_id: mappingId,
+                    database_id: sourceDbId
+                })
+        );
+
+        await Promise.all(databaseMappingPromises);
+
+        toast.success('Mapping saved successfully');
+    } catch (error) {
+        console.error('Error saving mapping:', error);
+        toast.error(error instanceof Error ? error.message : 'Failed to save mapping');
+        throw error;
+    }
+};
 
 export const getColumnsForTable = (
     sourceDatabases: Map<string, Database>,
