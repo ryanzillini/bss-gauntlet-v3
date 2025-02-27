@@ -141,34 +141,87 @@ Return ONLY a JSON object with:
 }`;
 
     try {
-      const completion = await openai.chat.completions.create({
-        model: 'gpt-4',
+      // Log API key presence (but not the actual key)
+      console.log('[find-documentation-matches] Claude API key present:', !!process.env.ANTHROPIC_API_KEY);
+      
+      const requestBody = JSON.stringify({
+        model: 'claude-3-7-sonnet-20250219',
+        max_tokens: 8000,
+        temperature: 0.3,
+        system: 'You are a precise API endpoint matching system. Respond with ONLY the requested JSON format.',
         messages: [
           {
-            role: 'system',
-            content: 'You are a precise API endpoint matching system. Respond with ONLY the requested JSON format.'
-          },
-          { 
             role: 'user',
-            content: prompt 
+            content: prompt
           }
-        ],
-        temperature: 0.3, // Lower temperature for more consistent results
-        max_tokens: 2000
+        ]
       });
 
-      const matches = JSON.parse(completion.choices[0].message?.content || '{}');
-      res.status(200).json(matches);
-    } catch (error: any) {
-      if (error?.error?.code === 'context_length_exceeded') {
-        // If we still hit token limits, try with even fewer endpoints
-        const reducedEndpoints = relevantEndpoints.slice(0, 5);
-        const reducedDoc = {
-          endpoints: reducedEndpoints.map(summarizeEndpoint)
-        };
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+          'anthropic-version': '2023-06-01'
+        },
+        body: requestBody
+      });
 
-        // Create a more concise prompt
-        const reducedPrompt = `Match TMF endpoint (${tmfEndpoint.method} ${tmfEndpoint.path}) with these endpoints:
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('[find-documentation-matches] Claude API error:', {
+          status: response.status,
+          statusText: response.statusText,
+          error: errorText
+        });
+        throw new Error(`Failed to get response from Claude API: ${response.status} ${response.statusText}`);
+      }
+
+      const completion = await response.json();
+      console.log('[find-documentation-matches] Claude API response structure:', 
+        JSON.stringify(Object.keys(completion), null, 2)
+      );
+
+      // Claude API returns a different structure than OpenAI
+      // Check if we're getting the expected response format
+      if (completion.content && Array.isArray(completion.content)) {
+        const contentBlocks = completion.content;
+        const textContent = contentBlocks
+          .filter((block: { type: string }) => block.type === 'text')
+          .map((block: { text: string }) => block.text)
+          .join('');
+          
+        try {
+          const matches = JSON.parse(textContent || '{}');
+          res.status(200).json(matches);
+        } catch (parseError) {
+          console.error('[find-documentation-matches] Error parsing Claude response as JSON:', textContent);
+          throw new Error('Invalid response format from Claude API');
+        }
+      } else if (completion.choices && completion.choices[0]?.message?.content) {
+        // Handle OpenAI-like format (legacy code)
+        const matches = JSON.parse(completion.choices[0].message.content || '{}');
+        res.status(200).json(matches);
+      } else {
+        console.error('[find-documentation-matches] Unexpected Claude response format:', completion);
+        throw new Error('Unexpected response format from Claude API');
+      }
+    } catch (error: any) {
+      if (error?.error?.code === 'context_length_exceeded' || 
+          (error.message && error.message.includes('529')) ||
+          (error.message && error.message.includes('overloaded'))) {
+        
+        console.log('[find-documentation-matches] Claude API overloaded or token limit exceeded, using simplified fallback');
+        
+        try {
+          // If Claude is overloaded, try with even fewer endpoints
+          const reducedEndpoints = relevantEndpoints.slice(0, 3);
+          const reducedDoc = {
+            endpoints: reducedEndpoints.map(summarizeEndpoint)
+          };
+
+          // Create a more concise prompt
+          const reducedPrompt = `Match TMF endpoint (${tmfEndpoint.method} ${tmfEndpoint.path}) with these endpoints:
 ${JSON.stringify(reducedDoc.endpoints.map(e => ({
   path: e.path,
   method: e.method,
@@ -177,24 +230,85 @@ ${JSON.stringify(reducedDoc.endpoints.map(e => ({
 
 Return ONLY: {"matches":[{"path":string,"method":string,"confidence":number,"matchedTerms":string[],"reasoning":string}],"confidence":number,"reasoning":string}`;
 
-        const fallbackCompletion = await openai.chat.completions.create({
-          model: 'gpt-4',
-          messages: [
-            {
-              role: 'system',
-              content: 'You are a precise API endpoint matching system. Respond with ONLY the requested JSON format.'
+          const fallbackResponse = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+              'anthropic-version': '2023-06-01'
             },
-            { 
-              role: 'user',
-              content: reducedPrompt 
-            }
-          ],
-          temperature: 0.3,
-          max_tokens: 1000
-        });
+            body: JSON.stringify({
+              model: 'claude-3-7-sonnet-20250219',
+              max_tokens: 4000, // Reduced token count to lessen load
+              temperature: 0.3,
+              system: 'You are a precise API endpoint matching system. Respond with ONLY the requested JSON format.',
+              messages: [
+                {
+                  role: 'user',
+                  content: reducedPrompt
+                }
+              ]
+            })
+          });
 
-        const fallbackMatches = JSON.parse(fallbackCompletion.choices[0].message?.content || '{}');
-        res.status(200).json(fallbackMatches);
+          if (!fallbackResponse.ok) {
+            throw new Error(`Fallback Claude API also failed: ${fallbackResponse.status}`);
+          }
+
+          const fallbackCompletion = await fallbackResponse.json();
+          let fallbackMatches;
+          
+          if (fallbackCompletion.content && Array.isArray(fallbackCompletion.content)) {
+            const contentBlocks = fallbackCompletion.content;
+            const textContent = contentBlocks
+              .filter((block: { type: string }) => block.type === 'text')
+              .map((block: { text: string }) => block.text)
+              .join('');
+              
+            fallbackMatches = JSON.parse(textContent || '{}');
+          } else if (fallbackCompletion.choices && fallbackCompletion.choices[0]?.message?.content) {
+            fallbackMatches = JSON.parse(fallbackCompletion.choices[0].message.content || '{}');
+          } else {
+            throw new Error('Unexpected response format from fallback Claude API');
+          }
+          
+          res.status(200).json(fallbackMatches);
+        } catch (fallbackError) {
+          console.error('[find-documentation-matches] Fallback also failed:', fallbackError);
+          
+          // If both LLM approaches fail, use rule-based matching
+          const ruleBasedMatches = {
+            matches: relevantEndpoints.slice(0, 3).map(endpoint => {
+              // Basic string similarity for path components
+              const tmfPathParts = tmfEndpoint.path.toLowerCase().split('/').filter(Boolean);
+              const endpointPathParts = endpoint.path.toLowerCase().split('/').filter(Boolean);
+              
+              // Count matching path segments
+              const matchingSegments = tmfPathParts.filter((part: string) => 
+                endpointPathParts.some((endpointPart: string) => 
+                  endpointPart.includes(part) || part.includes(endpointPart)
+                )
+              ).length;
+              
+              // Calculate a simple confidence score
+              const methodMatch = endpoint.method.toLowerCase() === tmfEndpoint.method.toLowerCase() ? 40 : 0;
+              const pathScore = matchingSegments / Math.max(tmfPathParts.length, endpointPathParts.length) * 60;
+              const confidence = Math.min(Math.round(methodMatch + pathScore), 100);
+              
+              return {
+                path: endpoint.path,
+                method: endpoint.method,
+                confidence: confidence,
+                matchedTerms: [],
+                reasoning: `Simple rule-based matching found ${matchingSegments} matching path segments and ${methodMatch > 0 ? 'matching' : 'different'} HTTP method.`
+              };
+            }),
+            confidence: 40, // Lower confidence for rule-based matching
+            reasoning: "AI services unavailable. Used rule-based matching with path similarity and HTTP method matching."
+          };
+          
+          res.status(200).json(ruleBasedMatches);
+        }
       } else {
         throw error;
       }

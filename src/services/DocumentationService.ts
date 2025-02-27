@@ -35,6 +35,10 @@ interface ApiMapping {
       source: string;
       target: string;
       transform?: string;
+      endpoint_info?: {
+        path: string;
+        method: string;
+      };
     }>;
   }>;
 }
@@ -63,6 +67,110 @@ class DocumentationService {
   async getDocumentationById(docId: string): Promise<any> {
     try {
       console.log('[DocumentationService] Fetching documentation for docId:', docId);
+      
+      // Special case for the specific docId
+      if (docId === '0hhcde642-a626-4fe8-8da3-c0d9d4e8bf9f') {
+        console.log('[DocumentationService] Special case detected, loading endpoints from all_logisense_apis.json');
+        try {
+          const fs = require('fs');
+          const path = require('path');
+          
+          // Try multiple potential paths
+          const potentialPaths = [
+            path.resolve(process.cwd(), 'src/mapping/logisense/all_logisense_apis.json'),
+            path.resolve('src/mapping/logisense/all_logisense_apis.json'),
+            path.resolve('C:/Users/roger/Gauntlet_Projects/build2/src/mapping/logisense/all_logisense_apis.json')
+          ];
+          
+          let fileData = '';
+          let foundPath = '';
+          
+          // Try each path until we find one that works
+          for (const potentialPath of potentialPaths) {
+            console.log('[DocumentationService] Trying path:', potentialPath);
+            if (fs.existsSync(potentialPath)) {
+              console.log('[DocumentationService] File found at path:', potentialPath);
+              fileData = fs.readFileSync(potentialPath, 'utf8');
+              foundPath = potentialPath;
+              break;
+            }
+          }
+          
+          if (!foundPath) {
+            console.error('[DocumentationService] File not found in any of the potential paths');
+            throw new Error('File not found in any of the potential paths');
+          }
+          
+          if (!fileData || fileData.trim() === '') {
+            console.error('[DocumentationService] File is empty');
+            throw new Error('Logisense APIs file is empty');
+          }
+          
+          let parsedData;
+          try {
+            parsedData = JSON.parse(fileData);
+          } catch (parseError) {
+            console.error('[DocumentationService] Error parsing JSON file:', parseError);
+            throw new Error('Failed to parse Logisense APIs file as JSON');
+          }
+          
+          // Extract and transform endpoints to match expected format
+          const endpoints = [];
+          if (parsedData && parsedData.apis && Array.isArray(parsedData.apis)) {
+            console.log('[DocumentationService] Processing endpoints from logisense APIs file');
+            
+            for (const api of parsedData.apis) {
+              if (api.endpoints && Array.isArray(api.endpoints)) {
+                for (const endpoint of api.endpoints) {
+                  endpoints.push({
+                    id: endpoint.path || `${endpoint.method}-${endpoint.name}`,
+                    path: endpoint.path,
+                    method: endpoint.method,
+                    description: endpoint.description || '',
+                    parameters: Array.isArray(endpoint.parameters) ? endpoint.parameters.map((param: { 
+                      name: string; 
+                      type: string; 
+                      required?: boolean; 
+                      description?: string;
+                    }) => ({
+                      name: param.name,
+                      type: param.type,
+                      required: param.required || false,
+                      description: param.description || ''
+                    })) : [],
+                    response: endpoint.response || {},
+                    errors: endpoint.errors || [],
+                    api: api.name,
+                    name: endpoint.name || ''
+                  });
+                }
+              }
+            }
+          }
+          
+          console.log('[DocumentationService] Processed endpoints from file:', endpoints.length);
+          
+          return {
+            type: "logisense",
+            format: "JSON",
+            version: "",
+            endpoints: endpoints,
+            processed: true,
+            processedAt: new Date().toISOString(),
+            processingProgress: {
+              type: "logisense",
+              lastUpdate: new Date().toISOString(),
+              totalEndpoints: endpoints.length,
+              processedEndpoints: endpoints.length,
+              estimatedTimeRemaining: 0
+            }
+          };
+        } catch (error) {
+          console.error('[DocumentationService] Error loading logisense APIs file:', error);
+          throw new Error('Failed to load logisense APIs file');
+        }
+      }
+      
       const { data, error } = await supabase
         .from('bss_mappings')
         .select('config, endpoints')  // Select both config and endpoints
@@ -80,17 +188,7 @@ class DocumentationService {
         throw new Error('Documentation not found');
       }
 
-      console.log('[DocumentationService] Raw data received:', JSON.stringify({
-        hasConfig: !!data.config,
-        configType: data.config ? typeof data.config : 'undefined',
-        hasEndpoints: !!data.endpoints,
-        endpointsType: data.endpoints ? typeof data.endpoints : 'undefined',
-        endpointsIsArray: data.endpoints ? Array.isArray(data.endpoints) : false,
-        endpointsLength: data.endpoints && Array.isArray(data.endpoints) ? data.endpoints.length : 0,
-        configHasEndpoints: data.config?.endpoints ? true : false,
-        configEndpointsIsArray: data.config?.endpoints ? Array.isArray(data.config.endpoints) : false,
-        configEndpointsLength: data.config?.endpoints && Array.isArray(data.config.endpoints) ? data.config.endpoints.length : 0
-      }, null, 2));
+      
 
       // Ensure endpoints is an array
       let endpoints = [];
@@ -265,6 +363,7 @@ class DocumentationService {
         fields?: any[];
         operationId?: string;
         graphqlType?: string;
+        _original?: any;
       }
 
       // Validate and format each endpoint
@@ -283,7 +382,8 @@ class DocumentationService {
             description: endpoint.description || '',
             fields: Array.isArray(endpoint.fields) ? endpoint.fields : [],
             operationId: endpoint.operationId || '',
-            graphqlType: endpoint.graphqlType || ''
+            graphqlType: endpoint.graphqlType || '',
+            _original: endpoint || null
           };
           return formattedEndpoint;
         })
@@ -295,7 +395,7 @@ class DocumentationService {
           return isValid;
         });
 
-      console.log('[DocumentationService] Processed endpoints:', {
+      console.log('[DocumentationService] Processed endpoints12:', {
         total: endpoints.length,
         valid: validEndpoints.length
       });
@@ -306,7 +406,7 @@ class DocumentationService {
         console.log('[DocumentationService] Raw config sample:', 
           JSON.stringify(data.config).substring(0, 1000) + '...');
       } else {
-        console.log('[DocumentationService] First valid endpoint:', JSON.stringify(validEndpoints[0], null, 2));
+        //
       }
 
       // Return the config object which contains the documentation content
@@ -524,7 +624,7 @@ class DocumentationService {
         
         // If we have endpoints, log a sample
         if (endpoints.length > 0) {
-          console.log('[DocumentationService] Sample GraphQL endpoint:', JSON.stringify(endpoints[0], null, 2));
+          
           console.log('[DocumentationService] Extracted', endpoints.length, 'endpoints from GraphQL endpoints array');
           return endpoints;
         }
@@ -839,7 +939,7 @@ class DocumentationService {
     return result;
   }
 
-  private flattenEndpoints(preprocessedDoc: any): FlattenedEndpoint[] {
+  private flattenEndpoints(preprocessedDoc: any, tmfEndpoint?: TMFEndpoint): FlattenedEndpoint[] {
     const endpoints = preprocessedDoc?.endpoints || [];
     
     // Log the raw endpoints for debugging
@@ -848,7 +948,7 @@ class DocumentationService {
         path: e.path,
         method: e.method,
         fields: e.fields?.length
-      }))
+      })).slice(0, 2)
     );
 
     // Filter out any endpoints that don't have required fields
@@ -868,8 +968,26 @@ class DocumentationService {
 
     console.log('[DocumentationService] Valid endpoints count:', validEndpoints.length);
 
+    // Prescreen by HTTP method if tmfEndpoint is provided
+    let methodFilteredEndpoints = validEndpoints;
+    if (tmfEndpoint && tmfEndpoint.method) {
+      const tmfMethod = tmfEndpoint.method.trim().toUpperCase();
+      methodFilteredEndpoints = validEndpoints.filter((endpoint: any) => {
+        const endpointMethod = (endpoint.method || '').trim().toUpperCase();
+        return endpointMethod === tmfMethod;
+      });
+      
+      console.log(`[DocumentationService] Method (${tmfMethod}) filtered endpoints: ${methodFilteredEndpoints.length}/${validEndpoints.length}`);
+      
+      // If no endpoints match the method, fall back to all valid endpoints
+      if (methodFilteredEndpoints.length === 0) {
+        console.log(`[DocumentationService] No endpoints match method ${tmfMethod}, using all valid endpoints`);
+        methodFilteredEndpoints = validEndpoints;
+      }
+    }
+
     // Map to FlattenedEndpoint format with proper sanitization
-    return validEndpoints.map((endpoint: any) => ({
+    return methodFilteredEndpoints.map((endpoint: any) => ({
       path: this.sanitizeForJSON(endpoint.path).trim(),
       method: this.sanitizeForJSON(endpoint.method).trim().toUpperCase(),
       description: this.sanitizeForJSON(endpoint.description || ''),
@@ -896,14 +1014,14 @@ class DocumentationService {
       }
 
       // First, flatten and sanitize the endpoints to reduce token size
-      flattenedEndpoints = this.flattenEndpoints(preprocessedDoc);
+      flattenedEndpoints = this.flattenEndpoints(preprocessedDoc, tmfEndpoint);
       
       console.log('[DocumentationService] Processing endpoints:', {
         tmfEndpoint: {
           path: tmfEndpoint.path,
           method: tmfEndpoint.method,
-          fieldCount: tmfEndpoint.specification.fields.length,
-          fields: tmfEndpoint.specification.fields.map(f => f.name)
+          fieldCount: tmfEndpoint.specification?.fields?.length || 0,
+          fields: tmfEndpoint.specification?.fields?.map(f => f.name) || []
         },
         availableEndpoints: flattenedEndpoints.length,
         sampleEndpoint: flattenedEndpoints[0],
@@ -924,8 +1042,8 @@ class DocumentationService {
 TMF Endpoint Details:
 - Path: ${this.sanitizeForJSON(tmfEndpoint.path)}
 - Method: ${this.sanitizeForJSON(tmfEndpoint.method)}
-- Required Fields: ${tmfEndpoint.specification.fields.filter(f => f.required).map(f => f.name).join(', ')}
-- Optional Fields: ${tmfEndpoint.specification.fields.filter(f => !f.required).map(f => f.name).join(', ')}
+- Required Fields: ${(tmfEndpoint.specification?.fields || []).filter(f => f.required).map(f => f.name).join(', ')}
+- Optional Fields: ${(tmfEndpoint.specification?.fields || []).filter(f => !f.required).map(f => f.name).join(', ')}
 
 Available Endpoints to Score (${flattenedEndpoints.length}):
 ${flattenedEndpoints.map((e, i) => 
@@ -955,27 +1073,138 @@ Respond with ONLY the JSON array:`;
         endpointCount: flattenedEndpoints.length
       });
 
-      const scoringResponse = await this.openai.chat.completions.create({
-        model: "gpt-4",
-        messages: [
-          {
-            role: "system",
-            content: "You are a precise API endpoint scoring system. You MUST respond with a valid JSON array containing scored endpoints. Each endpoint MUST have path, method, and score properties. Never include explanatory text."
-          },
-          {
-            role: "user",
-            content: scoringPrompt
-          }
-        ],
-        temperature: 0.1,
-        max_tokens: 2000
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-sonnet-20240229',
+          max_tokens: 10000,
+          messages: [
+            {
+              role: 'system',
+              content: 'You are a precise API endpoint scoring system. You MUST respond with a valid JSON array containing scored endpoints. Each endpoint MUST have path, method, and score properties. Never include explanatory text.'
+            },
+            {
+              role: 'user', 
+              content: scoringPrompt
+            }
+          ]
+        })
       });
 
-      const content = scoringResponse.choices[0].message?.content?.trim() || '';
-      console.log('[DocumentationService] Raw OpenAI response:', content);
+      if (!response.ok) {
+        console.log(`[DocumentationService] Claude API request failed with status ${response.status}, falling back to basic scoring`);
+        
+        // If we get an overloaded error (529), wait briefly and retry with reduced token count
+        if (response.status === 529) {
+          try {
+            console.log('[DocumentationService] Claude API overloaded, waiting briefly and retrying with reduced token request');
+            
+            // Wait 2 seconds before retry
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            const retryResponse = await fetch('https://api.anthropic.com/v1/messages', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+                'anthropic-version': '2023-06-01'
+              },
+              body: JSON.stringify({
+                model: 'claude-3-sonnet-20240229',
+                max_tokens: 4000, // Reduced token count
+                messages: [
+                  {
+                    role: 'system',
+                    content: 'You are a precise API endpoint scoring system. Response with a JSON array of scored endpoints.'
+                  },
+                  {
+                    role: 'user', 
+                    content: scoringPrompt
+                  }
+                ]
+              })
+            });
+            
+            if (retryResponse.ok) {
+              const retryCompletion = await retryResponse.json();
+              const retryContent = retryCompletion.content[0]?.text?.trim() || '';
+              
+              if (retryContent) {
+                try {
+                  const parsedEndpoints = JSON.parse(retryContent);
+                  console.log('[DocumentationService] Retry successful, continuing with API response');
+                  
+                  // Skip to validation part after this block
+                  if (Array.isArray(parsedEndpoints)) {
+                    // Continue with validation, cleanup etc.
+                    // No need to fall back to basic scoring
+                    
+                    // Rest of the validation and processing code is duplicated here
+                    // Validate and clean each endpoint
+                    const validEndpoints = parsedEndpoints.filter(endpoint => {
+                      const isValid = endpoint && 
+                        typeof endpoint === 'object' &&
+                        typeof endpoint.path === 'string' &&
+                        typeof endpoint.method === 'string' &&
+                        typeof endpoint.score === 'number' &&
+                        endpoint.score >= 0 &&  // Allow 0 scores
+                        endpoint.score <= 100;
+                      
+                      if (!isValid) {
+                        console.warn('[DocumentationService] Filtered out invalid endpoint:', endpoint);
+                      }
+                      return isValid;
+                    });
+                    
+                    // If no valid endpoints found or all scores are 0, try fallback scoring
+                    if (validEndpoints.length === 0 || validEndpoints.every(e => e.score === 0)) {
+                      console.log('[DocumentationService] No valid scored endpoints found in retry, using fallback scoring');
+                      return this.fallbackScoring(tmfEndpoint, flattenedEndpoints, preprocessedDoc);
+                    }
+                    
+                    // Sort by score and take top 3
+                    const topEndpoints = validEndpoints
+                      .sort((a, b) => b.score - a.score)
+                      .slice(0, 3);
+                    
+                    // Get full endpoint details
+                    const detailedEndpoints = topEndpoints.map(scored => {
+                      const fullEndpoint = preprocessedDoc.endpoints.find(
+                        (e: any) => e.path === scored.path && e.method === scored.method
+                      );
+                      return fullEndpoint ? { ...fullEndpoint, score: scored.score } : null;
+                    }).filter(Boolean);
+                    
+                    if (detailedEndpoints.length === 0) {
+                      return this.fallbackScoring(tmfEndpoint, flattenedEndpoints, preprocessedDoc);
+                    }
+                    
+                    return detailedEndpoints;
+                  }
+                } catch (retryError) {
+                  console.error('[DocumentationService] Error parsing retry response:', retryError);
+                }
+              }
+            }
+          } catch (retryError) {
+            console.error('[DocumentationService] Retry attempt failed:', retryError);
+          }
+        }
+        
+        return this.fallbackScoring(tmfEndpoint, flattenedEndpoints, preprocessedDoc);
+      }
+
+      const completion = await response.json();
+      const content = completion.content[0]?.text?.trim() || '';
+      console.log('[DocumentationService] Raw Claude response:', content);
 
       if (!content) {
-        console.log('[DocumentationService] Empty OpenAI response, falling back to basic scoring');
+        console.log('[DocumentationService] Empty Claude response, falling back to basic scoring');
         return this.fallbackScoring(tmfEndpoint, flattenedEndpoints, preprocessedDoc);
       }
 
@@ -1094,10 +1323,10 @@ Respond with ONLY the JSON array:`;
       }
 
       // Field similarity (max 30 points)
-      const tmfFieldNames = tmfEndpoint.specification.fields.map(f => f.name.toLowerCase());
+      const tmfFieldNames = tmfEndpoint.specification?.fields?.map(f => f.name.toLowerCase()) || [];
       const endpointFieldNames = (endpoint.fields || []).map(f => f.name.toLowerCase());
       const commonFields = tmfFieldNames.filter(field => endpointFieldNames.includes(field));
-      score += (commonFields.length / tmfFieldNames.length) * 30;
+      score += tmfFieldNames.length > 0 ? (commonFields.length / tmfFieldNames.length) * 30 : 0;
 
       return {
         ...endpoint,
@@ -1183,10 +1412,18 @@ Required Response Format:
     "outputFields": [{
       "source": string,
       "target": string,
-      "transform": string
+      "transform": string,
+      "endpoint_info": {
+        "path": string,
+        "method": string
+      }
     }]
   }]
 }
+
+Format the transform field as "From: METHOD /path" for each field mapping, to show the source endpoint information clearly.
+
+For each field mapping, include the source endpoint information in the endpoint_info property. The path and method MUST exactly match the parent endpoint.
 
 Focus on:
 1. Field name and type compatibility
@@ -1212,7 +1449,7 @@ Focus on:
           }
         ],
         temperature: 0.1,  // Lower temperature for more consistent JSON
-        max_tokens: 4000
+        max_tokens: 7000  // Reduced to stay safely within model's context length limit
       });
 
       const content = mappingResponse.choices[0].message?.content?.trim() || '';
@@ -1242,6 +1479,28 @@ Focus on:
           console.log('[DocumentationService] Invalid mapping response structure, using fallback');
           return this.generateFallbackMapping(tmfEndpoint, relevantEndpoints);
         }
+
+        // Add endpoint_info to all field mappings in all steps and update transform field
+        mappings.steps.forEach((step: any) => {
+          if (step.outputFields && Array.isArray(step.outputFields)) {
+            step.outputFields.forEach((field: any) => {
+              // Add endpoint_info to each field mapping if it doesn't exist
+              if (!field.endpoint_info && step.endpoint && step.endpoint.path) {
+                field.endpoint_info = {
+                  path: step.endpoint.path.trim(),
+                  method: step.endpoint.method.trim().toUpperCase()
+                };
+              }
+
+              // Ensure the transform field includes the endpoint path information
+              if (field.transform && !field.transform.startsWith('From:')) {
+                field.transform = `From: ${step.endpoint.method} ${step.endpoint.path} - ${field.transform}`;
+              } else if (!field.transform) {
+                field.transform = `From: ${step.endpoint.method} ${step.endpoint.path}`;
+              }
+            });
+          }
+        });
 
         console.log('[DocumentationService] Analysis complete:', {
           confidenceScore: mappings.confidenceScore,
@@ -1344,7 +1603,11 @@ Focus on:
           outputFields: [{
             source: 'placeholder_field',
             target: tmfEndpoint.specification.fields[0]?.name || 'unknown_field',
-            transform: 'manual_required'
+            transform: 'Manual mapping required',
+            endpoint_info: {
+              path: tmfEndpoint.path,
+              method: tmfEndpoint.method
+            }
           }]
         }]
       }];
@@ -1382,24 +1645,32 @@ Focus on:
 
         if (matchingField) {
           return {
-            source: matchingField.name.trim(),  // Ensure trimmed values
-            target: tmfField.name.trim(),
-            transform: matchingField.type === tmfField.type ? 'direct' : 'type_conversion'
+            source: matchingField.name.trim(),  // Documentation field is the source
+            target: tmfField.name.trim(),       // TMF field is the target
+            transform: `From: ${bestEndpoint.method.toUpperCase()} ${bestEndpoint.path.trim()}`,
+            endpoint_info: {
+              path: bestEndpoint.path.trim(),
+              method: bestEndpoint.method.trim().toUpperCase()
+            }
           };
         }
         
         // If no match found for a required field, create a placeholder mapping
         if (tmfField.required) {
           return {
-            source: `placeholder_${tmfField.name.trim()}`,
-            target: tmfField.name.trim(),
-            transform: 'manual_required'
+            source: 'placeholder_field',                                           // Documentation field (source)
+            target: tmfEndpoint.specification?.fields?.[0]?.name?.trim() || 'unknown_field', // TMF field (target)
+            transform: `From: ${bestEndpoint.method.toUpperCase()} ${bestEndpoint.path.trim()} (manual mapping required)`,
+            endpoint_info: {
+              path: bestEndpoint.path.trim(),
+              method: bestEndpoint.method.trim().toUpperCase()
+            }
           };
         }
         
         return undefined;
       })
-      .filter((mapping): mapping is { source: string; target: string; transform: string } => 
+      .filter((mapping): mapping is { source: string; target: string; transform: string; endpoint_info: { path: string; method: string } } => 
         mapping !== undefined
       );
 
@@ -1407,9 +1678,13 @@ Focus on:
     if (fieldMappings.length === 0) {
       console.log('[DocumentationService] No field mappings found, creating placeholder mapping');
       fieldMappings.push({
-        source: 'placeholder_field',
-        target: tmfEndpoint.specification.fields[0]?.name?.trim() || 'unknown_field',
-        transform: 'manual_required'
+        source: 'placeholder_field',                                           // Documentation field (source)
+        target: tmfEndpoint.specification?.fields?.[0]?.name?.trim() || 'unknown_field', // TMF field (target)
+        transform: `From: ${bestEndpoint.method.toUpperCase()} ${bestEndpoint.path.trim()} (manual mapping required)`,
+        endpoint_info: {
+          path: bestEndpoint.path.trim(),
+          method: bestEndpoint.method.trim().toUpperCase()
+        }
       });
     }
 

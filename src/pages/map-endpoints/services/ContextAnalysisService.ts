@@ -8,10 +8,10 @@ export interface TMFEndpointContext {
 }
 
 export class ContextAnalysisService {
-  private openai: OpenAI;
+  private apiKey: string;
 
   constructor(apiKey: string) {
-    this.openai = new OpenAI({ apiKey });
+    this.apiKey = apiKey;
   }
 
   async analyzeTMFEndpoint(endpoint: {
@@ -34,32 +34,45 @@ export class ContextAnalysisService {
 
       const prompt = this.buildAnalysisPrompt(endpoint);
 
-      const completion = await this.openai.chat.completions.create({
-        model: "gpt-4-turbo-preview",
-        messages: [
-          {
-            role: "system",
-            content: "You are an API analysis expert specializing in TMF APIs. Your task is to analyze the endpoint and provide semantic context and mapping suggestions."
-          },
-          {
-            role: "user",
-            content: prompt
-          }
-        ],
-        temperature: 0.2,
-        max_tokens: 1000
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+          'anthropic-version': '2023-06-01'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-sonnet-20240229',
+          max_tokens: 100000,
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an API analysis expert specializing in TMF APIs. Your task is to analyze the endpoint and provide semantic context and mapping suggestions.'
+            },
+            {
+              role: 'user',
+              content: prompt
+            }
+          ]
+        })
       });
 
-      const responseContent = completion.choices[0]?.message?.content;
+      if (!response.ok) {
+        throw new Error('Failed to get response from Claude API');
+      }
+
+      const completion = await response.json();
+      const responseContent = completion.content[0]?.text;
+
       if (!responseContent) {
-        throw new Error('No response from OpenAI API');
+        throw new Error('No response content from Claude API');
       }
 
       try {
         const analysis = JSON.parse(responseContent);
         return this.validateAnalysis(analysis);
       } catch (error) {
-        console.error('[ContextAnalysisService] Error parsing OpenAI response:', error);
+        console.error('[ContextAnalysisService] Error parsing Claude response:', error);
         throw new Error('Failed to parse contextual analysis');
       }
 

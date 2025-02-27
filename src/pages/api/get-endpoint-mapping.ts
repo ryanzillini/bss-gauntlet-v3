@@ -24,6 +24,18 @@ function extractEndpointId(endpointId: string): number {
   return Math.abs(hash % 2147483647);
 }
 
+// Helper function to extract path from endpoint ID
+function extractPathFromEndpointId(endpointId: string): string {
+  const pathMatch = endpointId.match(/^(.+)-(get|post|put|delete|patch)$/i);
+  
+  if (pathMatch) {
+    return pathMatch[1]; // Return the path portion
+  }
+  
+  // If no clear pattern, just return the ID
+  return endpointId;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'GET') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -75,7 +87,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     console.log('[get-endpoint-mapping] Successfully fetched mapping:', {
       id: data.id,
-      endpoint_path: data.endpoint_path,
+      tmf_path: extractPathFromEndpointId(decodedEndpointId),
+      endpoint_path: data.source_endpoint?.path,
       doc_id: data.doc_id,
       field_mappings_count: data.field_mappings?.length
     });

@@ -45,8 +45,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    console.log('[map-endpoint] Starting request processing');
-    
+    console.log('[map-endpoint] Starting request processing handler');
+    console.log('[map-endpoint] Request body:', req);
     const { endpointId, path, method, specification, docId } = req.body as EndpointMappingRequest;
 
     // Log request details
@@ -84,14 +84,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
 
-    // Log OpenAI key status
-    console.log('[map-endpoint] OpenAI configuration:', {
-      hasKey: Boolean(process.env.OPENAI_API_KEY),
-      keyLength: process.env.OPENAI_API_KEY?.length
+    // Log API key status
+    console.log('[map-endpoint] API configuration:', {
+      hasKey: Boolean(process.env.ANTHROPIC_API_KEY),
+      keyLength: process.env.ANTHROPIC_API_KEY?.length
     });
 
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OPENAI_API_KEY is not configured');
+    if (!process.env.ANTHROPIC_API_KEY) {
+      throw new Error('ANTHROPIC_API_KEY is not configured');
     }
 
     // Parse the specification string to an object
@@ -108,7 +108,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // Get mapping suggestions from the documentation service
     console.log('[map-endpoint] Initializing DocumentationMappingService');
-    const documentationService = new DocumentationMappingService(process.env.OPENAI_API_KEY);
+    const documentationService = new DocumentationMappingService(process.env.ANTHROPIC_API_KEY);
 
     console.log('[map-endpoint] Starting documentation analysis');
     const apiMappings: ApiMapping[] = await documentationService.analyzeDocumentation({
@@ -185,6 +185,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
     
     const errorDetails = getDetailedErrorMessage(error);
+    
+    // Check for API key
+    if (error instanceof Error) {
+      if (error.message.includes('ANTHROPIC_API_KEY')) {
+        return res.status(500).json({
+          error: 'API key configuration error',
+          details: 'The AI service API key is not properly configured'
+        });
+      }
+    }
     
     return res.status(500).json({
       error: errorDetails.message,

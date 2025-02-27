@@ -13,6 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const { data, error } = await supabase
       .from('bss_mappings')
       .select('id, name')
+      .eq('show', true)
       .eq('type', 'documentation')  // Only select documentation type mappings
       .order('name');
 

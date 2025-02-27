@@ -30,7 +30,7 @@ ${documentation}
 
 Generate a mapping configuration that follows this structure:
 ${JSON.stringify(OntologyMapping.shape, null, 2)}`,
-      max_tokens: 2000,
+      max_tokens: 100000,
       temperature: 0.7,
     };
 

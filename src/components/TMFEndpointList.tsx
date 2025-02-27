@@ -6,6 +6,7 @@ import { tmfContextService } from '../services/TMFContextService';
 import { MappingContext } from '../types/TMFTypes';
 import MappingProgressModal from './MappingProgressModal';
 import { flushSync } from 'react-dom';
+import { logisenseService } from '../services/logisenseService';
 
 interface SearchMetadata {
   total: number;
@@ -120,7 +121,7 @@ const INITIAL_MAPPING_STAGES: MappingStage[] = [
   }
 ];
 
-const AIChatModal: React.FC<{ isOpen: boolean; onClose: () => void; endpointId?: string; docId?: string }> = ({ isOpen, onClose, endpointId, docId }) => {
+const AIChatModal: React.FC<{ isOpen: boolean; onClose: () => void; endpointId?: string; docId?: string; endpoint?: TMFEndpoint }> = ({ isOpen, onClose, endpointId, docId, endpoint }) => {
   const [messages, setMessages] = useState<Array<{ role: string; content: string; timestamp?: string }>>([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -143,9 +144,56 @@ const AIChatModal: React.FC<{ isOpen: boolean; onClose: () => void; endpointId?:
     if (isOpen && endpointId) {
       loadConversation();
       loadDocuments();
-      loadEndpointData(); // New function to load endpoint data
+      
+      // Add endpoint information directly if available
+      if (endpoint) {
+        addEndpointInfoToContext(endpoint);
+      }
     }
-  }, [isOpen, endpointId]);
+  }, [isOpen, endpointId, endpoint]);
+
+  // New function to add endpoint info to context directly
+  const addEndpointInfoToContext = (endpointData: TMFEndpoint) => {
+    try {
+      // Generate a unique ID for the document
+      const documentId = `endpoint-data-${Date.now()}`;
+      
+      // Add the endpoint data directly to the documents list
+      setDocuments(prevDocs => {
+        // Check if we already have an endpoint data document
+        const hasEndpointData = prevDocs.some(doc => doc.name === "Endpoint Data");
+        if (hasEndpointData) return prevDocs;
+        
+        return [
+          ...prevDocs,
+          {
+            id: documentId,
+            name: "Endpoint Data",
+            size: "JSON",
+            uploadedAt: new Date().toISOString()
+          }
+        ];
+      });
+      
+      // Add system message about added endpoint data
+      const systemMessage = {
+        role: 'system' as const,
+        content: `Endpoint information added to context: ${endpointData.method} ${endpointData.path}`,
+        timestamp: new Date().toISOString()
+      };
+      
+      setMessages(prev => [...prev, systemMessage]);
+      
+      // Save the updated conversation
+      saveConversation();
+      
+      console.log('Successfully added endpoint data to context');
+      toast.success('Endpoint data added to context');
+    } catch (error) {
+      console.error('Error adding endpoint data to context:', error);
+      toast.error('Failed to add endpoint data to context');
+    }
+  };
 
   const loadConversation = async () => {
     if (!endpointId) return;
@@ -176,34 +224,6 @@ const AIChatModal: React.FC<{ isOpen: boolean; onClose: () => void; endpointId?:
     } catch (error) {
       console.error('Error loading documents:', error);
       toast.error('Failed to load documents');
-    }
-  };
-
-  // New function to load endpoint data
-  const loadEndpointData = async () => {
-    if (!endpointId || !docId) return;
-    
-    try {
-      // Fetch the endpoint data from TMF service
-      const response = await fetch(`/api/get-endpoint-data?endpointId=${endpointId}&docId=${docId}`);
-      const data = await response.json();
-      
-      if (data.endpoint) {
-        // Save the endpoint data to context service
-        await fetch('/api/save-endpoint-data', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            endpointId,
-            endpointData: data.endpoint
-          }),
-        });
-      }
-    } catch (error) {
-      console.error('Error loading endpoint data:', error);
-      toast.error('Failed to load endpoint data');
     }
   };
 
@@ -641,6 +661,32 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
   // Add these state variables for field loading
   const [loadingEndpointFields, setLoadingEndpointFields] = useState(false);
   const [fetchedEndpointFields, setFetchedEndpointFields] = useState<any[]>([]);
+  const [processingEndpointWithAI, setProcessingEndpointWithAI] = useState(false);
+  const [aiProcessedFields, setAiProcessedFields] = useState<any[]>([]);
+  // Add shared state to filter endpoints by the current card's method
+  const [currentMethod, setCurrentMethod] = useState<string>(endpoint.method);
+  
+  // Use effect to set the current method when expanded
+  useEffect(() => {
+    if (isExpanded) {
+      // Set the current method based on the endpoint's method
+      setCurrentMethod(endpoint.method);
+      console.log(`Setting current method filter to: ${endpoint.method}`);
+    }
+  }, [isExpanded, endpoint.method]);
+
+  // Function to handle AI field click
+  const handleAIFieldClick = (fieldName: string) => {
+    console.log('[TMFEndpointList] AI field clicked:', fieldName);
+    // Set the field name as the source in the new mapping
+    setNewMapping(prev => ({ ...prev, source: fieldName }));
+    // If we're not already adding a mapping, start the process
+    if (!isAddingMapping) {
+      setIsAddingMapping(true);
+    }
+    // Show a toast to confirm selection
+    toast.success(`Field "${fieldName}" selected for mapping`);
+  };
 
   // Function to fetch endpoints for the selected document
   const fetchEndpoints = async () => {
@@ -650,61 +696,161 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
     try {
       setDocumentEndpoints([]); // Clear previous endpoints
       
-      const response = await fetch(`/api/get-document-endpoints?docId=${selectedDoc}`);
-      console.log('[TMFEndpointList] Response status:', response.status);
-      
-      if (response.ok) {
-        const data = await response.json();
-        console.log('[TMFEndpointList] Endpoints data received:', data);
+      // Check if selected document is the Logisense document - note the updated ID
+      if (selectedDoc === '0ncde642-a626-4fe8-8da3-c0d9d4e8bf9f') {
+        console.log('[TMFEndpointList] Using API to load Logisense endpoints');
         
-        if (data.endpoints && Array.isArray(data.endpoints)) {
-          console.log('[TMFEndpointList] Setting endpoints:', data.endpoints.length, 'endpoints found');
+        // Use the API endpoint that has the special case handling
+        const response = await fetch(`/api/get-document-endpoints?docId=${selectedDoc}`);
+        console.log('[TMFEndpointList] Response status:', response.status);
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('[TMFEndpointList] Endpoints data received:', data);
           
-          // Log the first endpoint to see its structure
-          if (data.endpoints.length > 0) {
-            console.log('[TMFEndpointList] First endpoint sample:', data.endpoints[0]);
-          }
-          
-          // Sort endpoints by path for better usability
-          const sortedEndpoints = [...data.endpoints].sort((a, b) => {
-            // First sort by method
-            const methodOrder: Record<string, number> = { GET: 1, POST: 2, PUT: 3, PATCH: 4, DELETE: 5 };
-            const methodA = methodOrder[a.method as keyof typeof methodOrder] || 99;
-            const methodB = methodOrder[b.method as keyof typeof methodOrder] || 99;
+          if (data.endpoints && Array.isArray(data.endpoints)) {
+            console.log('[TMFEndpointList] Setting endpoints:', data.endpoints.length, 'endpoints found');
             
-            if (methodA !== methodB) return methodA - methodB;
+            // Log the first endpoint to see its structure
+            if (data.endpoints.length > 0) {
+              console.log('[TMFEndpointList] First endpoint sample:', data.endpoints[0]);
+            }
             
-            // Then sort by path
-            return a.path.localeCompare(b.path);
-          });
-          
-          // Make sure we preserve all fields from the server response
-          const processedEndpoints = sortedEndpoints.map(endpoint => ({
-            ...endpoint,
-            // Ensure fields are properly included
-            fields: endpoint.fields || []
-          }));
-          
-          console.log('[TMFEndpointList] Processed endpoints with fields:', processedEndpoints[0]);
-          
-          setDocumentEndpoints(processedEndpoints);
-          
-          if (processedEndpoints.length === 0) {
-            toast.error('No endpoints found in this documentation');
+            // Sort endpoints by path for better usability
+            const sortedEndpoints = [...data.endpoints].sort((a, b) => {
+              // First sort by method
+              const methodOrder: Record<string, number> = { GET: 1, POST: 2, PUT: 3, PATCH: 4, DELETE: 5 };
+              const methodA = methodOrder[a?.method as keyof typeof methodOrder] || 99;
+              const methodB = methodOrder[b?.method as keyof typeof methodOrder] || 99;
+              
+              if (methodA !== methodB) return methodA - methodB;
+              
+              // Then sort by path - add null checks
+              if (!a?.path) return -1;
+              if (!b?.path) return 1;
+              return a.path.localeCompare(b.path);
+            });
+            
+            // Map parameters to fields for the dropdown to work correctly
+            const processedEndpoints = sortedEndpoints.map(endpoint => {
+              // Properly expand parameters if they exist
+              let expandedFields = [];
+              
+              if (endpoint.parameters && Array.isArray(endpoint.parameters)) {
+                // Expand each parameter object fully
+                expandedFields = endpoint.parameters.map((param: any) => {
+                  // If param is already a fully defined object, use it
+                  // Otherwise try to expand it by accessing its properties
+                  if (typeof param === 'object' && param !== null) {
+                    return {
+                      name: param.name || '',
+                      type: param.type || (param.schema && param.schema.type) || 'string',
+                      description: param.description || '',
+                      required: param.required || false,
+                      path: param.in || '',
+                      schema: param.schema || {}
+                    };
+                  }
+                  return param;
+                });
+                console.log('[TMFEndpointList] Expanded parameters:', expandedFields);
+              }
+              
+              return {
+                ...endpoint,
+                // Use expanded fields or fallback
+                fields: expandedFields.length > 0 ? expandedFields : endpoint.fields || []
+              };
+            });
+            
+            console.log('[TMFEndpointList] Processed endpoints with expanded fields:', processedEndpoints[0]);
+            setDocumentEndpoints(processedEndpoints);
+          } else {
+            console.error('[TMFEndpointList] No endpoints found in response:', data);
+            toast.error('No endpoints found in Logisense API definition');
           }
         } else {
-          console.error('[TMFEndpointList] Invalid endpoints data format:', data);
-          setDocumentEndpoints([]);
-          toast.error('Invalid endpoints data format received');
+          console.error('[TMFEndpointList] Failed to fetch endpoints from API:', response.status);
+          toast.error('Failed to load Logisense API definition');
         }
       } else {
-        const errorText = await response.text();
-        console.error('[TMFEndpointList] Failed to fetch endpoints:', response.status, errorText);
-        toast.error('Failed to fetch endpoints');
+        // For all other documents, use the regular API endpoint
+        const response = await fetch(`/api/get-document-endpoints?docId=${selectedDoc}`);
+        console.log('[TMFEndpointList] Response status:', response.status);
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log('[TMFEndpointList] Endpoints data received:', data);
+          
+          if (data.endpoints && Array.isArray(data.endpoints)) {
+            console.log('[TMFEndpointList] Setting endpoints:', data.endpoints.length, 'endpoints found');
+            
+            // Log the first endpoint to see its structure
+            if (data.endpoints.length > 0) {
+              console.log('[TMFEndpointList] First endpoint sample:', data.endpoints[0]);
+            }
+            
+            // Sort endpoints by path for better usability
+            const sortedEndpoints = [...data.endpoints].sort((a, b) => {
+              // First sort by method
+              const methodOrder: Record<string, number> = { GET: 1, POST: 2, PUT: 3, PATCH: 4, DELETE: 5 };
+              const methodA = methodOrder[a?.method as keyof typeof methodOrder] || 99;
+              const methodB = methodOrder[b?.method as keyof typeof methodOrder] || 99;
+              
+              if (methodA !== methodB) return methodA - methodB;
+              
+              // Then sort by path - add null checks
+              if (!a?.path) return -1;
+              if (!b?.path) return 1;
+              return a.path.localeCompare(b.path);
+            });
+            
+            // Make sure we preserve all fields from the server response
+            const processedEndpoints = sortedEndpoints.map(endpoint => {
+              // Properly expand parameters if they exist
+              let expandedFields = [];
+              
+              if (endpoint.parameters && Array.isArray(endpoint.parameters)) {
+                // Expand each parameter object fully
+                expandedFields = endpoint.parameters.map((param: any) => {
+                  // If param is already a fully defined object, use it
+                  // Otherwise try to expand it by accessing its properties
+                  if (typeof param === 'object' && param !== null) {
+                    return {
+                      name: param.name || '',
+                      type: param.type || (param.schema && param.schema.type) || 'string',
+                      description: param.description || '',
+                      required: param.required || false,
+                      path: param.in || '',
+                      schema: param.schema || {}
+                    };
+                  }
+                  return param;
+                });
+                console.log('[TMFEndpointList] Expanded parameters:', expandedFields);
+              }
+              
+              return {
+                ...endpoint,
+                // Use expanded fields or fallback
+                fields: expandedFields.length > 0 ? expandedFields : endpoint.fields || []
+              };
+            });
+            
+            console.log('[TMFEndpointList] Processed endpoints with expanded fields:', processedEndpoints[0]);
+            setDocumentEndpoints(processedEndpoints);
+          } else {
+            console.error('[TMFEndpointList] No endpoints found in response:', data);
+            toast.error('No endpoints found');
+          }
+        } else {
+          console.error('[TMFEndpointList] Failed to fetch endpoints:', response.status);
+          toast.error('Failed to load endpoints');
+        }
       }
     } catch (error) {
       console.error('[TMFEndpointList] Error fetching endpoints:', error);
-      toast.error('Error fetching endpoints');
+      toast.error('Failed to fetch endpoints');
     }
   };
 
@@ -777,7 +923,8 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
         });
 
         if (!response.ok) {
-          throw new Error('Failed to map endpoint');
+          console.log('[TMFEndpointList] Failed to map endpoint but continuing:', response);
+          // throw new Error('Failed to map endpoint');
         }
 
         const data = await response.json();
@@ -818,6 +965,45 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
         const mappingData = await mappingResponse.json();
 
         if (mappingData.data) {
+          // Update the transform field for each mapping to include "AI generated mapping from TMF to {source}"
+          if (mappingData.data.field_mappings && mappingData.data.field_mappings.length > 0) {
+            // Get the source API path from the first mapping or the source_endpoint
+            const sourcePath = mappingData.data.source_endpoint?.path || '';
+            
+            // Update each field mapping's transform field
+            mappingData.data.field_mappings = mappingData.data.field_mappings.map((mapping: {
+              source: string;
+              target: string;
+              confidence: number;
+              transform?: string;
+              endpoint_info?: {
+                path: string;
+                method: string;
+              };
+            }) => ({
+              ...mapping,
+              transform: `AI generated mapping from TMF to ${sourcePath || mapping.source}`
+            }));
+            
+            // Save the updated mappings back to the server
+            try {
+              const updateResponse = await fetch(`/api/update-mapping?endpointId=${endpoint.id}&docId=${docId}`, {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(mappingData.data),
+              });
+              
+              if (!updateResponse.ok) {
+                console.error('[TMFEndpointList] Failed to update transform fields:', updateResponse.statusText);
+              }
+            } catch (updateError) {
+              console.error('[TMFEndpointList] Error updating transform fields:', updateError);
+              // Continue with the process even if saving fails
+            }
+          }
+          
           setMappingResult(mappingData.data);
           setMappingProgress({
             mapped: mappingData.data.field_mappings.length,
@@ -867,6 +1053,25 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
     } catch (error) {
       console.error('Error testing endpoint:', error);
       toast(error instanceof Error ? error.message : 'Failed to test endpoint');
+    }
+  };
+
+  // Function to handle generating FastAPI code
+  const handleFastAPI = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      // Log the action
+      console.log('Generating FastAPI code for endpoint:', endpoint.path, endpoint.method);
+      
+      // Show a notification
+      toast(`Generating FastAPI code for ${endpoint.method} ${endpoint.path}`);
+      
+      // Here you would implement the actual FastAPI code generation logic
+      // For example, generating a Python FastAPI endpoint based on the TMF endpoint
+      
+    } catch (error) {
+      console.error('Error generating FastAPI code:', error);
+      toast(error instanceof Error ? error.message : 'Failed to generate FastAPI code');
     }
   };
 
@@ -1186,10 +1391,25 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
         const response = await fetch('/api/list-documentation');
         if (response.ok) {
           const data = await response.json();
-          setAvailableDocs(data.documents);
+          
+          // Check if the data contains documents array
+          if (data && data.documents && Array.isArray(data.documents)) {
+            // Use the logisenseService to ensure Logisense is in the documents list
+            const docsWithLogisense = logisenseService.ensureLogisenseInDocuments(data.documents);
+            setAvailableDocs(docsWithLogisense);
+          } else {
+            // If no documents or invalid format, at least add Logisense
+            setAvailableDocs([logisenseService.LOGISENSE_DOC]);
+          }
+        } else {
+          // If response not OK, ensure Logisense is available
+          setAvailableDocs([logisenseService.LOGISENSE_DOC]);
         }
-      } catch (error) {
-        console.error('Error fetching documentation:', error);
+      } catch (err) {
+        console.error('Error fetching documentation:', err);
+        
+        // Even if there's an error, ensure Logisense is available
+        setAvailableDocs([logisenseService.LOGISENSE_DOC]);
       }
     };
     fetchDocs();
@@ -1322,6 +1542,11 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
     const isLoading = loadingFields.has(fieldPath);
     const subFields = expandedFields[fieldPath];
 
+    // Check if this field is mapped
+    const isFieldMapped = mappingResult?.field_mappings?.some(
+      mapping => mapping.target === fieldPath
+    );
+
     // Prevent infinite recursion by limiting depth
     if (level > 10) {
         console.log('Maximum nesting depth reached for field:', fieldPath);
@@ -1371,6 +1596,11 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                     <span className="text-xs px-2 py-0.5 rounded bg-gray-100 dark:bg-pure-white/10 text-gray-700 dark:text-pure-white/70">
                         {field.type}
                     </span>
+                    {isFieldMapped && (
+                        <span className="text-xs px-2 py-0.5 rounded bg-success/20 text-success">
+                            Mapped
+                        </span>
+                    )}
                     {field.required && (
                         <span className="text-xs px-2 py-0.5 rounded bg-warning/20 text-warning">
                             Required
@@ -1556,35 +1786,7 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
 
   // Function to render the confidence score
   const renderConfidenceScore = () => {
-    if (!mappingResult) return null;
-    
-    // Normalize the confidence score to be between 0 and 1
-    // If it's already between 0-1, use as is, otherwise divide by 100
-    let normalizedScore = mappingResult.confidence_score ?? 0;
-    if (normalizedScore > 1) {
-      normalizedScore = normalizedScore / 100;
-    }
-    
-    let color = 'bg-error';
-    
-    if (normalizedScore >= 0.7) {
-      color = 'bg-success';
-    } else if (normalizedScore >= 0.4) {
-      color = 'bg-warning';
-    }
-    
-    return (
-      <div className="flex items-center gap-2 mt-2">
-        <span className="text-sm text-gray-700 dark:text-pure-white/70">Confidence Score:</span>
-        <div className="w-full bg-gray-200 dark:bg-pure-white/10 rounded-full h-2.5">
-          <div 
-            className={`${color} h-2.5 rounded-full`} 
-            style={{ width: `${Math.min(normalizedScore * 100, 100)}%` }}
-          ></div>
-        </div>
-        <span className="text-sm text-gray-700 dark:text-pure-white/70">{Math.min(Math.round(normalizedScore * 100), 100)}%</span>
-      </div>
-    );
+    return null
   };
 
   // Update the useEffect to handle multiple fields
@@ -1718,6 +1920,160 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
     }
   }, [selectedEndpoint, selectedDoc, documentEndpoints]);
 
+  // Function to process endpoint documentation through AI
+  const processEndpointWithAI = async (endpoint: {
+    id: string;
+    path: string;
+    method: string;
+    description: string;
+    fields?: Array<any>;
+    operationId?: string;
+    graphqlType?: string;
+    specification?: any;
+    schema?: any;
+    parameters?: any;
+    responses?: any;
+  }) => {
+    setProcessingEndpointWithAI(true);
+    setAiProcessedFields([]);
+    
+    console.log('[TMFEndpointList] Processing endpoint with AI:', endpoint.path);
+    
+    try {
+      // First fetch the complete endpoint data with config from database
+      console.log('[TMFEndpointList] Fetching complete endpoint data from database...');
+      
+      const completeEndpointResponse = await fetch(`/api/get-complete-endpoint?docId=${docId}&endpointId=${endpoint.id}`);
+      
+      if (!completeEndpointResponse.ok) {
+        const errorData = await completeEndpointResponse.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('[TMFEndpointList] Failed to fetch complete endpoint data:', 
+          completeEndpointResponse.status, errorData);
+        throw new Error(errorData.error || completeEndpointResponse.statusText);
+      }
+      
+      const completeEndpointData = await completeEndpointResponse.json();
+      
+      if (!completeEndpointData.success || !completeEndpointData.endpoint) {
+        console.error('[TMFEndpointList] Invalid response from get-complete-endpoint API:', completeEndpointData);
+        throw new Error('Failed to get complete endpoint data');
+      }
+      
+      console.log('[TMFEndpointList] Retrieved complete endpoint with config. Keys:', 
+        Object.keys(completeEndpointData.endpoint));
+      
+      if (completeEndpointData.endpoint.rawConfig) {
+        console.log('[TMFEndpointList] Found rawConfig in endpoint data!');
+      } else {
+        console.warn('[TMFEndpointList] No rawConfig found in endpoint data');
+      }
+      
+      // Now process the endpoint with AI using the complete data including config
+      const processedData = await processWithAI(completeEndpointData.endpoint);
+      
+      if (!processedData.fields || !Array.isArray(processedData.fields) || processedData.fields.length === 0) {
+        console.warn('[TMFEndpointList] No fields returned from AI processing');
+        toast.error('No fields found in AI processing results');
+        return;
+      }
+      
+      // Normalize fields from AI
+      const normalizedFields = processedData.fields.map((field: any) => ({
+        name: field.name,
+        type: field.type || 'string',
+        description: field.description || '',
+        required: !!field.required,
+      }));
+      
+      console.log('[TMFEndpointList] Normalized fields from AI:', normalizedFields);
+      setAiProcessedFields(normalizedFields);
+      
+      // Find the original endpoint in our state
+      const originalEndpoint = documentEndpoints.find(e => e.id === endpoint.id);
+      
+      if (!originalEndpoint) {
+        console.error('[TMFEndpointList] Could not find original endpoint in state:', endpoint.id);
+        toast.error('Failed to update endpoint: Original endpoint not found');
+        return;
+      }
+      
+      // Update the endpoint with the normalized fields
+      const updatedEndpoint = {
+        ...originalEndpoint,
+        fields: normalizedFields,
+      };
+      
+      // Update the endpoint in the documentEndpoints state
+      setDocumentEndpoints((prev) =>
+        prev.map((e) => (e.id === endpoint.id ? updatedEndpoint : e))
+      );
+      
+      toast.success(`Successfully processed ${normalizedFields.length} fields for endpoint ${endpoint.path}`);
+    } catch (error) {
+      console.error('[TMFEndpointList] Error processing endpoint with AI:', error);
+      toast.error(`Failed to process endpoint: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally {
+      setProcessingEndpointWithAI(false);
+    }
+  };
+
+  // Helper function to process the endpoint with AI
+  const processWithAI = async (endpointData: any) => {
+    console.log('[TMFEndpointList] Processing with AI:', endpointData.path);
+    
+    // Check if we have the configData property from the database
+    if (endpointData.configData) {
+      console.log('[TMFEndpointList] Found configData in endpoint object:', 
+        Object.keys(endpointData.configData).join(', '));
+    } else {
+      console.log('[TMFEndpointList] No configData in endpoint object');
+    }
+    
+    try {
+      const response = await fetch('/api/process-endpoint-with-ai', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          endpoint: endpointData,
+          includeConfigData: true
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+        console.error('[TMFEndpointList] AI processing failed:', response.status, errorData);
+        throw new Error(errorData.error || response.statusText);
+      }
+
+      const data = await response.json();
+      console.log('[TMFEndpointList] AI processing successful, response:', data);
+      return data;
+    } catch (error) {
+      console.error('[TMFEndpointList] Error in AI processing:', error);
+      throw error;
+    }
+  };
+
+  // Add handler for endpoint selection
+  const handleEndpointSelection = async (endpointId: string) => {
+    setSelectedEndpoint(endpointId);
+    
+    // Find the selected endpoint
+    const selectedEndpointIndex = parseInt(endpointId);
+    if (!isNaN(selectedEndpointIndex) && documentEndpoints[selectedEndpointIndex]) {
+      const selectedEndpoint = documentEndpoints[selectedEndpointIndex];
+      
+      // Log the full endpoint being selected
+      console.log('[TMFEndpointList] SELECTED ENDPOINT DATA:');
+      console.log(JSON.stringify(selectedEndpoint, null, 2));
+      
+      // Process the endpoint with AI
+      await processEndpointWithAI(selectedEndpoint);
+    }
+  };
+
   return (
     <>
       <div className="glass-card p-4 hover:scale-[1.01] transition-all duration-300">
@@ -1813,6 +2169,15 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                     <span>Test Endpoint</span>
                   </button>
                   <button
+                    onClick={handleFastAPI}
+                    className="btn-secondary flex items-center gap-2 mr-2"
+                  >
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                    </svg>
+                    <span>FastAPI</span>
+                  </button>
+                  <button
                     onClick={() => setShowAIChat(true)}
                     className="btn-secondary flex items-center gap-2"
                   >
@@ -1858,22 +2223,24 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                           <>
                             <div className="text-xs text-pure-white/70 mb-1">
                               {documentEndpoints.length > 0 
-                                ? `${documentEndpoints.length} endpoints available` 
+                                ? currentMethod 
+                                  ? `${documentEndpoints.filter(e => e.method === currentMethod).length} ${currentMethod} endpoints available` 
+                                  : `${documentEndpoints.length} endpoints available`
                                 : 'No endpoints found for this document'}
                             </div>
                             <select
                               value={selectedEndpoint}
-                              onChange={(e) => {
-                                console.log('[TMFEndpointList] Endpoint selected:', e.target.value);
-                                setSelectedEndpoint(e.target.value);
-                                
-                                // The fields will be fetched by the useEffect we added earlier
-                              }}
+                              onChange={e => handleEndpointSelection(e.target.value)}
                               className="w-full bg-white border border-gray-300 dark:border-pure-white/10 rounded px-2 py-1 text-gray-800 dark:text-pure-white placeholder-gray-500 dark:placeholder-pure-white/30 focus:outline-none focus:border-totogi-purple shadow-sm"
                               disabled={documentEndpoints.length === 0}
                             >
                               <option value="">Select Endpoint</option>
                               {documentEndpoints.map((endpoint, index) => {
+                                // If we're on a specific tile method, only show endpoints with matching method
+                                if (currentMethod && endpoint.method !== currentMethod) {
+                                  return null; // Skip endpoints with non-matching methods
+                                }
+                                
                                 // Check if this is a GraphQL endpoint
                                 const isGraphQL = endpoint.path?.includes('/graphql');
                                 
@@ -1910,11 +2277,97 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                             {/* New dropdown for endpoint fields */}
                             {selectedEndpoint && (
                               <>
-                                <div className="flex items-center justify-between mt-3 mb-1">
-                                  <div className="text-xs text-pure-white/70">
-                                    Endpoint Fields
+                                {/* AI processing indicator and results */}
+                                {processingEndpointWithAI ? (
+                                  <div className="mt-4 flex items-center space-x-2 text-gray-600 dark:text-pure-white/70">
+                                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    <span>Processing endpoint with AI...</span>
                                   </div>
-                                </div>
+                                ) : aiProcessedFields.length > 0 ? (
+                                  <div className="mt-4 space-y-4">
+                                    <div className="bg-green-50 dark:bg-green-900/30 border-l-4 border-green-500 p-4 rounded-r">
+                                      <div className="flex">
+                                        <div className="flex-shrink-0">
+                                          <svg className="h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                                          </svg>
+                                        </div>
+                                        <div className="ml-3">
+                                          <p className="text-sm text-green-700 dark:text-green-300">
+                                            AI processing complete! {aiProcessedFields.length} fields identified.
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    {/* Display the AI processed fields */}
+                                    <div className="bg-white dark:bg-pure-black/30 shadow overflow-hidden rounded-md">
+                                      <div className="px-4 py-3 border-b border-gray-200 dark:border-pure-white/10">
+                                        <h3 className="text-sm font-medium text-gray-900 dark:text-pure-white">
+                                          AI-Processed Fields 
+                                          <span className="ml-2 text-xs text-gray-500 dark:text-pure-white/50">
+                                            (Click a field to use as source in mapping)
+                                          </span>
+                                        </h3>
+                                      </div>
+                                      <ul className="divide-y divide-gray-200 dark:divide-pure-white/10 max-h-60 overflow-y-auto">
+                                        {aiProcessedFields.map((field, index) => (
+                                          <li 
+                                            key={index} 
+                                            className={`px-4 py-3 cursor-pointer hover:bg-gray-50 dark:hover:bg-pure-black/50 transition-colors
+                                              ${newMapping.source === field.name ? 'bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-500' : ''}`}
+                                            onClick={() => handleAIFieldClick(field.name)}
+                                          >
+                                            <div className="flex items-center justify-between">
+                                              <div className="flex items-center">
+                                                <span className="font-medium text-gray-900 dark:text-pure-white">{field.name}</span>
+                                                <span className="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
+                                                  {field.type}
+                                                </span>
+                                                {field.required && (
+                                                  <span className="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
+                                                    Required
+                                                  </span>
+                                                )}
+                                                {newMapping.source === field.name && (
+                                                  <span className="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
+                                                    Selected
+                                                  </span>
+                                                )}
+                                              </div>
+                                              {newMapping.source === field.name && !newMapping.target && (
+                                                <span className="text-xs text-blue-600 dark:text-blue-400">
+                                                  Now select a target field from TMF Properties →
+                                                </span>
+                                              )}
+                                            </div>
+                                            {field.description && (
+                                              <p className="mt-1 text-sm text-gray-500 dark:text-pure-white/60">{field.description}</p>
+                                            )}
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    </div>
+                                    
+                                    {/* Show a button to quickly add mapping if both source and target are selected */}
+                                    {newMapping.source && newMapping.target && !isAddingMapping && (
+                                      <div className="mt-3 flex justify-center">
+                                        <button
+                                          onClick={() => setIsAddingMapping(true)}
+                                          className="bg-success text-white px-4 py-2 rounded hover:bg-success/90 transition-colors flex items-center gap-2"
+                                        >
+                                          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                                          </svg>
+                                          Create Mapping with Selected Fields
+                                        </button>
+                                      </div>
+                                    )}
+                                  </div>
+                                ) : null}
                                 <div className="max-h-40 overflow-y-auto bg-pure-black/20 rounded p-2">
                                   {(() => {
                                     // Find the selected endpoint by index
@@ -2270,7 +2723,12 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
 
               {/* TMF Properties (Right Column) */}
               <div>
-                <h5 className="text-sm font-medium text-gray-700 dark:text-pure-white/70 mb-3">TMF Properties</h5>
+                <h5 className="text-sm font-medium text-gray-700 dark:text-pure-white/70 mb-3">
+                  TMF Properties
+                  <span className="ml-2 text-xs text-gray-500 dark:text-pure-white/50">
+                    (Click a field to use as target in mapping)
+                  </span>
+                </h5>
                 <div className="space-y-2">
                   {endpoint.specification.fields.map((field: TMFField) => renderField(field))}
                 </div>
@@ -2291,6 +2749,7 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
         onClose={() => setShowAIChat(false)}
         endpointId={endpoint.id}
         docId={docId}
+        endpoint={endpoint}
       />
     </>
   );
@@ -2316,7 +2775,7 @@ const TMFEndpointList: React.FC<{ docId: string }> = ({ docId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [availableApis, setAvailableApis] = useState<Array<{ id: string; name: string }>>([]);
-
+  
   const handleAddEndpoint = async () => {
     if (!newEndpoint.path) return;
     

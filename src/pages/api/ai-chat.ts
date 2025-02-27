@@ -43,7 +43,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Get ALL available mappings for this documentation
     const { data: allMappings, error: allMappingsError } = await supabase
       .from('bss_mappings')
-      .select('*');
+      .select('*')
+      .eq('show', true);
 
     if (allMappingsError) {
       console.error('[ai-chat] All mappings fetch error:', allMappingsError);
@@ -70,7 +71,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     // Get specific documentation details
     const { data: docDetails, error: docError } = await supabase
       .from('bss_mappings')
+
       .select('*')
+      .eq('show', true)
       .eq('id', docId)
       .single();
 
@@ -182,26 +185,73 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     };
 
     // Call OpenAI API with streaming
-    const stream = await openai.chat.completions.create({
-      model: 'gpt-4-turbo-preview',
-      messages: [
-        systemMessage,
-        ...messages.map((m: any) => ({
-          role: m.role,
-          content: m.content
-        }))
-      ],
-      temperature: (isEndpointReviewRequested || isDetailedAnalysisRequested) ? 0.3 : 0.7,
-      max_tokens: 2000,
-      stream: true
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: 'claude-3-sonnet-20240229',
+        max_tokens: 100000,
+        temperature: (isEndpointReviewRequested || isDetailedAnalysisRequested) ? 0.3 : 0.7,
+        stream: true,
+        messages: [
+          systemMessage,
+          ...messages.map((m: any) => ({
+            role: m.role,
+            content: m.content
+          }))
+        ]
+      })
     });
 
+    if (!response.ok) {
+      const errorData = await response.text();
+      console.error('[ai-chat] Claude API error:', {
+        status: response.status,
+        statusText: response.statusText,
+        errorData
+      });
+      throw new Error(`Failed to get response from Claude API: ${response.status} ${response.statusText}`);
+    }
+
+    const stream = response.body;
+    if (!stream) {
+      throw new Error('No response stream from Claude API');
+    }
+
     // Stream the response
-    for await (const chunk of stream) {
-      const content = chunk.choices[0]?.delta?.content || '';
-      if (content) {
-        res.write(`data: ${JSON.stringify({ content })}\n\n`);
+    const reader = stream.getReader();
+    const decoder = new TextDecoder();
+    
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n').filter(line => line.trim() !== '');
+        
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const data = line.slice(6);
+            if (data === '[DONE]') continue;
+            
+            try {
+              const parsedData = JSON.parse(data);
+              if (parsedData.type === 'content_block_delta' && parsedData.delta?.text) {
+                res.write(`data: ${JSON.stringify({ content: parsedData.delta.text })}\n\n`);
+              }
+            } catch (e) {
+              console.error('Error parsing SSE data:', e);
+            }
+          }
+        }
       }
+    } finally {
+      reader.releaseLock();
     }
 
     res.write('data: [DONE]\n\n');

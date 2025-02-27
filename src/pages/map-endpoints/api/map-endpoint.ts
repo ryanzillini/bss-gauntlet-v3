@@ -21,7 +21,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    console.log('[map-endpoint] Starting request processing');
+    console.log('[map-endpoint] Starting request processing handler3');
     
     const { endpointId, path, method, specification, docId, preprocessedDoc, context } = req.body as EndpointMappingRequest;
 

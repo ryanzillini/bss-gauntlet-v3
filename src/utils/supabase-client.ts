@@ -200,6 +200,7 @@ export const getMappingFromDb = async (id: string) => {
     const { data, error } = await supabase
       .from('bss_mappings')
       .select('*')
+      .eq('show', true)
       .eq('id', id)
       .single();
 
@@ -230,12 +231,13 @@ export const getMappingFromDb = async (id: string) => {
 };
 
 export const getAllMappingsFromDb = async () => {
-  console.log('[supabase-client] Attempting to get all mappings');
+  console.log('[supabase-client] Attempting to get all mappings with show=true');
 
   try {
     const { data, error } = await supabase
       .from('bss_mappings')
       .select('*')
+      .eq('show', true)
       .order('created_at', { ascending: false });
 
     if (error) {
@@ -387,6 +389,15 @@ export const saveEndpointMapping = async (mapping: Omit<BssEndpointMapping, 'id'
   if (!mapping.source_endpoint?.path || !mapping.source_endpoint?.method) {
     throw new Error('Invalid source_endpoint: path and method are required');
   }
+  
+  // Ensure confidence_score is an integer
+  if (typeof mapping.confidence_score !== 'number' || isNaN(mapping.confidence_score)) {
+    console.warn('[supabase-client] Invalid confidence_score, converting to integer:', mapping.confidence_score);
+    mapping.confidence_score = 50; // Default to 50 if invalid
+  } else if (!Number.isInteger(mapping.confidence_score)) {
+    console.warn('[supabase-client] confidence_score is not an integer, rounding:', mapping.confidence_score);
+    mapping.confidence_score = Math.round(mapping.confidence_score);
+  }
 
   try {
     const { data, error } = await supabase
@@ -395,7 +406,6 @@ export const saveEndpointMapping = async (mapping: Omit<BssEndpointMapping, 'id'
         ...mapping,
         // Ensure all required fields have default values
         status: mapping.status || 'draft',
-        confidence_score: mapping.confidence_score || 0,
         reasoning: mapping.reasoning || '',
         field_mappings: mapping.field_mappings.map(fm => ({
           source: fm.source,
@@ -548,6 +558,35 @@ export const approveEndpointMapping = async (id: string, userId: string) => {
     return data;
   } catch (error) {
     console.error('[supabase-client] Error approving endpoint mapping:', error);
+    throw error;
+  }
+};
+
+export const getEndpointMappingById = async (id: string) => {
+  console.log('[supabase-client] Fetching endpoint mapping by ID:', id);
+
+  try {
+    const { data, error } = await supabase
+      .from('bss_endpoint_mappings')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    if (error) {
+      console.error('[supabase-client] Database error:', error);
+      throw error;
+    }
+
+    console.log('[supabase-client] Successfully fetched endpoint mapping:', {
+      id: data.id,
+      endpoint_id: data.endpoint_id,
+      source_endpoint: data.source_endpoint?.path,
+      doc_id: data.doc_id,
+      field_mappings_count: data.field_mappings?.length
+    });
+    return data;
+  } catch (error) {
+    console.error('[supabase-client] Error fetching endpoint mapping by ID:', error);
     throw error;
   }
 }; 

@@ -69,23 +69,54 @@ export class DocumentationMappingService {
         Format the response as a JSON array of mappings.
       `;
 
-      // Create the request payload
+      // Create the request payload for Claude 3
       const input = {
-        modelId: 'anthropic.claude-v2',
-        contentType: 'application/json',
-        accept: 'application/json',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.ANTHROPIC_API_KEY || '',
+          'anthropic-version': '2023-06-01'
+        },
         body: JSON.stringify({
-          prompt: `\n\nHuman: ${prompt}\n\nAssistant:`,
-          max_tokens_to_sample: 4096,
+          model: 'claude-3-sonnet-20240229',
+          max_tokens: 100000,
           temperature: 0.5,
-          top_k: 250,
-          top_p: 1,
-          stop_sequences: ['\n\nHuman:']
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an API mapping expert. Analyze the documentation and provide detailed endpoint mappings with field-level compatibility analysis.'
+            },
+            {
+              role: 'user',
+              content: prompt
+            }
+          ]
         })
       };
 
       // Send request to Claude
-      const command = new InvokeModelCommand(input);
+      const bedrockInput = {
+        modelId: 'anthropic.claude-3-sonnet-20240229', // Required model identifier for Bedrock
+        contentType: 'application/json',
+        accept: 'application/json',
+        body: JSON.stringify({
+          anthropic_version: '2023-06-01',
+          max_tokens: 100000,
+          temperature: 0.5,
+          messages: [
+            {
+              role: 'system',
+              content: 'You are an API mapping expert. Analyze the documentation and provide detailed endpoint mappings with field-level compatibility analysis.'
+            },
+            {
+              role: 'user',
+              content: prompt
+            }
+          ]
+        })
+      };
+
+      const command = new InvokeModelCommand(bedrockInput);
       const bedrockResponse = await this.bedrockClient.send(command);
 
       // Parse the response

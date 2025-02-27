@@ -39,7 +39,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           id: endpoint.id || endpoint.path,
           path: endpoint.path,
           method: endpoint.method,
-          description: endpoint.description || ''
+          description: endpoint.description || '',
+          fields: endpoint.parameters?.map((param: any) => ({
+            name: param.name,
+            type: param.type || 'string',
+            required: param.required || false,
+            description: param.description || ''
+          })) || [],
+          operationId: endpoint.name,
+          graphqlType: endpoint.method === 'GET' ? 'query' : 'mutation',
+          _original: endpoint
         };
         return mappedEndpoint;
       })
