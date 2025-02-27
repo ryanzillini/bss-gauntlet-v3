@@ -2074,6 +2074,89 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
     }
   };
 
+  // Add this new function after the renderField function (around line 1634)
+  const renderResponseSchema = (schemaType: string, statusCode: string, description: string) => {
+    // Create a virtual field to represent the schema
+    const field: TMFField = {
+      name: schemaType,
+      type: 'object',
+      required: true,
+      description: `Response schema for ${statusCode} ${description}`,
+      schema: {
+        $ref: `#/definitions/${schemaType}`
+      }
+    };
+    
+    // Create a unique path for this response schema
+    const fieldPath = `response.${statusCode}.${schemaType}`;
+    
+    const isExpandable = true; // Schema references are always expandable
+    const isExpanded = expandedFields[fieldPath]?.length > 0;
+    const isLoading = loadingFields.has(fieldPath);
+    const subFields = expandedFields[fieldPath];
+
+    return (
+      <div key={fieldPath}>
+        <div className="bg-pure-black/20 rounded-lg p-3">
+          <div className="flex items-center gap-2 mb-1">
+            <span className={`text-xs px-2 py-0.5 rounded 
+              ${statusCode.startsWith('2') ? 'bg-success/20 text-success' : 
+                statusCode.startsWith('4') ? 'bg-warning/20 text-warning' : 
+                'bg-error/20 text-error'}`}
+            >
+              {statusCode}
+            </span>
+            <span className="text-gray-800 dark:text-pure-white font-medium">
+              {description}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 mt-2">
+            <span className="text-sm text-gray-700 dark:text-pure-white/70">
+              Schema: {schemaType}
+            </span>
+            {isExpandable && (
+              <svg 
+                className={`h-4 w-4 text-gray-700 dark:text-pure-white/50 transition-transform cursor-pointer ${isExpanded ? 'rotate-90' : ''}`}
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (isExpanded) {
+                    // If already expanded, collapse by removing from expandedFields
+                    setExpandedFields(prev => {
+                      const next = { ...prev };
+                      delete next[fieldPath];
+                      return next;
+                    });
+                  } else {
+                    // If not expanded, expand the schema
+                    handleFieldExpand(field, fieldPath);
+                  }
+                }}
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            )}
+            {isLoading && (
+              <svg className="animate-spin ml-1 h-4 w-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            )}
+          </div>
+          
+          {/* Render sub-fields if expanded */}
+          {isExpanded && subFields && (
+            <div className="mt-2 pl-4 border-l-2 border-pure-white/10">
+              {subFields.map((subField) => renderField(subField, 1, fieldPath))}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <div className="glass-card p-4 hover:scale-[1.01] transition-all duration-300">
@@ -2745,7 +2828,15 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                   </h6>
                   <div className="space-y-2">
                     {endpoint.path.includes('customer') ? (
-                      // Hardcoded responses for Customer API
+                      // Use the new renderResponseSchema function for the Customer API
+                      <>
+                        {renderResponseSchema('Customer', '200', 'Success')}
+                        {renderResponseSchema('Error', '400', 'Bad Request')}
+                        {renderResponseSchema('Error', '404', 'Not Found')}
+                        {renderResponseSchema('Error', '500', 'Internal Server Error')}
+                      </>
+                    ) : (
+                      // Original hardcoded responses for other APIs
                       <>
                         <div className="bg-pure-black/20 rounded-lg p-3">
                           <div className="flex items-center gap-2 mb-1">
@@ -2757,7 +2848,7 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                             </span>
                           </div>
                           <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
-                            Schema: Customer
+                            Returns the requested resource
                           </p>
                         </div>
                         <div className="bg-pure-black/20 rounded-lg p-3">
@@ -2770,42 +2861,10 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                             </span>
                           </div>
                           <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
-                            Schema: Error
-                          </p>
-                        </div>
-                        <div className="bg-pure-black/20 rounded-lg p-3">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-xs px-2 py-0.5 rounded bg-warning/20 text-warning">
-                              404
-                            </span>
-                            <span className="text-gray-800 dark:text-pure-white font-medium">
-                              Not Found
-                            </span>
-                          </div>
-                          <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
-                            Schema: Error
-                          </p>
-                        </div>
-                        <div className="bg-pure-black/20 rounded-lg p-3">
-                          <div className="flex items-center gap-2 mb-1">
-                            <span className="text-xs px-2 py-0.5 rounded bg-error/20 text-error">
-                              500
-                            </span>
-                            <span className="text-gray-800 dark:text-pure-white font-medium">
-                              Internal Server Error
-                            </span>
-                          </div>
-                          <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
-                            Schema: Error
+                            Invalid input parameters
                           </p>
                         </div>
                       </>
-                    ) : (
-                      <div className="text-sm bg-pure-black/30 p-2 rounded">
-                        <p className="text-sm text-gray-700 dark:text-pure-white/70">
-                          No response information available.
-                        </p>
-                      </div>
                     )}
                   </div>
                 </div>

@@ -102,9 +102,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     Your task:
     1. Carefully analyze the provided endpoint data
-    2. Extract ALL fields related to this endpoint (URL params, request body, response body)
-    3. For each field, provide name, type, description, and required status
-    4. Include any nested subfields for objects and arrays
+    2. Extract ALL fields related to this endpoint, including all nested properties within objects
+    3. For each field, determine if it's a parameter (URL/query param) or response field
+    4. For each field, provide name, type, description, required status, field location, and if it has a parent object
     
     Return the fields in this precise structure:
     [
@@ -113,13 +113,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         "type": "string|number|boolean|object|array|etc",
         "description": "Description of what this field represents",
         "required": true/false,
-        "subFields": [] // Include only for object or array types
+        "fieldLocation": "parameter|response", // Indicate if this is a parameter or response field
+        "hasParent": true/false, // Indicate if this field is nested within a parent object
+        "parentName": "user" // Name of immediate parent object if hasParent is true
       }
     ]
     
-    Only include fields that actually exist in the API data. Do not invent field names or make assumptions. If no fields can be determined from the data, return an empty array.
+    IMPORTANT NOTES:
+    - List ALL fields as individual entries, including nested ones
+    - For nested fields, indicate the parent object using hasParent and parentName
+    - Only include fields that actually exist in the API data
+    - Do not invent field names or make assumptions
+    - If no fields can be determined from the data, return an empty array
+    - Do not include parent objects themselves in the output, only their child fields
   `;
-  
   console.log('[process-endpoint-with-ai] Preparing to send prompt to AI...');
   
   try {

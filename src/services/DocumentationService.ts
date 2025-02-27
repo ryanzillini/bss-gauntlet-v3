@@ -173,7 +173,7 @@ class DocumentationService {
       
       const { data, error } = await supabase
         .from('bss_mappings')
-        .select('config, endpoints')  // Select both config and endpoints
+        .select('endpoints')  // Select both config and endpoints
         .eq('id', docId)
         .eq('type', 'documentation')
         .single();
@@ -189,14 +189,22 @@ class DocumentationService {
       }
 
       
-
       // Ensure endpoints is an array
       let endpoints = [];
       
+      // Create config object from the JSON file
+      const configData = require("../mapping/logisenseData/config.json");
+      
+      // Create a new object that includes both data and config
+      const documentData = {
+        ...data,
+        config: configData
+      };
+      
       // First check if this is a GraphQL document
-      if (data.config && (data.config.type === 'graphql' || data.config.format === 'GraphQL')) {
+      if (documentData.config && (documentData.config.type === 'graphql' || documentData.config.format === 'GraphQL')) {
         console.log('[DocumentationService] Detected GraphQL document, parsing with specialized parser');
-        endpoints = this.parseGraphQLConfig(data.config);
+        endpoints = this.parseGraphQLConfig(documentData.config);
         
         if (endpoints.length > 0) {
           console.log('[DocumentationService] Successfully extracted GraphQL endpoints:', endpoints.length);
@@ -207,13 +215,13 @@ class DocumentationService {
       
       // If we didn't get endpoints from GraphQL parsing, try other methods
       if (endpoints.length === 0) {
-        if (data.endpoints && Array.isArray(data.endpoints)) {
+        if (documentData.endpoints && Array.isArray(documentData.endpoints)) {
           console.log('[DocumentationService] Using endpoints from data.endpoints');
-          endpoints = data.endpoints;
-        } else if (data.config?.endpoints && Array.isArray(data.config.endpoints)) {
+          endpoints = documentData.endpoints;
+        } else if (documentData.config?.endpoints && Array.isArray(documentData.config.endpoints)) {
           console.log('[DocumentationService] Using endpoints from data.config.endpoints');
-          endpoints = data.config.endpoints;
-        } else if (data.config?.endpoints && typeof data.config.endpoints === 'object') {
+          endpoints = documentData.config.endpoints;
+        } else if (documentData.config?.endpoints && typeof documentData.config.endpoints === 'object') {
           // Handle case where endpoints is an object with keys as paths or methods
           console.log('[DocumentationService] Endpoints in config is an object, attempting to convert to array');
           try {
@@ -222,7 +230,7 @@ class DocumentationService {
             
             // Log the structure to help debug
             console.log('[DocumentationService] Endpoints object structure:', 
-              JSON.stringify(Object.keys(data.config.endpoints).slice(0, 5), null, 2));
+              JSON.stringify(Object.keys(documentData.config.endpoints).slice(0, 5), null, 2));
             
             // Different possible structures:
             // 1. { "/path1": { method: "GET", ... }, "/path2": { ... } }
@@ -230,21 +238,21 @@ class DocumentationService {
             // 3. { "endpoints": [ ... ] } - nested array
             
             // Check for nested endpoints array
-            if (data.config.endpoints.endpoints && Array.isArray(data.config.endpoints.endpoints)) {
+            if (documentData.config.endpoints.endpoints && Array.isArray(documentData.config.endpoints.endpoints)) {
               console.log('[DocumentationService] Found nested endpoints array');
-              extractedEndpoints.push(...data.config.endpoints.endpoints);
+              extractedEndpoints.push(...documentData.config.endpoints.endpoints);
             } else {
               // Try to determine the structure by checking the first key
-              const keys = Object.keys(data.config.endpoints);
+              const keys = Object.keys(documentData.config.endpoints);
               if (keys.length > 0) {
                 const firstKey = keys[0];
-                const firstValue = data.config.endpoints[firstKey];
+                const firstValue = documentData.config.endpoints[firstKey];
                 
                 if (firstKey.startsWith('/')) {
                   // Structure is likely { "/path": { method: "GET", ... } }
                   console.log('[DocumentationService] Structure appears to be path-keyed');
                   for (const path of keys) {
-                    const endpointData = data.config.endpoints[path];
+                    const endpointData = documentData.config.endpoints[path];
                     if (endpointData && typeof endpointData === 'object') {
                       // Extract method from the object
                       const method = endpointData.method || 'GET'; // Default to GET if not specified
@@ -260,7 +268,7 @@ class DocumentationService {
                   // Structure is likely { "GET": { "/path": { ... } } }
                   console.log('[DocumentationService] Structure appears to be method-keyed');
                   for (const method of keys) {
-                    const pathsObj = data.config.endpoints[method];
+                    const pathsObj = documentData.config.endpoints[method];
                     if (pathsObj && typeof pathsObj === 'object') {
                       for (const path of Object.keys(pathsObj)) {
                         const endpointData = pathsObj[path];
@@ -297,7 +305,7 @@ class DocumentationService {
                     }
                   };
                   
-                  findEndpoints(data.config.endpoints);
+                  findEndpoints(documentData.config.endpoints);
                 }
               }
             }
@@ -330,7 +338,7 @@ class DocumentationService {
                 return [];
               };
               
-              const foundEndpoints = findEndpointsInConfig(data.config);
+              const foundEndpoints = findEndpointsInConfig(documentData.config);
               if (foundEndpoints.length > 0) {
                 endpoints = foundEndpoints;
               }
@@ -343,7 +351,9 @@ class DocumentationService {
           
           // Try to parse as OpenAPI/Swagger format
           try {
-            const extractedEndpoints = this.parseOpenAPIConfig(data.config);
+            const extractedEndpoints = this.parseOpenAPIConfig(documentData.config);
+
+            console.log('[DocumentationService] Extracted endpoints from OpenAPI format:', extractedEndpoints.slice(0, 3));
             if (extractedEndpoints.length > 0) {
               console.log('[DocumentationService] Successfully extracted endpoints from OpenAPI format:', extractedEndpoints.length);
               endpoints = extractedEndpoints;
@@ -404,14 +414,14 @@ class DocumentationService {
         console.log('[DocumentationService] No valid endpoints found after processing');
         // Log a sample of the raw config to help debug
         console.log('[DocumentationService] Raw config sample:', 
-          JSON.stringify(data.config).substring(0, 1000) + '...');
+          JSON.stringify(documentData.config).substring(0, 1000) + '...');
       } else {
         //
       }
 
       // Return the config object which contains the documentation content
       return {
-        ...data.config,
+        ...documentData.config,
         endpoints: validEndpoints
       };
     } catch (error) {
@@ -1436,24 +1446,31 @@ Focus on:
         endpointCount: relevantEndpoints.length
       });
 
-      const mappingResponse = await this.openai.chat.completions.create({
-        model: "gpt-4",
+      const Anthropic = (await import('@anthropic-ai/sdk')).default;
+      const anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY,
+      });
+
+      const mappingResponse = await anthropic.messages.create({
+        model: "claude-3-sonnet-20240229",
+        max_tokens: 4000,
+        temperature: 0.2,
+        system: "You are a precise API mapping assistant. You MUST respond with a valid JSON object following the exact format specified. Never include explanatory text or markdown.",
         messages: [
-          {
-            role: "system",
-            content: "You are a precise API mapping assistant. You MUST respond with a valid JSON object following the exact format specified. Never include explanatory text or markdown."
-          },
           {
             role: "user",
             content: mappingPrompt
           }
-        ],
-        temperature: 0.1,  // Lower temperature for more consistent JSON
-        max_tokens: 7000  // Reduced to stay safely within model's context length limit
+        ]
       });
 
-      const content = mappingResponse.choices[0].message?.content?.trim() || '';
-      console.log('[DocumentationService] Raw OpenAI response:', content);
+      // Extract content from the response properly checking the type
+      const contentBlock = mappingResponse.content[0];
+      const content = contentBlock && 'type' in contentBlock && contentBlock.type === 'text' 
+        ? contentBlock.text 
+        : '';
+      
+      console.log('[DocumentationService] Raw Claude response:', content);
 
       if (!content) {
         return this.generateFallbackMapping(tmfEndpoint, relevantEndpoints);

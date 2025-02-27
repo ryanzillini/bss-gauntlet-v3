@@ -4,6 +4,24 @@ import { saveEndpointMapping, saveBssEndpoint, BssEndpointMapping } from '../../
 import { documentationService } from '../../services/DocumentationService';
 import { supabase } from '../../utils/supabase-client';
 
+// Define the interfaces locally to match DocumentationService's expected format
+interface TMFField {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string;
+  subFields?: TMFField[];
+  schema?: any;
+}
+
+interface TMFEndpoint {
+  path: string;
+  method: string;
+  specification: {
+    fields: TMFField[];
+  };
+}
+
 // Type guard function to check if error is an Error object
 function isError(error: unknown): error is Error {
   return error instanceof Error;
@@ -390,20 +408,86 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       });
     }
 
+    // Log preprocessedDoc metadata
+    console.log('[map-endpoint] PreprocessedDoc metadata:', 
+      JSON.stringify({
+        type: preprocessedDoc.type,
+        format: preprocessedDoc.format,
+        version: preprocessedDoc.version,
+        endpointCount: preprocessedDoc.endpoints.length,
+        // Include any other top-level properties except the full endpoints array
+        ...Object.fromEntries(
+          Object.entries(preprocessedDoc)
+            .filter(([key]) => key !== 'endpoints')
+        )
+      }, null, 2)
+    );
+
+    // Enhance the endpoints in preprocessedDoc to ensure they have all properties
+    if (preprocessedDoc.endpoints && Array.isArray(preprocessedDoc.endpoints)) {
+      console.log(`[map-endpoint] Enhancing ${preprocessedDoc.endpoints.length} source endpoints to ensure complete data`);
+      
+      preprocessedDoc.endpoints = preprocessedDoc.endpoints.map((endpoint: any) => {
+        // Ensure all endpoints have required properties
+        return {
+          ...endpoint,
+          path: endpoint.path || '',
+          method: endpoint.method || 'GET',
+          description: endpoint.description || `${endpoint.method || 'GET'} ${endpoint.path || ''}`,
+          fields: Array.isArray(endpoint.fields) ? endpoint.fields.map((field: any) => ({
+            name: field.name || '',
+            type: field.type || 'string',
+            description: field.description || '',
+            required: field.required || false
+          })) : [],
+          parameters: endpoint.parameters || [],
+          responses: endpoint.responses || { '200': { description: 'Success' } },
+          operationId: endpoint.operationId || `${endpoint.method || 'GET'}_${endpoint.path?.replace(/[^a-zA-Z0-9]/g, '_') || ''}`
+        };
+      });
+      
+      console.log('[map-endpoint] Source endpoints enhanced with complete property structure');
+    }
+
     // If we have target fields from the new format, prepare them for mapping
     if (req.body.targetFields && Array.isArray(req.body.targetFields)) {
       console.log('[map-endpoint] Using target fields from request for mapping');
       
-      // Depending on your mapping logic, you might need to preprocess these fields
-      // or pass them to your mapping service
+      // Log detailed view of the target fields
+      console.log('[map-endpoint] Raw target fields from request:', 
+        JSON.stringify(req.body.targetFields, null, 2)
+      );
     }
 
+    console.log('[map-endpoint] Raw fields from targetEndpoint:', 
+      JSON.stringify(req.body.targetEndpoint?.fields, null, 2)
+    );
+
     // Create a properly typed endpoint object
-    const endpointToMap = {
+    const endpointToMap: TMFEndpoint = {
       path,
       method,
-      specification
+      specification: {
+        fields: (req.body.targetEndpoint?.fields || req.body.targetFields || []).map((field: any) => ({
+          name: field.name || '',
+          type: field.type || 'string',
+          required: field.required || false,
+          description: field.description || '',
+          subFields: Array.isArray(field.subFields) ? field.subFields.map((subField: any) => ({
+            name: subField.name || '',
+            type: subField.type || 'string',
+            required: subField.required || false,
+            description: subField.description || ''
+          })) : undefined,
+          schema: field.schema
+        }))
+      }
     };
+
+    console.log('[map-endpoint] Created endpointToMap with specification.fields:', {
+      fieldCount: endpointToMap.specification.fields.length,
+      sampleFields: endpointToMap.specification.fields.slice(0, 3) // Log the first few fields as example
+    });
 
     // Log target fields if they exist, for future improvement
     if (req.body.targetFields && Array.isArray(req.body.targetFields)) {
@@ -419,6 +503,39 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let apiMappings: any[] = [];
     try {
       console.log('[map-endpoint] Calling analyzeDocumentationWithPreprocessed');
+      
+      // Log the COMPLETE TMF Endpoint being sent
+      console.log('[map-endpoint] COMPLETE TMF Endpoint being sent to DocumentationService:', 
+        JSON.stringify(endpointToMap, null, 2)
+      );
+      
+      // Log sample of source endpoints
+      console.log('[map-endpoint] COMPLETE Source endpoints sample being sent to DocumentationService:', 
+        JSON.stringify(
+          preprocessedDoc.endpoints.slice(0, 5).map((e: any) => ({
+            path: e.path,
+            method: e.method,
+            description: e.description,
+            fields: e.fields,
+            // Include other important properties
+            parameters: e.parameters,
+            responses: e.responses,
+            operationId: e.operationId
+          })), 
+          null, 
+          2
+        )
+      );
+      
+      // Also log the raw source/target from the original request
+      console.log('[map-endpoint] ORIGINAL request data - sourceEndpoint:', 
+        JSON.stringify(req.body.sourceEndpoint, null, 2)
+      );
+      
+      console.log('[map-endpoint] ORIGINAL request data - targetEndpoint:', 
+        JSON.stringify(req.body.targetEndpoint, null, 2)
+      );
+      
       apiMappings = await documentationService.analyzeDocumentationWithPreprocessed(
         endpointToMap,
         preprocessedDoc
@@ -469,6 +586,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           // Try again with enhanced endpoints
           try {
             console.log('[map-endpoint] Retrying analysis with enhanced endpoints');
+            
+            // Log the COMPLETE TMF Endpoint being sent (retry)
+            console.log('[map-endpoint] COMPLETE TMF Endpoint being sent to DocumentationService (retry):', 
+              JSON.stringify(endpointToMap, null, 2)
+            );
+            
+            // Log sample of source endpoints (retry)
+            console.log('[map-endpoint] COMPLETE Source endpoints sample being sent to DocumentationService (retry):', 
+              JSON.stringify(
+                enhancedPreprocessedDoc.endpoints.slice(0, 5).map((e: any) => ({
+                  path: e.path,
+                  method: e.method,
+                  description: e.description,
+                  fields: e.fields,
+                  // Include other important properties
+                  parameters: e.parameters,
+                  responses: e.responses,
+                  operationId: e.operationId
+                })), 
+                null, 
+                2
+              )
+            );
+            
             apiMappings = await documentationService.analyzeDocumentationWithPreprocessed(
               endpointToMap,
               enhancedPreprocessedDoc
