@@ -39,7 +39,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     let completeEndpoint: any = null;
     
     // Check if method was explicitly specified
-    const requestedMethod = typeof method === 'string' ? method.toUpperCase() : 'GET'; // Default to GET if not specified
+    const requestedMethod = typeof method === 'string' ? 
+      method.toLowerCase() === 'query' ? 'GET' :
+      method.toLowerCase() === 'mutation' ? 'POST' :
+      method.toUpperCase() : "undefined";
     
     console.log('[get-complete-endpoint] Searching for endpoint with path:', endpointId, 'and method:', requestedMethod);
     

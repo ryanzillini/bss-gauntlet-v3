@@ -1943,7 +1943,7 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
       // First fetch the complete endpoint data with config from database
       console.log('[TMFEndpointList] Fetching complete endpoint data from database...');
       
-      const completeEndpointResponse = await fetch(`/api/get-complete-endpoint?docId=${docId}&endpointId=${endpoint.id}`);
+      const completeEndpointResponse = await fetch(`/api/get-complete-endpoint?docId=${docId}&endpointId=${endpoint.id}&method=${endpoint.method}`);
       
       if (!completeEndpointResponse.ok) {
         const errorData = await completeEndpointResponse.json().catch(() => ({ error: 'Unknown error' }));
@@ -2327,11 +2327,7 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                                                 <span className="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
                                                   {field.type}
                                                 </span>
-                                                {field.required && (
-                                                  <span className="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200">
-                                                    Required
-                                                  </span>
-                                                )}
+                                               
                                                 {newMapping.source === field.name && (
                                                   <span className="ml-2 px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
                                                     Selected
@@ -2368,6 +2364,7 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                                     )}
                                   </div>
                                 ) : null}
+                                {/* Commented out second list of fields
                                 <div className="max-h-40 overflow-y-auto bg-pure-black/20 rounded p-2">
                                   {(() => {
                                     // Find the selected endpoint by index
@@ -2471,6 +2468,7 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                                     );
                                   })()}
                                 </div>
+                                */}
                                 
                                 {/* New Mapping Box */}
                                 <div className="mt-4 bg-pure-black/30 p-3 rounded border border-info/30">
@@ -2729,8 +2727,87 @@ const EndpointCard: React.FC<{ endpoint: TMFEndpoint; docId: string }> = ({ endp
                     (Click a field to use as target in mapping)
                   </span>
                 </h5>
-                <div className="space-y-2">
-                  {endpoint.specification.fields.map((field: TMFField) => renderField(field))}
+                
+                {/* Parameters Section */}
+                <div className="mb-4">
+                  <h6 className="text-sm font-medium text-gray-700 dark:text-pure-white/70 mb-2">
+                    Parameters
+                  </h6>
+                  <div className="space-y-2">
+                    {endpoint.specification.fields.map((field: TMFField) => renderField(field))}
+                  </div>
+                </div>
+                
+                {/* Responses Section */}
+                <div>
+                  <h6 className="text-sm font-medium text-gray-700 dark:text-pure-white/70 mb-2">
+                    Responses
+                  </h6>
+                  <div className="space-y-2">
+                    {endpoint.path.includes('customer') ? (
+                      // Hardcoded responses for Customer API
+                      <>
+                        <div className="bg-pure-black/20 rounded-lg p-3">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs px-2 py-0.5 rounded bg-success/20 text-success">
+                              200
+                            </span>
+                            <span className="text-gray-800 dark:text-pure-white font-medium">
+                              Success
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
+                            Schema: Customer
+                          </p>
+                        </div>
+                        <div className="bg-pure-black/20 rounded-lg p-3">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs px-2 py-0.5 rounded bg-warning/20 text-warning">
+                              400
+                            </span>
+                            <span className="text-gray-800 dark:text-pure-white font-medium">
+                              Bad Request
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
+                            Schema: Error
+                          </p>
+                        </div>
+                        <div className="bg-pure-black/20 rounded-lg p-3">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs px-2 py-0.5 rounded bg-warning/20 text-warning">
+                              404
+                            </span>
+                            <span className="text-gray-800 dark:text-pure-white font-medium">
+                              Not Found
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
+                            Schema: Error
+                          </p>
+                        </div>
+                        <div className="bg-pure-black/20 rounded-lg p-3">
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="text-xs px-2 py-0.5 rounded bg-error/20 text-error">
+                              500
+                            </span>
+                            <span className="text-gray-800 dark:text-pure-white font-medium">
+                              Internal Server Error
+                            </span>
+                          </div>
+                          <p className="text-sm text-gray-700 dark:text-pure-white/70 mt-1">
+                            Schema: Error
+                          </p>
+                        </div>
+                      </>
+                    ) : (
+                      <div className="text-sm bg-pure-black/30 p-2 rounded">
+                        <p className="text-sm text-gray-700 dark:text-pure-white/70">
+                          No response information available.
+                        </p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
