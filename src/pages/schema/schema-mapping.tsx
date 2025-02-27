@@ -65,15 +65,15 @@ const SchemaMapping: React.FC = () => {
   const [selectedSchemaId, setSelectedSchemaId] = useState<string>('');
   const [schemaFile, setSchemaFile] = useState<File | null>(null);
   const [isUploading, setIsUploading] = useState(false);
-  
+
   // State for TMF SID
   const [tmfClasses, setTmfClasses] = useState<TMFClass[]>([]);
   const [selectedTmfClassId, setSelectedTmfClassId] = useState<string>('');
-  
+
   // State for mappings
   const [mappings, setMappings] = useState<ColumnMapping[]>([]);
   const [savedMappings, setSavedMappings] = useState<SchemaMapping[]>([]);
-  
+
   // Selected items for mapping
   const [selectedTable, setSelectedTable] = useState<string>('');
   const [selectedColumn, setSelectedColumn] = useState<string>('');
@@ -91,15 +91,15 @@ const SchemaMapping: React.FC = () => {
     try {
       const tmfFiles = await tmfService.listTMFFiles();
       const processedClasses: TMFClass[] = [];
-      
+
       for (const file of tmfFiles) {
         const tmfFile = await tmfService.loadTMFFile(file.id);
-        
+
         tmfFile.endpoints.forEach(endpoint => {
           // Extract class information from endpoints
           if (endpoint.specification && endpoint.specification.fields) {
             const className = endpoint.path.split('/').pop() || endpoint.path;
-            
+
             // Check if we already processed this class
             if (!processedClasses.find(c => c.name === className)) {
               processedClasses.push({
@@ -116,7 +116,7 @@ const SchemaMapping: React.FC = () => {
           }
         });
       }
-      
+
       setTmfClasses(processedClasses);
     } catch (error) {
       console.error('Error fetching TMF classes:', error);
@@ -133,7 +133,7 @@ const SchemaMapping: React.FC = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      
+
       if (data) {
         setUploadedSchemas(data);
       }
@@ -152,7 +152,7 @@ const SchemaMapping: React.FC = () => {
         .order('created_at', { ascending: false });
 
       if (error) throw error;
-      
+
       if (data) {
         setSavedMappings(data);
       }
@@ -181,19 +181,19 @@ const SchemaMapping: React.FC = () => {
     try {
       // Read the file
       const fileReader = new FileReader();
-      
+
       fileReader.onload = async (event) => {
         try {
           const content = event.target?.result as string;
           const schemaData = JSON.parse(content);
-          
+
           // Validate schema structure
           if (!schemaData.name || !Array.isArray(schemaData.tables)) {
             toast.error('Invalid schema format. Expected { name, tables[] }');
             setIsUploading(false);
             return;
           }
-          
+
           // Save to Supabase
           const { data, error } = await supabase
             .from('database_schemas')
@@ -203,15 +203,15 @@ const SchemaMapping: React.FC = () => {
             })
             .select()
             .single();
-            
+
           if (error) throw error;
-          
+
           toast.success('Schema uploaded successfully');
           setSchemaFile(null);
-          
+
           // Update the list of schemas
           await fetchUploadedSchemas();
-          
+
           // Reset file input if there's a form
           const fileInput = document.getElementById('schema-file-input') as HTMLInputElement;
           if (fileInput) {
@@ -224,12 +224,12 @@ const SchemaMapping: React.FC = () => {
           setIsUploading(false);
         }
       };
-      
+
       fileReader.onerror = () => {
         toast.error('Error reading file');
         setIsUploading(false);
       };
-      
+
       fileReader.readAsText(schemaFile);
     } catch (error) {
       console.error('Error uploading schema:', error);
@@ -263,7 +263,7 @@ const SchemaMapping: React.FC = () => {
     };
 
     setMappings([...mappings, newMapping]);
-    
+
     // Reset selections
     setSelectedColumn('');
     setSelectedAttribute('');
@@ -297,10 +297,10 @@ const SchemaMapping: React.FC = () => {
       if (error) throw error;
 
       toast.success('Mappings saved successfully');
-      
+
       // Update the list of saved mappings
       await fetchSavedMappings();
-      
+
       // Reset form
       setMappings([]);
       setSelectedSchemaId('');
@@ -325,7 +325,7 @@ const SchemaMapping: React.FC = () => {
       if (error) throw error;
 
       toast.success('Mapping deleted successfully');
-      
+
       // Update the list of saved mappings
       await fetchSavedMappings();
     } catch (error) {
@@ -358,7 +358,7 @@ const SchemaMapping: React.FC = () => {
           {/* Left Column - Database Schema */}
           <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
             <h2 className="text-xl font-semibold text-pure-white mb-4">Database Schema</h2>
-            
+
             {/* Schema Upload */}
             <div className="mb-6 p-4 border border-dashed border-gray-500 rounded-lg">
               <h3 className="text-lg font-medium text-pure-white mb-2">Upload Schema</h3>
@@ -385,7 +385,7 @@ const SchemaMapping: React.FC = () => {
                 </button>
               </div>
             </div>
-            
+
             {/* Schema Selection */}
             <div className="mb-6">
               <h3 className="text-lg font-medium text-pure-white mb-2">Select Schema</h3>
@@ -402,7 +402,7 @@ const SchemaMapping: React.FC = () => {
                 ))}
               </select>
             </div>
-            
+
             {/* Table Selection */}
             {selectedSchemaId && (
               <div className="mb-6">
@@ -424,7 +424,7 @@ const SchemaMapping: React.FC = () => {
                 </select>
               </div>
             )}
-            
+
             {/* Column Selection */}
             {selectedTable && (
               <div className="mb-6">
@@ -444,11 +444,11 @@ const SchemaMapping: React.FC = () => {
               </div>
             )}
           </div>
-          
+
           {/* Right Column - TMF SID */}
           <div className="bg-gray-800 rounded-lg p-6 shadow-lg">
             <h2 className="text-xl font-semibold text-pure-white mb-4">TMF SID</h2>
-            
+
             {/* TMF Class Selection */}
             <div className="mb-6">
               <h3 className="text-lg font-medium text-pure-white mb-2">Select TMF Class</h3>
@@ -468,7 +468,7 @@ const SchemaMapping: React.FC = () => {
                 ))}
               </select>
             </div>
-            
+
             {/* TMF Attribute Selection */}
             {selectedTmfClassId && (
               <div className="mb-6">
@@ -489,7 +489,7 @@ const SchemaMapping: React.FC = () => {
             )}
           </div>
         </div>
-        
+
         {/* Mapping Controls */}
         <div className="mt-8 flex justify-center">
           <button
